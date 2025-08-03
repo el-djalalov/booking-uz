@@ -1,0 +1,116 @@
+"use client";
+
+import { Plane, Star, Clock, Shield } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Navbar } from "./Navbar";
+import { FlightSearch } from "./FlightSearch";
+import { MovingBorder, MovingBorderButton } from "./ui/moving-border";
+
+export const Hero = () => {
+	return (
+		<>
+			<Navbar />
+			<div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-hero pt-16">
+				{/* 3D Plane Background */}
+				{/* 	<div className="absolute inset-0 z-0">
+					<Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+						<ambientLight intensity={0.4} />
+						<directionalLight position={[10, 10, 5]} intensity={1} />
+						<Plane3D />
+					</Canvas>
+				</div> */}
+
+				{/* Content */}
+				<div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+					{/* Main Headline */}
+					<div className="text-center my-12">
+						<MovingBorderButton className="flex gap-3.5">
+							<Plane className="h-6 w-6 text-flight-primary" />
+							<span className="text-sm font-medium ">
+								Cheapest tickets in town
+							</span>
+						</MovingBorderButton>
+						<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-flight-slate-dark mt-8 leading-tight">
+							Find Your Perfect
+							<span className="bg-primary bg-clip-text"> Flight</span>
+						</h1>
+						<p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+							The best travel experience for your journey.
+						</p>
+					</div>
+
+					{/* Flight Booking Component */}
+
+					<FlightSearch />
+
+					{/* CTA Buttons */}
+					<div className="flex flex-col sm:flex-row gap-4 justify-center mt-36">
+						<Button
+							size="lg"
+							className="h-14 px-8 text-lg font-semibold bg-primary hover:opacity-90 transition-all duration-300 transform hover:scale-105"
+						>
+							Book Now - Save Up to 60%
+						</Button>
+						<Button
+							variant="outline"
+							size="lg"
+							className="h-14 px-8 text-lg font-semibold border-flight-primary text-flight-primary hover:bg-flight-primary hover:text-white transition-all duration-300"
+						>
+							Explore Destinations
+						</Button>
+					</div>
+
+					{/* Trust Indicators */}
+					<div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center py-12">
+						<div className="flex flex-col items-center gap-2">
+							<div className="bg-white/50 backdrop-blur-sm p-3 rounded-full border border-white/40">
+								<Star className="h-6 w-6 text-flight-accent" />
+							</div>
+							<div>
+								<p className="font-bold">4.9/5</p>
+								<p className="text-sm">Customer Rating</p>
+							</div>
+						</div>
+
+						<div className="flex flex-col items-center gap-2">
+							<div className="bg-white/50 backdrop-blur-sm p-3 rounded-full border border-white/40">
+								<Clock className="h-6 w-6 text-flight-accent" />
+							</div>
+							<div>
+								<p className="font-bold">24/7</p>
+								<p className="text-sm">Support</p>
+							</div>
+						</div>
+
+						<div className="flex flex-col items-center gap-2">
+							<div className="bg-white/50 backdrop-blur-sm p-3 rounded-full border border-white/40">
+								<Shield className="h-6 w-6 text-flight-accent" />
+							</div>
+							<div>
+								<p className="font-bold">100%</p>
+								<p className="text-sm">Secure Booking</p>
+							</div>
+						</div>
+
+						<div className="flex flex-col items-center gap-2">
+							<div className="bg-white/50 backdrop-blur-sm p-3 rounded-full border border-white/40">
+								<Plane className="h-6 w-6 text-flight-accent" />
+							</div>
+							<div>
+								<p className="font-bold">500+</p>
+								<p className="text-sm">Airlines</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{/* Scroll Indicator */}
+				<div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+					<div className="w-6 h-10 border-2 border-flight-primary rounded-full flex justify-center">
+						<div className="w-1 h-3 bg-flight-primary rounded-full mt-2 animate-pulse" />
+					</div>
+				</div>
+			</div>
+		</>
+	);
+};
