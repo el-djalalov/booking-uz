@@ -10,7 +10,7 @@ export const Hero = () => {
 	return (
 		<>
 			<Navbar />
-			<div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-hero pt-16">
+			<div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-hero pt-8">
 				{/* 3D Plane Background */}
 				{/* 	<div className="absolute inset-0 z-0">
 					<Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
@@ -21,15 +21,9 @@ export const Hero = () => {
 				</div> */}
 
 				{/* Content */}
-				<div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+				<div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					{/* Main Headline */}
 					<div className="text-center my-12">
-						<MovingBorderButton className="flex gap-3.5">
-							<Plane className="h-6 w-6 text-flight-primary" />
-							<span className="text-sm font-medium ">
-								Cheapest tickets in town
-							</span>
-						</MovingBorderButton>
 						<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-flight-slate-dark mt-8 leading-tight">
 							Find Your Perfect
 							<span className="bg-primary bg-clip-text"> Flight</span>

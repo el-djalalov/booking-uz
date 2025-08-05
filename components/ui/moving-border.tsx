@@ -47,7 +47,8 @@ export function MovingBorderButton({
 				<MovingBorder duration={duration} rx="30%" ry="30%">
 					<div
 						className={cn(
-							"h-20 w-20 bg-[radial-gradient(#0ea5e9_40%,transparent_80%)] opacity-[0.9]",
+							"h-20 w-20 bg-[radial-gradient(#0ea5e9_40%,transparent_80%)] opacity-[0.9",
+							"bg-[radial-gradient(#34d399_40%,transparent_90%)]  opacity-[0.4]",
 							borderClassName
 						)}
 					/>
@@ -56,7 +57,7 @@ export function MovingBorderButton({
 
 			<div
 				className={cn(
-					"relative flex h-full w-full items-center justify-center border border-l-1 bg-white/50 text-sm antialiased backdrop-blur-3xl",
+					"relative flex h-full w-full items-center justify-center border border-l-1 bg-white/50 dark:bg-white/20 text-sm antialiased backdrop-blur-3xl dark:backdrop-blur-5xl",
 					className
 				)}
 				style={{
@@ -89,7 +90,7 @@ export const MovingBorder = ({
 		const length = pathRef.current?.getTotalLength();
 		if (length) {
 			const pxPerMillisecond = length / duration;
-			progress.set((time * pxPerMillisecond) % length);
+			progress.set(((time * pxPerMillisecond) / 1.5) % length);
 		}
 	});
 

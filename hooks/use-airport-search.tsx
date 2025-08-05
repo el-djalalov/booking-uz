@@ -43,9 +43,7 @@ export function AirportSearch({
 	const hasResults = searchResults.length > 0;
 
 	return (
-		<div className="w-full max-w-3xl bg-white border rounded-lg shadow-lg">
-			{/* REMOVED: Search Header with Input */}
-
+		<div className="w-96 max-w-3xl bg-white dark:bg-neutral-900/80 dark:backdrop-blur-xl border border-neutral/20 rounded-xl shadow-2xl ">
 			{/* Results Container */}
 			<div className="max-h-64 overflow-y-auto">
 				{error && (
@@ -60,7 +58,7 @@ export function AirportSearch({
 				{isFetching && (
 					<div className="p-3 text-center">
 						<div className="flex items-center justify-center gap-2">
-							<div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full" />
+							<div className="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full" />
 							<span className="text-sm text-gray-500">
 								Searching airports...
 							</span>
@@ -75,22 +73,25 @@ export function AirportSearch({
 								<Button
 									key={airport.iata}
 									variant="ghost"
-									className="w-full justify-start text-left h-auto p-3 hover:bg-green-50"
+									className="w-full justify-start text-left h-auto p-3 dark:hover:bg-neutral-900/80"
 									onClick={() => handleSelect(airport)}
 								>
 									<div className="flex items-center justify-between w-full">
 										<div className="flex items-center gap-3">
-											<MapPin className="h-4 w-4 text-gray-400" />
+											<MapPin className="h-4 w-4 text-slate-400" />
 											<div>
-												<div className="font-medium text-sm">
+												<div className="text-sm font-semibold">
 													{airport.name}
 												</div>
-												<div className="text-xs text-muted-foreground">
+												<div className="text-xs text-muted-foreground font-semibold">
 													{airport.city}, {airport.country}
 												</div>
 											</div>
 										</div>
-										<Badge variant="secondary" className="ml-2">
+										<Badge
+											variant="secondary"
+											className="ml-2 dark:bg-neutral-700 bg-slate-200"
+										>
 											{airport.iata}
 										</Badge>
 									</div>

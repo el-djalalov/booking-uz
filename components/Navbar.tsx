@@ -13,8 +13,8 @@ export const Navbar = () => {
 						<div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
 							<span className="text-white font-bold text-sm">✈</span>
 						</div>
-						<span className="text-xl font-bold text-flight-slate-dark">
-							SkyBook
+						<span className="text-xl font-bold text-secondary-foreground">
+							Safarix
 						</span>
 					</div>
 

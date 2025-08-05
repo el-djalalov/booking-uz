@@ -68,6 +68,7 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { Checkbox } from "@/components/ui/checkbox";
+import { MovingBorderButton } from "./ui/moving-border";
 // Updated Date Range Picker Component using shadcn Calendar
 const DateRangePicker = ({
 	departureDate,
@@ -329,64 +330,74 @@ export const FlightSearch = () => {
 			transition={{ duration: 0.6 }}
 			onClick={handleClickOutside}
 		>
-			<Card className="w-full max-w-screen mx-auto bg-white backdrop-blur-sm shadow-lg rounded-xl border-0">
+			<Card className="w-full max-w-screen mx-auto bg-white dark:bg-white/10 dark:backdrop-blur-lg backdrop-blur-sm shadow-lg rounded-xl border-0">
 				<CardContent className="px-4">
 					<form onSubmit={handleSubmit(onSubmit)}>
 						{/* Trip selection */}
-						<div className="mb-4 max-w-72">
-							<Controller
-								name="tripType"
-								control={control}
-								render={({ field }) => (
-									<div className="relative">
-										<div className="flex bg-slate-100 p-1 rounded-lg relative overflow-hidden h-10">
-											{/* Sliding white background */}
-											<div
-												className="absolute top-1 bottom-1 w-1/2 bg-white rounded-md shadow-sm transition-transform duration-300 ease-out"
-												style={{
-													transform:
-														field.value === "roundtrip"
-															? "translateX(0%)"
-															: "translateX(95%)",
-												}}
-											/>
+						<div className="flex items-center justify-between mb-4">
+							<div className="w-[30%]">
+								<Controller
+									name="tripType"
+									control={control}
+									render={({ field }) => (
+										<div className="relative">
+											<div className="flex bg-slate-100 dark:bg-white/15 p-1 rounded-lg relative overflow-hidden h-10">
+												{/* Sliding white background */}
+												<div
+													className="absolute top-1 bottom-1 w-1/2 bg-white rounded-md shadow-sm transition-transform duration-300 ease-out"
+													style={{
+														transform:
+															field.value === "roundtrip"
+																? "translateX(0%)"
+																: "translateX(95%)",
+													}}
+												/>
 
-											{/* Tab buttons */}
-											<button
-												type="button"
-												onClick={() => {
-													field.onChange("roundtrip");
-													setValue("returnDate", "");
-												}}
-												className={`relative z-10 flex items-center pl-2 justify-items-start gap-2 h-8 flex-1 text-sm font-medium transition-colors duration-300 ${
-													field.value === "roundtrip"
-														? "text-slate-900"
-														: "text-slate-600 hover:text-slate-800"
-												}`}
-											>
-												<RefreshCcw className="h-4 w-4" />
-												Round trip
-											</button>
-											<button
-												type="button"
-												onClick={() => {
-													field.onChange("oneway");
-													setValue("returnDate", undefined);
-												}}
-												className={`relative z-10 flex items-center ml-2 justify-items-start px-2 gap-2 h-8 flex-1 text-sm font-medium transition-colors duration-300 ${
-													field.value === "oneway"
-														? "text-slate-900"
-														: "text-slate-600 hover:text-slate-800"
-												}`}
-											>
-												<ArrowRight className="h-4 w-4" />
-												One way
-											</button>
+												{/* Tab buttons */}
+												<button
+													type="button"
+													onClick={() => {
+														field.onChange("roundtrip");
+														setValue("returnDate", "");
+													}}
+													className={`relative z-10 flex items-center pl-2 justify-items-start gap-2 h-8 flex-1 text-sm font-medium transition-colors duration-300  ${
+														field.value === "roundtrip"
+															? "text-slate-900"
+															: "text-slate-600 hover:text-slate-800 dark:text-white"
+													}`}
+												>
+													<RefreshCcw className="h-4 w-4" />
+													Round trip
+												</button>
+												<button
+													type="button"
+													onClick={() => {
+														field.onChange("oneway");
+														setValue("returnDate", undefined);
+													}}
+													className={`relative z-10 flex items-center ml-4 justify-items-start px-2 gap-2 h-8 flex-1 text-sm font-medium transition-colors duration-300 ${
+														field.value === "oneway"
+															? "text-slate-900"
+															: "text-slate-600 hover:text-slate-800 dark:text-white"
+													}`}
+												>
+													<ArrowRight className="h-4 w-4" />
+													One way
+												</button>
+											</div>
 										</div>
-									</div>
-								)}
-							/>
+									)}
+								/>
+							</div>
+
+							<MovingBorderButton className="flex gap-3">
+								<Plane className="h-5 w-5 text-flight-primary" />
+								<span className="text-sm font-medium ">
+									Cheapest tickets in town
+								</span>
+							</MovingBorderButton>
 						</div>
+
 						{/* Main Search Row */}
 						<div className="flex items-center gap-1 rounded-lg border-2 px-2">
 							<div className="flex items-center relative">
@@ -428,7 +439,8 @@ export const FlightSearch = () => {
 														setShowDatePicker(false);
 													}
 												}}
-												className="border-0 py-0 pl-2 h-12 text-lg font-medium focus-visible:ring-0 translate-1 placeholder:text-slate-400 placeholder:text-lg"
+												className="border-0 py-0 pl-2 h-12 font-medium focus-visible:ring-0 translate-1 placeholder:text-slate-400 placeholder:text-[15px] dark:bg-transparent dark:text-white"
+												style={{ fontSize: "15px" }}
 											/>
 										</div>
 
@@ -528,7 +540,8 @@ export const FlightSearch = () => {
 															setShowDatePicker(false);
 														}
 													}}
-													className="border-0 py-0 pl-2 h-12 font-medium focus-visible:ring-0 translate-1 placeholder:text-slate-400 placeholder:text-lg"
+													className="border-0 py-0 pl-2 h-12 font-medium focus-visible:ring-0 translate-1 placeholder:text-slate-400 placeholder:text-[15px] dark:bg-transparent dark:text-white"
+													style={{ fontSize: "15px" }}
 												/>
 											</div>
 										</div>
@@ -776,7 +789,7 @@ export const FlightSearch = () => {
 										/>
 										<Label
 											htmlFor="directFlight"
-											className="text-sm text-gray-600 cursor-pointer"
+											className="text-sm text-foreground cursor-pointer"
 										>
 											Direct flights only
 										</Label>
