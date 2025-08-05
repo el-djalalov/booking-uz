@@ -19,7 +19,10 @@ import {
 	PlaneLanding,
 	MoveRight,
 	MoveLeft,
+	RefreshCcw,
+	ArrowRight,
 } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -32,7 +35,12 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
 	flightSearchSchema,
 	type FlightSearchFormData,
@@ -321,49 +329,64 @@ export const FlightSearch = () => {
 			transition={{ duration: 0.6 }}
 			onClick={handleClickOutside}
 		>
-			<Card className="w-full max-w-screen mx-auto bg-white backdrop-blur-sm shadow-lg rounded-2xl border-0">
+			<Card className="w-full max-w-screen mx-auto bg-white backdrop-blur-sm shadow-lg rounded-xl border-0">
 				<CardContent className="px-4">
 					<form onSubmit={handleSubmit(onSubmit)}>
-						{/* Trip Type Toggle */}
-						<div className=" flex gap-2 mb-4 items-center">
-							<div className="flex gap-2 mb-4">
-								<Controller
-									name="tripType"
-									control={control}
-									render={({ field }) => (
-										<>
-											<Button
+						{/* Trip selection */}
+						<div className="mb-4 max-w-72">
+							<Controller
+								name="tripType"
+								control={control}
+								render={({ field }) => (
+									<div className="relative">
+										<div className="flex bg-slate-100 p-1 rounded-lg relative overflow-hidden h-10">
+											{/* Sliding white background */}
+											<div
+												className="absolute top-1 bottom-1 w-1/2 bg-white rounded-md shadow-sm transition-transform duration-300 ease-out"
+												style={{
+													transform:
+														field.value === "roundtrip"
+															? "translateX(0%)"
+															: "translateX(95%)",
+												}}
+											/>
+
+											{/* Tab buttons */}
+											<button
 												type="button"
-												variant={
-													field.value === "roundtrip" ? "default" : "ghost"
-												}
-												size="sm"
 												onClick={() => {
 													field.onChange("roundtrip");
 													setValue("returnDate", "");
 												}}
-												className="text-sm font-medium"
+												className={`relative z-10 flex items-center pl-2 justify-items-start gap-2 h-8 flex-1 text-sm font-medium transition-colors duration-300 ${
+													field.value === "roundtrip"
+														? "text-slate-900"
+														: "text-slate-600 hover:text-slate-800"
+												}`}
 											>
-												Round Trip
-											</Button>
-											<Button
+												<RefreshCcw className="h-4 w-4" />
+												Round trip
+											</button>
+											<button
 												type="button"
-												variant={field.value === "oneway" ? "default" : "ghost"}
-												size="sm"
 												onClick={() => {
 													field.onChange("oneway");
 													setValue("returnDate", undefined);
 												}}
-												className="text-sm font-medium"
+												className={`relative z-10 flex items-center ml-2 justify-items-start px-2 gap-2 h-8 flex-1 text-sm font-medium transition-colors duration-300 ${
+													field.value === "oneway"
+														? "text-slate-900"
+														: "text-slate-600 hover:text-slate-800"
+												}`}
 											>
-												One Way
-											</Button>
-										</>
-									)}
-								/>
-							</div>
+												<ArrowRight className="h-4 w-4" />
+												One way
+											</button>
+										</div>
+									</div>
+								)}
+							/>
 						</div>
-
 						{/* Main Search Row */}
 						<div className="flex items-center gap-1 rounded-lg border-2 px-2">
 							<div className="flex items-center relative">
@@ -435,7 +458,7 @@ export const FlightSearch = () => {
 								</div>
 
 								{/* Overlapping Swap Button */}
-								<div className="absolute left-1/2 top-0.5 transform -translate-x-1/2 z-20 group">
+								<div className="absolute left-1/2 top-1 transform -translate-x-1/2 z-20 group">
 									<motion.div
 									//whileHover={{ scale: 1.1 }}
 									//whileTap={{ scale: 0.9 }}
@@ -448,7 +471,7 @@ export const FlightSearch = () => {
 											disabled={
 												!watchedValues.fromAirport && !watchedValues.toAirport
 											}
-											className="h-10 w-10 rounded-full bg-white border-2 border-slate-300 group-hover:border-blue-500 hover:bg-slate-50 shadow-sm relative z-20"
+											className="h-10 w-10 rounded-full bg-white border-2 border-slate-300 group-hover:border-primary hover:bg-slate-50 shadow-sm relative z-20"
 										>
 											{/* 											<ArrowRightLeft className="h-4 w-4 text-gray-600 hover:text-blue-600" />
 											 */}{" "}
@@ -456,11 +479,11 @@ export const FlightSearch = () => {
 
 										<MoveLeft
 											size={18}
-											className="group-hover:-translate-x-3 group-hover:text-blue-500 absolute top-4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 translate-2 text-slate-400 z-20 transition duration-300"
+											className="group-hover:-translate-x-3 group-hover:text-primary absolute top-4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 translate-2 text-slate-400 z-20 transition duration-300"
 										/>
 										<MoveRight
 											size={18}
-											className="group-hover:-translate-x-1.5 group-hover:text-blue-500 absolute top-6.5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -translate-2 text-slate-400 z-20 transition duration-300"
+											className="group-hover:-translate-x-1.5 group-hover:text-primary absolute top-6.5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -translate-2 text-slate-400 z-20 transition duration-300"
 										/>
 									</motion.div>
 									<div className="w-px h-16 bg-slate-300 absolute top-0 transform translate-x-5 -translate-y-2 z-10" />
@@ -740,7 +763,6 @@ export const FlightSearch = () => {
 								</div>
 							</div>
 						</div>
-
 						<div className="mt-4 flex items-center justify-between">
 							<Controller
 								name="directOnly"
@@ -775,7 +797,7 @@ export const FlightSearch = () => {
 										!watchedValues.toAirport ||
 										!watchedValues.departureDate
 									}
-									className="h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl"
+									className="h-12 bg-primary hover:bg-primary/80 text-white font-medium rounded-lg"
 								>
 									{isPending ? (
 										<>
@@ -786,9 +808,8 @@ export const FlightSearch = () => {
 													repeat: Infinity,
 													ease: "linear",
 												}}
-												className="mr-2"
 											>
-												<Plane className="h-4 w-4" />
+												<Plane className="h-6 w-6" />
 											</motion.div>
 											Searching...
 										</>
@@ -801,9 +822,8 @@ export const FlightSearch = () => {
 								</Button>
 							</motion.div>
 						</div>
-
 						{/* Error Messages */}
-						{Object.keys(errors).length > 0 && (
+						{/* 	{Object.keys(errors).length > 0 && (
 							<motion.div
 								initial={{ opacity: 0, height: 0 }}
 								animate={{ opacity: 1, height: "auto" }}
@@ -818,7 +838,7 @@ export const FlightSearch = () => {
 									{errors.returnDate && <p>• {errors.returnDate.message}</p>}
 								</div>
 							</motion.div>
-						)}
+						)} */}
 					</form>
 				</CardContent>
 			</Card>
