@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { MapPin, Loader2, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useAmadeusLocationSearch } from "@/hooks/use-amadeus-locations";
+import { useAmadeusLocationSearch } from "@/hooks/use-locations-search";
 import { Airport } from "@/lib/airport-service";
 import { cn } from "@/lib/utils";
 
