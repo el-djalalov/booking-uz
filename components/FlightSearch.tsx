@@ -86,47 +86,68 @@ const DateRangePicker = ({
 	isRoundTrip: boolean;
 	onClose?: () => void;
 }) => {
-	// Handle range selection for round trip
 	const handleRangeSelect = (range: DateRange | undefined) => {
 		if (!range) return;
 
 		if (range.from) {
-			onDepartureDateChange(format(range.from, "yyyy-MM-dd"));
-		}
+			const formattedFrom = format(range.from, "yyyy-MM-dd");
+			onDepartureDateChange(formattedFrom);
 
-		if (isRoundTrip && range.to) {
-			onReturnDateChange(format(range.to, "yyyy-MM-dd"));
-			// Close after both dates are selected for round trip
-			setTimeout(() => onClose?.(), 100);
-		} else if (isRoundTrip && !range.to) {
-			// Clear return date if no end date is selected
-			onReturnDateChange("");
+			if (isRoundTrip) {
+				if (range.to) {
+					// Both dates selected - complete the selection
+					const formattedTo = format(range.to, "yyyy-MM-dd");
+					onReturnDateChange(formattedTo);
+					// Use a longer timeout to ensure state updates complete
+					setTimeout(() => onClose?.(), 200);
+				} else {
+					// Only first date selected - clear return and DON'T close
+					onReturnDateChange("");
+					// ✅ Critical: Don't call onClose here for range selection
+				}
+			} else {
+				// One-way trip - clear return date and close
+				onReturnDateChange("");
+				setTimeout(() => onClose?.(), 150);
+			}
 		}
 	};
 
-	// Handle single date selection for one-way
+	// Handle single date selection for one-way trips
 	const handleSingleSelect = (date: Date | undefined) => {
 		if (date) {
-			onDepartureDateChange(format(date, "yyyy-MM-dd"));
+			const formattedDate = format(date, "yyyy-MM-dd");
+			onDepartureDateChange(formattedDate);
 			onReturnDateChange("");
-			// Close immediately after selecting single date
-			setTimeout(() => onClose?.(), 100);
+			setTimeout(() => onClose?.(), 150);
 		}
 	};
 
-	// Convert string dates to Date objects
+	// Convert string dates to Date objects with error handling
 	const dateRange: DateRange | undefined = React.useMemo(() => {
 		if (!isRoundTrip) return undefined;
 
-		return {
-			from: departureDate ? new Date(departureDate) : undefined,
-			to: returnDate ? new Date(returnDate) : undefined,
-		};
+		try {
+			return {
+				from: departureDate ? new Date(departureDate + "T00:00:00") : undefined,
+				to: returnDate ? new Date(returnDate + "T00:00:00") : undefined,
+			};
+		} catch (error) {
+			console.error("Date parsing error:", error);
+			return undefined;
+		}
 	}, [departureDate, returnDate, isRoundTrip]);
 
 	const singleDate: Date | undefined = React.useMemo(() => {
-		return departureDate ? new Date(departureDate) : undefined;
-	}, [departureDate]);
+		try {
+			return !isRoundTrip && departureDate
+				? new Date(departureDate + "T00:00:00")
+				: undefined;
+		} catch (error) {
+			console.error("Single date parsing error:", error);
+			return undefined;
+		}
+	}, [departureDate, isRoundTrip]);
 
 	const today = React.useMemo(() => {
 		const now = new Date();
@@ -134,9 +155,8 @@ const DateRangePicker = ({
 	}, []);
 
 	return (
-		<div className="w-auto bg-white dark:bg-neutral-900/70 dark:backdrop-blur-lg border border-neutral/20 rounded-xl shadow-2xl">
+		<div className="w-auto bg-white dark:bg-neutral-900/90 dark:backdrop-blur-lg border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-xl overflow-hidden">
 			{isRoundTrip ? (
-				// Range picker for round trip
 				<Calendar
 					mode="range"
 					defaultMonth={dateRange?.from || new Date()}
@@ -144,17 +164,16 @@ const DateRangePicker = ({
 					onSelect={handleRangeSelect}
 					numberOfMonths={2}
 					disabled={date => date < today}
-					className="rounded-lg border-0"
+					className="rounded-lg border-0 p-3"
 				/>
 			) : (
-				// Single date picker for one-way
 				<Calendar
 					mode="single"
 					defaultMonth={singleDate || new Date()}
 					selected={singleDate}
 					onSelect={handleSingleSelect}
 					disabled={date => date < today}
-					className="rounded-lg border-0"
+					className="rounded-lg border-0 p-3"
 				/>
 			)}
 		</div>
@@ -307,16 +326,16 @@ export const FlightSearch = () => {
 		returnDate?: string,
 		tripType?: string
 	) => {
-		if (!departureDate) return "";
+		if (!departureDate) return null; // Return null instead of empty string
 
 		if (tripType === "oneway") {
-			return format(new Date(departureDate), "MMM dd");
+			return format(new Date(departureDate), "MMM dd, yyyy");
 		}
 
 		if (returnDate) {
 			return `${format(new Date(departureDate), "MMM dd")} - ${format(
 				new Date(returnDate),
-				"MMM dd"
+				"MMM dd, yyyy"
 			)}`;
 		}
 
@@ -330,7 +349,7 @@ export const FlightSearch = () => {
 			transition={{ duration: 0.6 }}
 			onClick={handleClickOutside}
 		>
-			<Card className="w-full max-w-screen mx-auto bg-white dark:bg-white/10 shadow-lg rounded-xl border-0">
+			<Card className="w-full max-w-screen mx-auto bg-white/95 dark:bg-white/10 shadow-lg rounded-xl border-0">
 				<CardContent className="px-4">
 					<form onSubmit={handleSubmit(onSubmit)}>
 						{/* Trip selection */}
@@ -400,7 +419,7 @@ export const FlightSearch = () => {
 
 						{/* Main Search Row */}
 						<div className="flex items-center gap-1 rounded-lg border-2 px-2">
-							<div className="flex items-center relative w-[60%]">
+							<div className="flex items-center relative w-[55%]">
 								{/* From Airport */}
 								<div className="flex-1 relative airport-search-container">
 									<div className="border-gray-200">
@@ -456,7 +475,7 @@ export const FlightSearch = () => {
 														setValue("fromAirport", null);
 														setShowFromSearch(false);
 													}}
-													className="absolute right-6 p-0.5 mt-1 bg-neutral-200 hover:bg-neutral-300 rounded-full transition-colors"
+													className="absolute right-6 p-0.5 mt-1 bg-slate-400/50 hover:bg-neutral-300 rounded-full transition-colors"
 												>
 													<X
 														size={16}
@@ -556,10 +575,10 @@ export const FlightSearch = () => {
 													onFocus={() => {
 														if (
 															!watchedValues.fromAirport &&
-															fromInputText.length >= 3
+															toInputText.length >= 3
 														) {
-															setShowFromSearch(true);
-															setShowToSearch(false);
+															setShowToSearch(true);
+															setShowFromSearch(false);
 															setShowPassengers(false);
 															setShowDatePicker(false);
 														}
@@ -575,7 +594,7 @@ export const FlightSearch = () => {
 															setValue("toAirport", null);
 															setShowFromSearch(false);
 														}}
-														className="absolute right-0 p-0.5 mt-1 bg-neutral-200 hover:bg-neutral-300 rounded-full transition-colors"
+														className="absolute right-0 p-0.5 mt-1 bg-slate-400/50 hover:bg-neutral-300 rounded-full transition-colors"
 													>
 														<X
 															size={16}
@@ -616,64 +635,121 @@ export const FlightSearch = () => {
 							<div className="w-px h-14 bg-neutral-300 dark:bg-neutral-500" />
 
 							{/* Date Picker */}
+
 							<div className="flex-1 relative date-picker-container bg-white dark:bg-transparent">
-								<div className="flex items-center justify-between">
-									{/* 	<Label className="text-xs text-gray-600 mb-1 block">
-										{watchedValues.tripType === "roundtrip"
-											? "DEPARTURE - RETURN"
-											: "DEPARTURE"}
-									</Label> */}
-									<Popover
-										open={showDatePicker}
-										onOpenChange={setShowDatePicker}
-									>
-										<PopoverTrigger asChild>
-											<div className="flex items-center gap-2 w-full">
-												<CalendarIcon className="h-4 w-4 text-slate-400 dark:text-neutral-500" />
-												<Button
-													variant="ghost"
-													className={cn(
-														"h-12 flex-1 float-left font-medium focus-visible:ring-0 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[15px] dark:bg-transparent dark:text-white",
-														!watchedValues.departureDate &&
-															"text-muted-foreground"
-													)}
-												>
-													<span className="dark:text-neutral-300">
-														Select date
-													</span>
-													<div className="flex items-start justify-items-start float-left gap-2 text-left">
-														<span>
-															{formatDateDisplay(
-																watchedValues.departureDate,
-																watchedValues.returnDate,
-																watchedValues.tripType
-															)}
+								<Popover
+									open={showDatePicker}
+									onOpenChange={open => {
+										// ✅ More robust prevention of auto-closing
+										if (!open) {
+											const isRangeInProgress =
+												watchedValues.tripType === "roundtrip" &&
+												watchedValues.departureDate &&
+												!watchedValues.returnDate;
+
+											if (isRangeInProgress) {
+												// Don't allow closing during range selection
+												console.log("Preventing close during range selection");
+												return;
+											}
+										}
+										setShowDatePicker(open);
+									}}
+								>
+									<PopoverTrigger asChild>
+										<div className="relative">
+											<CalendarIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 z-10 dark:text-neutral-400 text-slate-500 pointer-events-none" />
+
+											<Button
+												variant="ghost"
+												className={cn(
+													"w-full h-12 pl-12 pr-10 justify-start text-left font-normal hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg",
+													!watchedValues.departureDate &&
+														"text-muted-foreground"
+												)}
+											>
+												<span className="flex-1 text-[15px]">
+													{formatDateDisplay(
+														watchedValues.departureDate,
+														watchedValues.returnDate,
+														watchedValues.tripType
+													) || (
+														<span className="text-muted-foreground dark:text-neutral-400">
+															Select date
 														</span>
-													</div>
-												</Button>
-											</div>
-										</PopoverTrigger>
-										<PopoverContent
-											className="w-auto bg-transparent border-none shadow-none"
-											align="start"
-											side="bottom"
-											sideOffset={4}
-										>
-											<DateRangePicker
-												departureDate={watchedValues.departureDate}
-												returnDate={watchedValues.returnDate}
-												onDepartureDateChange={date =>
-													setValue("departureDate", date)
-												}
-												onReturnDateChange={date =>
-													setValue("returnDate", date)
-												}
-												isRoundTrip={watchedValues.tripType === "roundtrip"}
-												onClose={() => setShowDatePicker(false)}
-											/>
-										</PopoverContent>
-									</Popover>
-								</div>
+													)}
+												</span>
+											</Button>
+
+											{(watchedValues.departureDate ||
+												watchedValues.returnDate) && (
+												<div
+													onClick={e => {
+														e.stopPropagation();
+														setValue("departureDate", "");
+														setValue("returnDate", "");
+														setShowDatePicker(false);
+													}}
+													className="absolute right-3 top-1/2 -translate-y-1/2 p-1 bg-gray-400 hover:bg-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500 rounded-full transition-colors cursor-pointer z-10"
+													role="button"
+													tabIndex={0}
+													onKeyDown={e => {
+														if (e.key === "Enter" || e.key === " ") {
+															e.stopPropagation();
+															setValue("departureDate", "");
+															setValue("returnDate", "");
+															setShowDatePicker(false);
+														}
+													}}
+												>
+													<X size={12} className="text-white" />
+												</div>
+											)}
+										</div>
+									</PopoverTrigger>
+
+									<PopoverContent
+										className="w-auto border-none p-0 shadow-lg overflow-hidden bg-transparent"
+										align="start"
+										side="bottom"
+										sideOffset={6}
+										onOpenAutoFocus={e => {
+											e.preventDefault();
+										}}
+										onInteractOutside={e => {
+											const target = e.target as Element;
+											if (
+												target.closest(".date-picker-container") ||
+												target.closest("[data-radix-calendar]") ||
+												target.closest('[role="gridcell"]')
+											) {
+												e.preventDefault();
+											}
+										}}
+										onFocusOutside={e => {
+											const target = e.target as Element;
+											if (target.closest("[data-radix-calendar]")) {
+												e.preventDefault();
+											}
+										}}
+									>
+										<DateRangePicker
+											departureDate={watchedValues.departureDate}
+											returnDate={watchedValues.returnDate}
+											onDepartureDateChange={date => {
+												setValue("departureDate", date);
+											}}
+											onReturnDateChange={date => {
+												setValue("returnDate", date);
+											}}
+											isRoundTrip={watchedValues.tripType === "roundtrip"}
+											onClose={() => {
+												console.log("DateRangePicker requesting close");
+												setShowDatePicker(false);
+											}}
+										/>
+									</PopoverContent>
+								</Popover>
 							</div>
 
 							{/* Passengers & Class Combined */}
@@ -681,9 +757,9 @@ export const FlightSearch = () => {
 
 							<div className="flex-1 relative passengers-container">
 								<div className="px-3 py-2">
-									<Label className="text-xs text-gray-600 mb-1 block">
+									{/* 	<Label className="text-xs text-gray-600 mb-1 block">
 										PASSENGERS & CLASS
-									</Label>
+									</Label> */}
 									<Button
 										type="button"
 										variant="ghost"
@@ -831,6 +907,7 @@ export const FlightSearch = () => {
 											id="directFlight"
 											checked={field.value}
 											onCheckedChange={field.onChange}
+											defaultChecked={true}
 										/>
 										<Label
 											htmlFor="directFlight"

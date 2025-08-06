@@ -43,7 +43,7 @@ export function AirportSearch({
 	const hasResults = searchResults.length > 0;
 
 	return (
-		<div className="w-96 max-w-3xl bg-white dark:bg-neutral-400/20 dark:backdrop-blur-md border border-neutral/20 rounded-xl shadow-2xl overflow-hidden">
+		<div className="w-96 max-w-3xl bg-white dark:bg-black/50 dark:backdrop-blur-md border border-neutral/20 rounded-xl shadow-2xl overflow-hidden">
 			{/* Results Container */}
 			<div className="max-h-64 overflow-y-auto">
 				{error && (
