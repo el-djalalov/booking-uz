@@ -435,7 +435,10 @@ export const FlightSearch = () => {
 													}
 												}}
 												onFocus={() => {
-													if (fromInputText.length >= 3) {
+													if (
+														!watchedValues.fromAirport &&
+														fromInputText.length >= 3
+													) {
 														setShowFromSearch(true);
 														setShowToSearch(false);
 														setShowPassengers(false);
@@ -551,9 +554,12 @@ export const FlightSearch = () => {
 														}
 													}}
 													onFocus={() => {
-														if (toInputText.length >= 3) {
-															setShowToSearch(true);
-															setShowFromSearch(false);
+														if (
+															!watchedValues.fromAirport &&
+															fromInputText.length >= 3
+														) {
+															setShowFromSearch(true);
+															setShowToSearch(false);
 															setShowPassengers(false);
 															setShowDatePicker(false);
 														}
