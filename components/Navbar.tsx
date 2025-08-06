@@ -10,8 +10,8 @@ export const Navbar = () => {
 				<div className="flex items-center justify-between h-16">
 					{/* Logo */}
 					<div className="flex items-center gap-2">
-						<div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
-							<span className="text-white font-bold text-sm">✈</span>
+						<div className="h-8 w-8 bg-transparent rounded-lg flex items-center justify-center">
+							<span className="text-white font-bold text-lg">✈</span>
 						</div>
 						<span className="text-xl font-bold text-secondary-foreground">
 							Safarix

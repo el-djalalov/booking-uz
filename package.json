@@ -22,6 +22,7 @@
 		"@tanstack/react-query": "^5.84.1",
 		"@tanstack/react-query-devtools": "^5.84.1",
 		"@types/three": "^0.178.1",
+		"autoprefixer": "^10.4.21",
 		"axios": "^1.11.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",

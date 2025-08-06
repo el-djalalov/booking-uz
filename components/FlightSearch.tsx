@@ -21,6 +21,7 @@ import {
 	MoveLeft,
 	RefreshCcw,
 	ArrowRight,
+	X,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -69,7 +70,7 @@ import {
 } from "@/components/ui/popover";
 import { Checkbox } from "@/components/ui/checkbox";
 import { MovingBorderButton } from "./ui/moving-border";
-// Updated Date Range Picker Component using shadcn Calendar
+
 const DateRangePicker = ({
 	departureDate,
 	returnDate,
@@ -107,7 +108,7 @@ const DateRangePicker = ({
 	const handleSingleSelect = (date: Date | undefined) => {
 		if (date) {
 			onDepartureDateChange(format(date, "yyyy-MM-dd"));
-			onReturnDateChange(""); // Clear return date for one-way
+			onReturnDateChange("");
 			// Close immediately after selecting single date
 			setTimeout(() => onClose?.(), 100);
 		}
@@ -127,14 +128,13 @@ const DateRangePicker = ({
 		return departureDate ? new Date(departureDate) : undefined;
 	}, [departureDate]);
 
-	// FIXED: Create today's date at midnight for proper comparison
 	const today = React.useMemo(() => {
 		const now = new Date();
 		return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 	}, []);
 
 	return (
-		<div className="w-auto bg-white">
+		<div className="w-auto bg-white dark:bg-neutral-900/70 dark:backdrop-blur-lg border border-neutral/20 rounded-xl shadow-2xl">
 			{isRoundTrip ? (
 				// Range picker for round trip
 				<Calendar
@@ -143,7 +143,7 @@ const DateRangePicker = ({
 					selected={dateRange}
 					onSelect={handleRangeSelect}
 					numberOfMonths={2}
-					disabled={date => date < today} // FIXED: Compare Date with Date
+					disabled={date => date < today}
 					className="rounded-lg border-0"
 				/>
 			) : (
@@ -153,7 +153,7 @@ const DateRangePicker = ({
 					defaultMonth={singleDate || new Date()}
 					selected={singleDate}
 					onSelect={handleSingleSelect}
-					disabled={date => date < today} // FIXED: Compare Date with Date
+					disabled={date => date < today}
 					className="rounded-lg border-0"
 				/>
 			)}
@@ -307,7 +307,7 @@ export const FlightSearch = () => {
 		returnDate?: string,
 		tripType?: string
 	) => {
-		if (!departureDate) return "Select dates";
+		if (!departureDate) return "";
 
 		if (tripType === "oneway") {
 			return format(new Date(departureDate), "MMM dd");
@@ -330,7 +330,7 @@ export const FlightSearch = () => {
 			transition={{ duration: 0.6 }}
 			onClick={handleClickOutside}
 		>
-			<Card className="w-full max-w-screen mx-auto bg-white dark:bg-white/10 dark:backdrop-blur-lg backdrop-blur-sm shadow-lg rounded-xl border-0">
+			<Card className="w-full max-w-screen mx-auto bg-white dark:bg-white/10 shadow-lg rounded-xl border-0">
 				<CardContent className="px-4">
 					<form onSubmit={handleSubmit(onSubmit)}>
 						{/* Trip selection */}
@@ -400,12 +400,15 @@ export const FlightSearch = () => {
 
 						{/* Main Search Row */}
 						<div className="flex items-center gap-1 rounded-lg border-2 px-2">
-							<div className="flex items-center relative">
+							<div className="flex items-center relative w-[60%]">
 								{/* From Airport */}
 								<div className="flex-1 relative airport-search-container">
 									<div className="border-gray-200">
 										<div className="relative flex justify-center items-center">
-											<PlaneTakeoff size={28} className="text-slate-400" />
+											<PlaneTakeoff
+												size={28}
+												className="dark:text-neutral-400 text-slate-400"
+											/>
 											<Input
 												type="text"
 												placeholder="From"
@@ -439,9 +442,25 @@ export const FlightSearch = () => {
 														setShowDatePicker(false);
 													}
 												}}
-												className="border-0 py-0 pl-2 h-12 font-medium focus-visible:ring-0 translate-1 placeholder:text-slate-400 placeholder:text-[15px] dark:bg-transparent dark:text-white"
+												className="truncate border-0 py-0 pl-2 pr-4 h-12 font-medium focus-visible:ring-0 translate-1 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[15px] dark:bg-transparent dark:text-white"
 												style={{ fontSize: "15px" }}
 											/>
+											{fromInputText && (
+												<button
+													type="button"
+													onClick={() => {
+														setFromInputText("");
+														setValue("fromAirport", null);
+														setShowFromSearch(false);
+													}}
+													className="absolute right-6 p-0.5 mt-1 bg-neutral-200 hover:bg-neutral-300 rounded-full transition-colors"
+												>
+													<X
+														size={16}
+														className="text-slate-600 dark:text-slate-900"
+													/>
+												</button>
+											)}
 										</div>
 
 										<AnimatePresence>
@@ -450,7 +469,7 @@ export const FlightSearch = () => {
 													initial={{ opacity: 0, y: -10 }}
 													animate={{ opacity: 1, y: 0 }}
 													exit={{ opacity: 0, y: -10 }}
-													className="absolute z-50 w-full mt-2 left-0"
+													className="absolute top-full -left-2 right-0 z-50 mt-2"
 												>
 													<AirportSearch
 														query={fromInputText}
@@ -471,10 +490,7 @@ export const FlightSearch = () => {
 
 								{/* Overlapping Swap Button */}
 								<div className="absolute left-1/2 top-1 transform -translate-x-1/2 z-20 group">
-									<motion.div
-									//whileHover={{ scale: 1.1 }}
-									//whileTap={{ scale: 0.9 }}
-									>
+									<motion.div>
 										<Button
 											type="button"
 											variant="outline"
@@ -483,30 +499,32 @@ export const FlightSearch = () => {
 											disabled={
 												!watchedValues.fromAirport && !watchedValues.toAirport
 											}
-											className="h-10 w-10 rounded-full bg-white border-2 border-slate-300 group-hover:border-primary hover:bg-slate-50 shadow-sm relative z-20"
-										>
-											{/* 											<ArrowRightLeft className="h-4 w-4 text-gray-600 hover:text-blue-600" />
-											 */}{" "}
-										</Button>
+											className="h-10 w-10 rounded-full bg-white border-2 border-slate-300 group-hover:border-primary shadow-sm relative z-20"
+										></Button>
 
 										<MoveLeft
+											onClick={handleSwapAirports}
 											size={18}
-											className="group-hover:-translate-x-3 group-hover:text-primary absolute top-4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 translate-2 text-slate-400 z-20 transition duration-300"
+											className="group-hover:-translate-x-3 group-hover:text-primary absolute top-4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 translate-2 text-neutral-400 z-20 transition duration-300 hover:bg-transparent"
 										/>
 										<MoveRight
+											onClick={handleSwapAirports}
 											size={18}
-											className="group-hover:-translate-x-1.5 group-hover:text-primary absolute top-6.5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -translate-2 text-slate-400 z-20 transition duration-300"
+											className="group-hover:-translate-x-1.5 group-hover:text-primary absolute top-6.5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -translate-2 text-neutral-400 z-20 transition duration-300"
 										/>
 									</motion.div>
-									<div className="w-px h-16 bg-slate-300 absolute top-0 transform translate-x-5 -translate-y-2 z-10" />
+									<div className="w-px h-14 bg-neutral-300 dark:bg-neutral-500 absolute top-0 transform translate-x-5 -translate-y-2 z-10" />
 								</div>
 
 								{/* To Airport */}
 								<div className="flex-1 relative airport-search-container">
-									<div className="px-4 pl-8">
+									<div className="pl-8">
 										<div className="relative">
 											<div className="relative flex justify-center items-center">
-												<PlaneLanding size={28} className="text-slate-400" />
+												<PlaneLanding
+													size={28}
+													className="dark:text-neutral-400 text-slate-400"
+												/>
 												<Input
 													type="text"
 													placeholder="To"
@@ -540,9 +558,25 @@ export const FlightSearch = () => {
 															setShowDatePicker(false);
 														}
 													}}
-													className="border-0 py-0 pl-2 h-12 font-medium focus-visible:ring-0 translate-1 placeholder:text-slate-400 placeholder:text-[15px] dark:bg-transparent dark:text-white"
+													className="truncate border-0 py-0 pl-2 pr-4 h-12 font-medium focus-visible:ring-0 translate-1 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[15px] dark:bg-transparent dark:text-white"
 													style={{ fontSize: "15px" }}
 												/>
+												{toInputText && (
+													<button
+														type="button"
+														onClick={() => {
+															setToInputText("");
+															setValue("toAirport", null);
+															setShowFromSearch(false);
+														}}
+														className="absolute right-0 p-0.5 mt-1 bg-neutral-200 hover:bg-neutral-300 rounded-full transition-colors"
+													>
+														<X
+															size={16}
+															className="text-slate-600 dark:text-slate-900"
+														/>
+													</button>
+												)}
 											</div>
 										</div>
 
@@ -552,7 +586,7 @@ export const FlightSearch = () => {
 													initial={{ opacity: 0, y: -10 }}
 													animate={{ opacity: 1, y: 0 }}
 													exit={{ opacity: 0, y: -10 }}
-													className="absolute z-50 w-full mt-2 right-0"
+													className="absolute top-full left-5 right-0 z-50 mt-2"
 												>
 													<AirportSearch
 														query={toInputText}
@@ -573,43 +607,48 @@ export const FlightSearch = () => {
 							</div>
 
 							{/* Date Separator */}
-							<div className="w-px h-12 bg-slate-300 mx-1" />
+							<div className="w-px h-14 bg-neutral-300 dark:bg-neutral-500" />
 
 							{/* Date Picker */}
-							<div className="flex-1 relative date-picker-container">
-								<div className="px-3 py-2">
-									<Label className="text-xs text-gray-600 mb-1 block">
+							<div className="flex-1 relative date-picker-container bg-white dark:bg-transparent">
+								<div className="flex items-center justify-between">
+									{/* 	<Label className="text-xs text-gray-600 mb-1 block">
 										{watchedValues.tripType === "roundtrip"
 											? "DEPARTURE - RETURN"
 											: "DEPARTURE"}
-									</Label>
+									</Label> */}
 									<Popover
 										open={showDatePicker}
 										onOpenChange={setShowDatePicker}
 									>
 										<PopoverTrigger asChild>
-											<Button
-												variant="ghost"
-												className={cn(
-													"p-0 h-auto text-sm font-medium justify-start hover:bg-transparent w-full",
-													!watchedValues.departureDate &&
-														"text-muted-foreground"
-												)}
-											>
-												<div className="flex items-center gap-2 text-left">
-													<CalendarIcon className="h-4 w-4 text-gray-400" />
-													<span>
-														{formatDateDisplay(
-															watchedValues.departureDate,
-															watchedValues.returnDate,
-															watchedValues.tripType
-														)}
+											<div className="flex items-center gap-2 w-full">
+												<CalendarIcon className="h-4 w-4 text-slate-400 dark:text-neutral-500" />
+												<Button
+													variant="ghost"
+													className={cn(
+														"h-12 flex-1 float-left font-medium focus-visible:ring-0 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[15px] dark:bg-transparent dark:text-white",
+														!watchedValues.departureDate &&
+															"text-muted-foreground"
+													)}
+												>
+													<span className="dark:text-neutral-300">
+														Select date
 													</span>
-												</div>
-											</Button>
+													<div className="flex items-start justify-items-start float-left gap-2 text-left">
+														<span>
+															{formatDateDisplay(
+																watchedValues.departureDate,
+																watchedValues.returnDate,
+																watchedValues.tripType
+															)}
+														</span>
+													</div>
+												</Button>
+											</div>
 										</PopoverTrigger>
 										<PopoverContent
-											className="w-auto p-4 bg-white shadow-lg border" // Fixed: Explicit background and styling
+											className="w-auto bg-transparent border-none shadow-none"
 											align="start"
 											side="bottom"
 											sideOffset={4}
@@ -624,7 +663,7 @@ export const FlightSearch = () => {
 													setValue("returnDate", date)
 												}
 												isRoundTrip={watchedValues.tripType === "roundtrip"}
-												onClose={() => setShowDatePicker(false)} // Fixed: Add close handler
+												onClose={() => setShowDatePicker(false)}
 											/>
 										</PopoverContent>
 									</Popover>
@@ -632,7 +671,7 @@ export const FlightSearch = () => {
 							</div>
 
 							{/* Passengers & Class Combined */}
-							<div className="w-px h-12 bg-slate-300 mx-1" />
+							<div className="w-px h-14 bg-neutral-300 dark:bg-neutral-500" />
 
 							<div className="flex-1 relative passengers-container">
 								<div className="px-3 py-2">

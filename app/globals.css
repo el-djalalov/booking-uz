@@ -186,6 +186,26 @@ html {
 	--sidebar-ring: oklch(0.646 0.222 41.116);
 }
 
+/* Chrome backdrop-filter workaround */
+@supports (backdrop-filter: blur(1px)) {
+	.chrome-backdrop-fix {
+		backdrop-filter: blur(12px);
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	/* Ensure no parent has backdrop-filter in Chrome */
+	.chrome-backdrop-parent {
+		backdrop-filter: none !important;
+	}
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+	.chrome-backdrop-fix {
+		background: rgba(255, 255, 255, 0.9);
+	}
+}
+
 @layer base {
 	* {
 		@apply border-border outline-ring/50;

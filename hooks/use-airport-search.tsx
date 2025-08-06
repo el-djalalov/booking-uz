@@ -43,7 +43,7 @@ export function AirportSearch({
 	const hasResults = searchResults.length > 0;
 
 	return (
-		<div className="w-96 max-w-3xl bg-white dark:bg-neutral-900/80 dark:backdrop-blur-xl border border-neutral/20 rounded-xl shadow-2xl ">
+		<div className="w-96 max-w-3xl bg-white dark:bg-neutral-400/20 dark:backdrop-blur-md border border-neutral/20 rounded-xl shadow-2xl overflow-hidden">
 			{/* Results Container */}
 			<div className="max-h-64 overflow-y-auto">
 				{error && (
@@ -73,7 +73,7 @@ export function AirportSearch({
 								<Button
 									key={airport.iata}
 									variant="ghost"
-									className="w-full justify-start text-left h-auto p-3 dark:hover:bg-neutral-900/80"
+									className="w-full justify-start text-left h-auto p-3 dark:hover:bg-neutral-900/60"
 									onClick={() => handleSelect(airport)}
 								>
 									<div className="flex items-center justify-between w-full">
