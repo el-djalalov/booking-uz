@@ -646,7 +646,7 @@ export const FlightSearch = () => {
 											<Button
 												variant="ghost"
 												className={cn(
-													"w-full h-12 pl-12 pr-10 justify-start text-left font-normal hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg",
+													"w-full h-12 pl-12 pr-10 justify-start text-left font-normal hover:bg-gray-50 dark:hover:bg-black/30 rounded-lg",
 													!watchedValues.departureDate &&
 														"text-muted-foreground"
 												)}
@@ -745,143 +745,134 @@ export const FlightSearch = () => {
 							<div className="w-px h-14 bg-neutral-300 dark:bg-neutral-500" />
 
 							<div className="flex-1 relative passengers-container">
-								<div className="relative">
-									<Users className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 z-10 dark:text-neutral-400 text-slate-500 pointer-events-none" />
-									<Button
-										type="button"
-										variant="ghost"
-										onClick={() => {
-											setShowPassengers(!showPassengers);
-											setShowFromSearch(false);
-											setShowToSearch(false);
-											setShowDatePicker(false);
-										}}
-										className="w-full h-12 justify-start text-left font-normal hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg"
-										style={{ fontSize: "15px" }}
-									>
-										<div className="flex items-center gap-2 text-left pl-6 font-semibold">
-											<span>{getPassengerText()}</span>
-											<span className="text-gray-400">•</span>
-											<span>
-												{getClassDisplayName(watchedValues.travelClass)}
-											</span>
-											<ChevronDown className="h-3 w-3 ml-1" />
-										</div>
-									</Button>
+								<Users className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 z-10 dark:text-neutral-400 text-slate-500 pointer-events-none" />
+								<Button
+									type="button"
+									variant="ghost"
+									onClick={() => {
+										setShowPassengers(!showPassengers);
+										setShowFromSearch(false);
+										setShowToSearch(false);
+										setShowDatePicker(false);
+									}}
+									className="w-full h-12 justify-start text-left font-normal hover:bg-slate-50 dark:hover:bg-black/30 rounded-lg"
+									style={{ fontSize: "15px" }}
+								>
+									<div className="flex items-center gap-2 text-left pl-6 font-semibold">
+										<span>{getPassengerText()}</span>
+										<span className="text-slate-400">•</span>
+										<span>
+											{getClassDisplayName(watchedValues.travelClass)}
+										</span>
+									</div>
+								</Button>
 
-									<AnimatePresence>
-										{showPassengers && (
-											<motion.div
-												initial={{ opacity: 0, y: -10 }}
-												animate={{ opacity: 1, y: 0 }}
-												exit={{ opacity: 0, y: -10 }}
-												className="absolute z-50 right-0 mt-2 bg-white dark:bg-black/50 dark:backdrop-blur-md border-neutral/20  border rounded-lg shadow-2xl p-4 w-80 overflow-hidden"
-											>
-												{/* Passengers Section */}
-												<div className="space-y-3 mb-4">
-													<h4 className="font-medium text-sm">Passengers</h4>
-													{(["adults", "children", "infants"] as const).map(
-														type => (
-															<div
-																key={type}
-																className="flex items-center justify-between"
-															>
-																<div>
-																	<div className="font-medium text-sm capitalize">
-																		{type}
-																	</div>
-																	<div className="text-xs text-gray-500">
-																		{type === "adults" && "12+ years"}
-																		{type === "children" && "2-11 years"}
-																		{type === "infants" && "0-2 years"}
-																	</div>
+								<AnimatePresence>
+									{showPassengers && (
+										<motion.div
+											initial={{ opacity: 0, y: -10 }}
+											animate={{ opacity: 1, y: 0 }}
+											exit={{ opacity: 0, y: -10 }}
+											className="absolute z-50 right-0 mt-2 bg-white dark:bg-black/50 dark:backdrop-blur-md border-neutral/20  border rounded-lg shadow-2xl p-4 w-80 overflow-hidden"
+										>
+											{/* Passengers Section */}
+											<div className="space-y-3 mb-4">
+												<h4 className="font-medium text-sm">Passengers</h4>
+												{(["adults", "children", "infants"] as const).map(
+													type => (
+														<div
+															key={type}
+															className="flex items-center justify-between"
+														>
+															<div>
+																<div className="font-medium text-sm capitalize">
+																	{type}
 																</div>
-																<div className="flex items-center gap-2">
-																	<Button
-																		type="button"
-																		variant="outline"
-																		size="sm"
-																		onClick={() =>
-																			updatePassengerCount(type, -1)
-																		}
-																		disabled={
-																			watchedValues.passengers[type] <=
-																			(type === "adults" ? 1 : 0)
-																		}
-																		className="h-6 w-6 p-0"
-																	>
-																		<Minus className="h-3 w-3" />
-																	</Button>
-																	<span className="w-6 text-center text-sm font-medium">
-																		{watchedValues.passengers[type]}
-																	</span>
-																	<Button
-																		type="button"
-																		variant="outline"
-																		size="sm"
-																		onClick={() =>
-																			updatePassengerCount(type, 1)
-																		}
-																		disabled={
-																			watchedValues.passengers[type] >= 9
-																		}
-																		className="h-6 w-6 p-0"
-																	>
-																		<Plus className="h-3 w-3" />
-																	</Button>
+																<div className="text-xs text-gray-500">
+																	{type === "adults" && "12+ years"}
+																	{type === "children" && "2-11 years"}
+																	{type === "infants" && "0-2 years"}
 																</div>
 															</div>
-														)
+															<div className="flex items-center gap-2">
+																<Button
+																	type="button"
+																	variant="outline"
+																	size="sm"
+																	onClick={() => updatePassengerCount(type, -1)}
+																	disabled={
+																		watchedValues.passengers[type] <=
+																		(type === "adults" ? 1 : 0)
+																	}
+																	className="h-6 w-6 p-0"
+																>
+																	<Minus className="h-3 w-3" />
+																</Button>
+																<span className="w-6 text-center text-sm font-medium">
+																	{watchedValues.passengers[type]}
+																</span>
+																<Button
+																	type="button"
+																	variant="outline"
+																	size="sm"
+																	onClick={() => updatePassengerCount(type, 1)}
+																	disabled={watchedValues.passengers[type] >= 9}
+																	className="h-6 w-6 p-0"
+																>
+																	<Plus className="h-3 w-3" />
+																</Button>
+															</div>
+														</div>
+													)
+												)}
+											</div>
+
+											{/* Class Selection */}
+											<div className="border-t pt-3">
+												<h4 className="font-medium text-sm mb-2">
+													Travel Class
+												</h4>
+												<Controller
+													name="travelClass"
+													control={control}
+													render={({ field }) => (
+														<Select
+															value={field.value}
+															onValueChange={field.onChange}
+														>
+															<SelectTrigger className="h-8 text-sm">
+																<SelectValue>
+																	{getClassDisplayName(field.value)}
+																</SelectValue>
+															</SelectTrigger>
+															<SelectContent>
+																<SelectItem value="e">Economy</SelectItem>
+																<SelectItem value="w">
+																	Premium Economy
+																</SelectItem>
+																<SelectItem value="b">Business</SelectItem>
+																<SelectItem value="f">First Class</SelectItem>
+															</SelectContent>
+														</Select>
 													)}
-												</div>
+												/>
+											</div>
 
-												{/* Class Selection */}
-												<div className="border-t pt-3">
-													<h4 className="font-medium text-sm mb-2">
-														Travel Class
-													</h4>
-													<Controller
-														name="travelClass"
-														control={control}
-														render={({ field }) => (
-															<Select
-																value={field.value}
-																onValueChange={field.onChange}
-															>
-																<SelectTrigger className="h-8 text-sm">
-																	<SelectValue>
-																		{getClassDisplayName(field.value)}
-																	</SelectValue>
-																</SelectTrigger>
-																<SelectContent>
-																	<SelectItem value="e">Economy</SelectItem>
-																	<SelectItem value="w">
-																		Premium Economy
-																	</SelectItem>
-																	<SelectItem value="b">Business</SelectItem>
-																	<SelectItem value="f">First Class</SelectItem>
-																</SelectContent>
-															</Select>
-														)}
-													/>
-												</div>
-
-												{/* Done Button */}
-												<div className="mt-4 pt-3 border-t">
-													<Button
-														type="button"
-														variant="secondary"
-														size="sm"
-														onClick={() => setShowPassengers(false)}
-														className="w-full"
-													>
-														Done
-													</Button>
-												</div>
-											</motion.div>
-										)}
-									</AnimatePresence>
-								</div>
+											{/* Done Button */}
+											<div className="mt-4 pt-3 border-t">
+												<Button
+													type="button"
+													variant="secondary"
+													size="sm"
+													onClick={() => setShowPassengers(false)}
+													className="w-full"
+												>
+													Done
+												</Button>
+											</div>
+										</motion.div>
+									)}
+								</AnimatePresence>
 							</div>
 						</div>
 						<div className="mt-4 flex items-center justify-between">
