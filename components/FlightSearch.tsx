@@ -46,15 +46,7 @@ import {
 	flightSearchSchema,
 	type FlightSearchFormData,
 } from "@/lib/schema/flight-search";
-import {
-	format,
-	addMonths,
-	startOfMonth,
-	endOfMonth,
-	isSameMonth,
-	isToday,
-	isBefore,
-} from "date-fns";
+import { format } from "date-fns";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "motion/react";
 import { AirportSearch } from "@/hooks/use-airport-search";
@@ -86,67 +78,64 @@ const DateRangePicker = ({
 	isRoundTrip: boolean;
 	onClose?: () => void;
 }) => {
-	const handleRangeSelect = (range: DateRange | undefined) => {
-		if (!range) return;
+	const prevRangeRef = React.useRef<{ from?: string; to?: string }>({});
 
-		if (range.from) {
-			const formattedFrom = format(range.from, "yyyy-MM-dd");
+	const handleRangeSelect = (range: DateRange | undefined) => {
+		if (!range?.from) return;
+
+		const formattedFrom = format(range.from, "yyyy-MM-dd");
+		const formattedTo = range.to ? format(range.to, "yyyy-MM-dd") : "";
+
+		const prevFrom = prevRangeRef.current.from;
+		const prevTo = prevRangeRef.current.to;
+		if (prevFrom === formattedFrom && prevTo === formattedTo) return;
+
+		prevRangeRef.current = { from: formattedFrom, to: formattedTo };
+
+		if (isRoundTrip) {
 			onDepartureDateChange(formattedFrom);
 
-			if (isRoundTrip) {
-				if (range.to) {
-					// Both dates selected - complete the selection
-					const formattedTo = format(range.to, "yyyy-MM-dd");
-					onReturnDateChange(formattedTo);
-					// Use a longer timeout to ensure state updates complete
-					setTimeout(() => onClose?.(), 200);
-				} else {
-					// Only first date selected - clear return and DON'T close
-					onReturnDateChange("");
-					// ✅ Critical: Don't call onClose here for range selection
-				}
+			if (range.to && formattedFrom !== formattedTo) {
+				// Both dates selected - complete and close
+				onReturnDateChange(formattedTo);
+				setTimeout(() => onClose?.(), 300);
 			} else {
-				// One-way trip - clear return date and close
+				// First date only - keep open
 				onReturnDateChange("");
-				setTimeout(() => onClose?.(), 150);
 			}
+		} else {
+			// One-way trip - close immediately
+			onDepartureDateChange(formattedFrom);
+			onReturnDateChange("");
+			setTimeout(() => onClose?.(), 200);
 		}
 	};
 
-	// Handle single date selection for one-way trips
 	const handleSingleSelect = (date: Date | undefined) => {
 		if (date) {
 			const formattedDate = format(date, "yyyy-MM-dd");
 			onDepartureDateChange(formattedDate);
 			onReturnDateChange("");
-			setTimeout(() => onClose?.(), 150);
+			setTimeout(() => onClose?.(), 200);
 		}
 	};
 
-	// Convert string dates to Date objects with error handling
+	React.useEffect(() => {
+		prevRangeRef.current = {};
+	}, [isRoundTrip]);
+
 	const dateRange: DateRange | undefined = React.useMemo(() => {
 		if (!isRoundTrip) return undefined;
-
-		try {
-			return {
-				from: departureDate ? new Date(departureDate + "T00:00:00") : undefined,
-				to: returnDate ? new Date(returnDate + "T00:00:00") : undefined,
-			};
-		} catch (error) {
-			console.error("Date parsing error:", error);
-			return undefined;
-		}
+		return {
+			from: departureDate ? new Date(departureDate + "T00:00:00") : undefined,
+			to: returnDate ? new Date(returnDate + "T00:00:00") : undefined,
+		};
 	}, [departureDate, returnDate, isRoundTrip]);
 
 	const singleDate: Date | undefined = React.useMemo(() => {
-		try {
-			return !isRoundTrip && departureDate
-				? new Date(departureDate + "T00:00:00")
-				: undefined;
-		} catch (error) {
-			console.error("Single date parsing error:", error);
-			return undefined;
-		}
+		return !isRoundTrip && departureDate
+			? new Date(departureDate + "T00:00:00")
+			: undefined;
 	}, [departureDate, isRoundTrip]);
 
 	const today = React.useMemo(() => {
@@ -155,7 +144,7 @@ const DateRangePicker = ({
 	}, []);
 
 	return (
-		<div className="w-auto bg-white dark:bg-neutral-900/90 dark:backdrop-blur-lg border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-xl overflow-hidden">
+		<div className="w-auto bg-white dark:bg-black/50 dark:backdrop-blur-lg border rounded-xl border-neutral/20 shadow-xl overflow-hidden">
 			{isRoundTrip ? (
 				<Calendar
 					mode="range"
@@ -216,7 +205,6 @@ export const FlightSearch = () => {
 	} = form;
 	const watchedValues = watch();
 
-	// ADD: Update input text when airport is selected
 	React.useEffect(() => {
 		if (watchedValues.fromAirport) {
 			setFromInputText(
@@ -464,7 +452,7 @@ export const FlightSearch = () => {
 														setShowDatePicker(false);
 													}
 												}}
-												className="truncate border-0 py-0 pl-2 pr-4 h-12 font-medium focus-visible:ring-0 translate-1 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[15px] dark:bg-transparent dark:text-white"
+												className="truncate border-0 py-0 pl-1 pr-4 h-12 font-medium focus-visible:ring-0 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[15px] dark:bg-transparent dark:text-white"
 												style={{ fontSize: "15px" }}
 											/>
 											{fromInputText && (
@@ -475,7 +463,7 @@ export const FlightSearch = () => {
 														setValue("fromAirport", null);
 														setShowFromSearch(false);
 													}}
-													className="absolute right-6 p-0.5 mt-1 bg-slate-400/50 hover:bg-neutral-300 rounded-full transition-colors"
+													className="absolute right-6 top-1/2 -translate-y-1/2 p-0.5  dark:bg-neutral-400 bg-slate-300 hover:bg-slate-500 dark:hover:bg-gray-500 rounded-full transition-colors cursor-pointer z-10"
 												>
 													<X
 														size={16}
@@ -594,7 +582,7 @@ export const FlightSearch = () => {
 															setValue("toAirport", null);
 															setShowFromSearch(false);
 														}}
-														className="absolute right-0 p-0.5 mt-1 bg-slate-400/50 hover:bg-neutral-300 rounded-full transition-colors"
+														className="absolute right-2 top-1/2 -translate-y-1/2 p-0.5  dark:bg-neutral-400 bg-slate-300 hover:bg-slate-500 dark:hover:bg-gray-500 rounded-full transition-colors cursor-pointer z-10"
 													>
 														<X
 															size={16}
@@ -635,23 +623,17 @@ export const FlightSearch = () => {
 							<div className="w-px h-14 bg-neutral-300 dark:bg-neutral-500" />
 
 							{/* Date Picker */}
-
 							<div className="flex-1 relative date-picker-container bg-white dark:bg-transparent">
 								<Popover
 									open={showDatePicker}
+									modal={false}
 									onOpenChange={open => {
-										// ✅ More robust prevention of auto-closing
 										if (!open) {
 											const isRangeInProgress =
 												watchedValues.tripType === "roundtrip" &&
 												watchedValues.departureDate &&
 												!watchedValues.returnDate;
-
-											if (isRangeInProgress) {
-												// Don't allow closing during range selection
-												console.log("Preventing close during range selection");
-												return;
-											}
+											if (isRangeInProgress) return;
 										}
 										setShowDatePicker(open);
 									}}
@@ -690,19 +672,12 @@ export const FlightSearch = () => {
 														setValue("returnDate", "");
 														setShowDatePicker(false);
 													}}
-													className="absolute right-3 top-1/2 -translate-y-1/2 p-1 bg-gray-400 hover:bg-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500 rounded-full transition-colors cursor-pointer z-10"
-													role="button"
-													tabIndex={0}
-													onKeyDown={e => {
-														if (e.key === "Enter" || e.key === " ") {
-															e.stopPropagation();
-															setValue("departureDate", "");
-															setValue("returnDate", "");
-															setShowDatePicker(false);
-														}
-													}}
+													className="absolute right-2 top-1/2 -translate-y-1/2 p-0.5  dark:bg-neutral-400 bg-slate-300 hover:bg-slate-500 dark:hover:bg-gray-500 rounded-full transition-colors cursor-pointer z-10"
 												>
-													<X size={12} className="text-white" />
+													<X
+														size={16}
+														className="text-slate-600 dark:text-slate-900"
+													/>
 												</div>
 											)}
 										</div>
@@ -713,22 +688,40 @@ export const FlightSearch = () => {
 										align="start"
 										side="bottom"
 										sideOffset={6}
-										onOpenAutoFocus={e => {
-											e.preventDefault();
-										}}
+										onOpenAutoFocus={e => e.preventDefault()}
 										onInteractOutside={e => {
 											const target = e.target as Element;
+											const isRangeInProgress =
+												watchedValues.tripType === "roundtrip" &&
+												watchedValues.departureDate &&
+												!watchedValues.returnDate;
+
 											if (
+												isRangeInProgress ||
 												target.closest(".date-picker-container") ||
-												target.closest("[data-radix-calendar]") ||
-												target.closest('[role="gridcell"]')
+												target.closest("[data-slot='calendar']") ||
+												target.closest("[data-day]")
 											) {
 												e.preventDefault();
 											}
 										}}
 										onFocusOutside={e => {
-											const target = e.target as Element;
-											if (target.closest("[data-radix-calendar]")) {
+											const isRangeInProgress =
+												watchedValues.tripType === "roundtrip" &&
+												watchedValues.departureDate &&
+												!watchedValues.returnDate;
+
+											if (isRangeInProgress) {
+												e.preventDefault();
+											}
+										}}
+										onEscapeKeyDown={e => {
+											const isRangeInProgress =
+												watchedValues.tripType === "roundtrip" &&
+												watchedValues.departureDate &&
+												!watchedValues.returnDate;
+
+											if (isRangeInProgress) {
 												e.preventDefault();
 											}
 										}}
@@ -736,17 +729,12 @@ export const FlightSearch = () => {
 										<DateRangePicker
 											departureDate={watchedValues.departureDate}
 											returnDate={watchedValues.returnDate}
-											onDepartureDateChange={date => {
-												setValue("departureDate", date);
-											}}
-											onReturnDateChange={date => {
-												setValue("returnDate", date);
-											}}
+											onDepartureDateChange={date =>
+												setValue("departureDate", date)
+											}
+											onReturnDateChange={date => setValue("returnDate", date)}
 											isRoundTrip={watchedValues.tripType === "roundtrip"}
-											onClose={() => {
-												console.log("DateRangePicker requesting close");
-												setShowDatePicker(false);
-											}}
+											onClose={() => setShowDatePicker(false)}
 										/>
 									</PopoverContent>
 								</Popover>
@@ -757,7 +745,7 @@ export const FlightSearch = () => {
 
 							<div className="flex-1 relative passengers-container">
 								<div className="px-3 py-2">
-									{/* 	<Label className="text-xs text-gray-600 mb-1 block">
+									{/* 	<Label className="text-xs text-slate-400 mb-1 block">
 										PASSENGERS & CLASS
 									</Label> */}
 									<Button
@@ -781,14 +769,14 @@ export const FlightSearch = () => {
 											<ChevronDown className="h-3 w-3 ml-1" />
 										</div>
 									</Button>
-
+									{/* w-96 max-w-3xl bg-white dark:bg-black/50 dark:backdrop-blur-md border border-neutral/20 rounded-xl shadow-2xl overflow-hidden */}
 									<AnimatePresence>
 										{showPassengers && (
 											<motion.div
 												initial={{ opacity: 0, y: -10 }}
 												animate={{ opacity: 1, y: 0 }}
 												exit={{ opacity: 0, y: -10 }}
-												className="absolute z-50 right-0 mt-2 bg-white border rounded-lg shadow-lg p-4 w-80"
+												className="absolute z-50 right-0 mt-6 bg-white dark:bg-black/50 dark:backdrop-blur-md border-neutral/20  border rounded-lg shadow-2xl p-4 w-80 overflow-hidden"
 											>
 												{/* Passengers Section */}
 												<div className="space-y-3 mb-4">
