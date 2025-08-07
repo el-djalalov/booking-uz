@@ -3,8 +3,8 @@
 import { Plane, Star, Clock, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "./Navbar";
-import { FlightSearch } from "./FlightSearch";
 import { MovingBorder, MovingBorderButton } from "./ui/moving-border";
+import { FlightSearch } from "./flight-search";
 
 export const Hero = () => {
 	return (

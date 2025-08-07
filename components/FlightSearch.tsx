@@ -415,7 +415,7 @@ export const FlightSearch = () => {
 										<div className="relative flex justify-center items-center">
 											<PlaneTakeoff
 												size={28}
-												className="dark:text-neutral-400 text-slate-400"
+												className="dark:text-neutral-400 text-slate-400 mb-1"
 											/>
 											<Input
 												type="text"
@@ -453,7 +453,7 @@ export const FlightSearch = () => {
 														setShowDatePicker(false);
 													}
 												}}
-												className="truncate border-0 py-0 pl-2 pr-4 h-12 font-semibold focus-visible:ring-0 translate-1 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[17px] dark:bg-transparent dark:text-white"
+												className="truncate border-0 py-0 pl-2 pr-4 h-12 font-semibold focus-visible:ring-0 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[17px] dark:bg-transparent dark:text-white"
 												style={{ fontSize: "15px" }}
 											/>
 											{fromInputText && (
@@ -534,7 +534,7 @@ export const FlightSearch = () => {
 											<div className="relative flex justify-center items-center">
 												<PlaneLanding
 													size={28}
-													className="dark:text-neutral-400 text-slate-400"
+													className="dark:text-neutral-400 text-slate-400 mb-1"
 												/>
 												<Input
 													type="text"
@@ -572,7 +572,7 @@ export const FlightSearch = () => {
 															setShowDatePicker(false);
 														}
 													}}
-													className="truncate border-0 py-0 pl-2 pr-4 h-12 font-semibold focus-visible:ring-0 translate-1 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[17px] dark:bg-transparent dark:text-white"
+													className="truncate border-0 py-0 pl-2 pr-4 h-12 font-semibold focus-visible:ring-0 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[17px] dark:bg-transparent dark:text-white"
 													style={{ fontSize: "15px" }}
 												/>
 												{toInputText && (
@@ -646,7 +646,7 @@ export const FlightSearch = () => {
 											<Button
 												variant="ghost"
 												className={cn(
-													"w-full h-12 pl-12 pr-10 justify-start text-left font-normal hover:bg-gray-50 dark:hover:bg-black/30 rounded-lg",
+													"w-full h-12 pl-12 pr-10 justify-start text-left font-normal hover:bg-slate-100 dark:hover:bg-black/30 rounded-lg",
 													!watchedValues.departureDate &&
 														"text-muted-foreground"
 												)}
@@ -755,7 +755,7 @@ export const FlightSearch = () => {
 										setShowToSearch(false);
 										setShowDatePicker(false);
 									}}
-									className="w-full h-12 justify-start text-left font-normal hover:bg-slate-50 dark:hover:bg-black/30 rounded-lg"
+									className="w-full h-12 justify-start text-left font-normal hover:bg-slate-100 dark:hover:bg-black/30 rounded-lg"
 									style={{ fontSize: "15px" }}
 								>
 									<div className="flex items-center gap-2 text-left pl-6 font-semibold">
@@ -840,12 +840,12 @@ export const FlightSearch = () => {
 															value={field.value}
 															onValueChange={field.onChange}
 														>
-															<SelectTrigger className="h-8 text-sm">
+															<SelectTrigger className="h-8 text-sm cursor-pointer">
 																<SelectValue>
 																	{getClassDisplayName(field.value)}
 																</SelectValue>
 															</SelectTrigger>
-															<SelectContent>
+															<SelectContent className=" dark:bg-black/40 backdrop-blur-2xl">
 																<SelectItem value="e">Economy</SelectItem>
 																<SelectItem value="w">
 																	Premium Economy
@@ -865,7 +865,7 @@ export const FlightSearch = () => {
 													variant="secondary"
 													size="sm"
 													onClick={() => setShowPassengers(false)}
-													className="w-full"
+													className="w-full cursor-pointer border-0"
 												>
 													Done
 												</Button>

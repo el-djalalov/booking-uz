@@ -69,9 +69,9 @@ export function AirportSearch({
 				{hasResults && (
 					<div className="p-2">
 						<div className="space-y-1">
-							{searchResults.map(airport => (
+							{searchResults.map((airport, index) => (
 								<Button
-									key={airport.iata}
+									key={index}
 									variant="ghost"
 									className="w-full justify-start text-left h-auto p-3 dark:hover:bg-neutral-900/60"
 									onClick={() => handleSelect(airport)}
@@ -121,7 +121,7 @@ export function AirportSearch({
 				)}
 
 				{query.length === 0 && (
-					<div className="p-3">
+					<div className="px-0 py-2">
 						<p className="text-muted-foreground text-sm text-center">
 							Start typing to search for airports...
 						</p>
