@@ -30,3 +30,19 @@ export interface AirportInputProps {
 	onToggleSearch: (show: boolean) => void;
 	className?: string;
 }
+
+export interface PassengerClassSelectorProps {
+  passengers: {
+    adults: number;
+    children: number;
+    infants: number;
+  };
+  travelClass: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  onPassengerChange: (
+    type: "adults" | "children" | "infants",
+    delta: number
+  ) => void;
+  onClassChange: (value: string) => void;
+}

@@ -13,23 +13,7 @@ import {
 } from "@/components/ui/select";
 import { PASSENGER_TYPES, MAX_PASSENGERS } from "./constants";
 import { getPassengerText, getClassDisplayName } from "./utils";
-import { toast } from "sonner";
-
-interface PassengerClassSelectorProps {
-	passengers: {
-		adults: number;
-		children: number;
-		infants: number;
-	};
-	travelClass: string;
-	isOpen: boolean;
-	onToggle: () => void;
-	onPassengerChange: (
-		type: "adults" | "children" | "infants",
-		delta: number
-	) => void;
-	onClassChange: (value: string) => void;
-}
+import { PassengerClassSelectorProps } from "./types";
 
 export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 	passengers,
@@ -39,22 +23,8 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 	onPassengerChange,
 	onClassChange,
 }) => {
-	const updatePassengerCount = (
-		type: "adults" | "children" | "infants",
-		delta: number
-	) => {
-		const current = passengers[type];
-		const min = type === "adults" ? 1 : 0;
-		const max = MAX_PASSENGERS;
-		const newValue = Math.max(min, Math.min(max, current + delta));
-
-		if (type === "infants" && newValue > passengers.adults) {
-			toast.error("Number of infants cannot exceed number of adults");
-			return;
-		}
-
-		onPassengerChange(type, delta);
-	};
+	// ✅ Remove the duplicate updatePassengerCount function completely
+	// The parent hook already handles all this logic
 
 	return (
 		<div className="flex-1 relative passengers-container">
@@ -95,7 +65,8 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 											type="button"
 											variant="outline"
 											size="sm"
-											onClick={() => updatePassengerCount(key, -1)}
+											// ✅ Call parent function directly with -1
+											onClick={() => onPassengerChange(key, -1)}
 											disabled={passengers[key] <= min}
 											className="h-6 w-6 p-0"
 										>
@@ -108,7 +79,8 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 											type="button"
 											variant="outline"
 											size="sm"
-											onClick={() => updatePassengerCount(key, 1)}
+											// ✅ Call parent function directly with +1
+											onClick={() => onPassengerChange(key, 1)}
 											disabled={passengers[key] >= MAX_PASSENGERS}
 											className="h-6 w-6 p-0"
 										>

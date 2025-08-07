@@ -26,12 +26,12 @@ export const SearchButton: React.FC<SearchButtonProps> = ({
 			>
 				{isLoading ? (
 					<>
-						<SearchIcon className="h-5 w-5 rotate-12 font-semibold" />
+						<SearchIcon className="h-5 w-5  rotate-y-180  font-semibold" />
 						Searching...
 					</>
 				) : (
 					<>
-						<SearchIcon className="h-5 w-5 rotate-12 font-semibold" />
+						<SearchIcon className="h-5 w-5  rotate-y-180  font-semibold" />
 						Search flights
 					</>
 				)}
