@@ -22,6 +22,7 @@ import {
 	RefreshCcw,
 	ArrowRight,
 	X,
+	SearchIcon,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -906,10 +907,7 @@ export const FlightSearch = () => {
 							/>
 
 							{/* Search Button */}
-							<motion.div
-								whileHover={{ scale: 1.02 }}
-								whileTap={{ scale: 0.98 }}
-							>
+							<motion.div whileTap={{ scale: 0.98 }}>
 								<Button
 									type="submit"
 									disabled={
@@ -918,26 +916,17 @@ export const FlightSearch = () => {
 										!watchedValues.toAirport ||
 										!watchedValues.departureDate
 									}
-									className="h-12 bg-primary hover:bg-primary/80 text-white font-medium rounded-lg"
+									className="h-10 bg-primary hover:bg-primary/80 text-white font-semibold rounded-lg"
 								>
 									{isPending ? (
 										<>
-											<motion.div
-												animate={{ rotate: 360 }}
-												transition={{
-													duration: 1,
-													repeat: Infinity,
-													ease: "linear",
-												}}
-											>
-												<Plane className="h-6 w-6" />
-											</motion.div>
+											<SearchIcon className="h-5 w-5 rotate-y-180 font-semibold" />
 											Searching...
 										</>
 									) : (
 										<>
-											<Plane className="mr-2 h-4 w-4" />
-											Search
+											<SearchIcon className="h-5 w-5 rotate-y-180 font-semibold" />
+											Search flights
 										</>
 									)}
 								</Button>
