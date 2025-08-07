@@ -314,7 +314,7 @@ export const FlightSearch = () => {
 		returnDate?: string,
 		tripType?: string
 	) => {
-		if (!departureDate) return null; // Return null instead of empty string
+		if (!departureDate) return null;
 
 		if (tripType === "oneway") {
 			return format(new Date(departureDate), "MMM dd, yyyy");
@@ -452,7 +452,7 @@ export const FlightSearch = () => {
 														setShowDatePicker(false);
 													}
 												}}
-												className="truncate border-0 py-0 pl-1 pr-4 h-12 font-medium focus-visible:ring-0 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[15px] dark:bg-transparent dark:text-white"
+												className="truncate border-0 py-0 pl-2 pr-4 h-12 font-semibold focus-visible:ring-0 translate-1 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[17px] dark:bg-transparent dark:text-white"
 												style={{ fontSize: "15px" }}
 											/>
 											{fromInputText && (
@@ -571,7 +571,7 @@ export const FlightSearch = () => {
 															setShowDatePicker(false);
 														}
 													}}
-													className="truncate border-0 py-0 pl-2 pr-4 h-12 font-medium focus-visible:ring-0 translate-1 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[15px] dark:bg-transparent dark:text-white"
+													className="truncate border-0 py-0 pl-2 pr-4 h-12 font-semibold focus-visible:ring-0 translate-1 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[17px] dark:bg-transparent dark:text-white"
 													style={{ fontSize: "15px" }}
 												/>
 												{toInputText && (
@@ -650,7 +650,7 @@ export const FlightSearch = () => {
 														"text-muted-foreground"
 												)}
 											>
-												<span className="flex-1 text-[15px]">
+												<span className="flex-1 text-[15px] font-semibold pt-1">
 													{formatDateDisplay(
 														watchedValues.departureDate,
 														watchedValues.returnDate,
@@ -744,10 +744,8 @@ export const FlightSearch = () => {
 							<div className="w-px h-14 bg-neutral-300 dark:bg-neutral-500" />
 
 							<div className="flex-1 relative passengers-container">
-								<div className="px-3 py-2">
-									{/* 	<Label className="text-xs text-slate-400 mb-1 block">
-										PASSENGERS & CLASS
-									</Label> */}
+								<div className="relative">
+									<Users className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 z-10 dark:text-neutral-400 text-slate-500 pointer-events-none" />
 									<Button
 										type="button"
 										variant="ghost"
@@ -757,10 +755,10 @@ export const FlightSearch = () => {
 											setShowToSearch(false);
 											setShowDatePicker(false);
 										}}
-										className="p-0 h-auto text-sm font-medium justify-start hover:bg-transparent flex items-center gap-1 w-full"
+										className="w-full h-12 justify-start text-left font-normal hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg"
+										style={{ fontSize: "15px" }}
 									>
-										<div className="flex items-center gap-2 text-left">
-											<Users className="h-4 w-4 text-gray-400" />
+										<div className="flex items-center gap-2 text-left pl-6 font-semibold">
 											<span>{getPassengerText()}</span>
 											<span className="text-gray-400">•</span>
 											<span>
@@ -769,14 +767,14 @@ export const FlightSearch = () => {
 											<ChevronDown className="h-3 w-3 ml-1" />
 										</div>
 									</Button>
-									{/* w-96 max-w-3xl bg-white dark:bg-black/50 dark:backdrop-blur-md border border-neutral/20 rounded-xl shadow-2xl overflow-hidden */}
+
 									<AnimatePresence>
 										{showPassengers && (
 											<motion.div
 												initial={{ opacity: 0, y: -10 }}
 												animate={{ opacity: 1, y: 0 }}
 												exit={{ opacity: 0, y: -10 }}
-												className="absolute z-50 right-0 mt-6 bg-white dark:bg-black/50 dark:backdrop-blur-md border-neutral/20  border rounded-lg shadow-2xl p-4 w-80 overflow-hidden"
+												className="absolute z-50 right-0 mt-2 bg-white dark:bg-black/50 dark:backdrop-blur-md border-neutral/20  border rounded-lg shadow-2xl p-4 w-80 overflow-hidden"
 											>
 												{/* Passengers Section */}
 												<div className="space-y-3 mb-4">
@@ -871,7 +869,7 @@ export const FlightSearch = () => {
 												<div className="mt-4 pt-3 border-t">
 													<Button
 														type="button"
-														variant="ghost"
+														variant="secondary"
 														size="sm"
 														onClick={() => setShowPassengers(false)}
 														className="w-full"
