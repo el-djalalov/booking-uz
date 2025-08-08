@@ -1,6 +1,6 @@
 // utils/error-handler.ts
 import { ApiError, ApiErrorCode } from "@/types/api-errors";
-import { getErrorInfo } from "@/types/error-messages";
+import { getErrorInfo } from "@/lib/error-messages";
 import { toast } from "sonner";
 
 export class ErrorHandler {

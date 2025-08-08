@@ -1,4 +1,4 @@
-import { ApiErrorCode, ErrorInfo } from "./api-errors";
+import { ApiErrorCode, ErrorInfo } from "../types/api-errors";
 
 export const ERROR_INFO_MAP: Record<ApiErrorCode, ErrorInfo> = {
 	// General errors

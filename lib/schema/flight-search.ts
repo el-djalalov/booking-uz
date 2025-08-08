@@ -20,7 +20,7 @@ export const flightSearchSchema = z.object({
 		infants: z.number().min(0).max(9),
 	}),
 	travelClass: z.enum(["e", "w", "b", "f"]),
-	directOnly: z.boolean().optional(),
+	directOnly: z.boolean(),
 });
 
 export type FlightSearchFormData = z.infer<typeof flightSearchSchema>;

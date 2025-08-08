@@ -10,12 +10,23 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
 			new QueryClient({
 				defaultOptions: {
 					queries: {
-						staleTime: 60 * 1000,
+						staleTime: 60 * 1000 * 2,
 						gcTime: 10 * 60 * 1000,
+						retry: (failureCount, error: any) => {
+							if (error?.status >= 400 && error?.status < 500) return false;
+							return failureCount < 3;
+						},
+						retryDelay: attemptIndex =>
+							Math.min(1000 * 2 ** attemptIndex, 30000),
 						// Disable automatic refetching during SSR
 						refetchOnWindowFocus: false,
 						refetchOnMount: false,
 						refetchOnReconnect: false,
+					},
+					mutations: {
+						// Optimized mutation settings
+						retry: false,
+						gcTime: 1000 * 60 * 5,
 					},
 				},
 			})

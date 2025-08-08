@@ -30,11 +30,12 @@ export const FlightSearch = () => {
 		state,
 		watchedValues,
 		isPending,
+		error,
+		reset,
 		updateState,
 		closeAllDropdowns,
 		handleSwapAirports,
 		handleSubmit,
-		updatePassengerCount,
 	} = useFlightSearch();
 
 	const { control, setValue } = form;
@@ -312,6 +313,21 @@ export const FlightSearch = () => {
 								onSubmit={() => {}}
 							/>
 						</div>
+
+						{error && (
+							<div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+								<p className="text-sm text-red-600">{error.message}</p>
+								{error.canRetry && (
+									<button
+										type="button"
+										onClick={() => reset()}
+										className="mt-2 text-xs text-red-700 underline"
+									>
+										Try again
+									</button>
+								)}
+							</div>
+						)}
 					</form>
 				</CardContent>
 			</Card>

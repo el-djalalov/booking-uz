@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 
+const isDevelopment = process.env.NODE_ENV === "development";
+const isProduction = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
 	async headers() {
 		return [
@@ -58,6 +61,12 @@ const nextConfig: NextConfig = {
 					{
 						key: "Referrer-Policy",
 						value: "origin-when-cross-origin",
+					},
+					{
+						key: "Cache-Control",
+						value: isDevelopment
+							? "no-cache, no-store, must-revalidate"
+							: "public, s-maxage=300, stale-while-revalidate=600",
 					},
 				],
 			},

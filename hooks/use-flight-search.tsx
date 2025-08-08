@@ -1,18 +1,52 @@
-// components/flight-search/hooks/use-flight-search.ts
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 import {
 	flightSearchSchema,
 	type FlightSearchFormData,
 } from "@/lib/schema/flight-search";
-import { searchRecommendations } from "@/app/actions/search-recommendations";
 import { toast } from "sonner";
 import { FlightSearchState } from "@/components/flight-search/types";
+import {
+	ApiSearchResponse,
+	FlightRecommendation,
+	FlightSearchSuccessResponse,
+} from "@/types/flight-search";
+
+async function searchFlights(
+	data: FlightSearchFormData
+): Promise<FlightSearchSuccessResponse> {
+	const response = await fetch("/api/flights-search", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	const result: ApiSearchResponse = await response.json();
+
+	if (!result.success) {
+		const error = new Error(result.error) as any;
+		error.errorCode = result.errorCode;
+		error.canRetry = result.canRetry;
+		error.retryDelay = result.retryDelay;
+		error.action = result.action;
+		error.severity = result.severity;
+		error.pid = result.pid;
+		throw error;
+	}
+
+	return result;
+}
 
 export const useFlightSearch = () => {
+	const router = useRouter();
+
 	const [state, setState] = useState<FlightSearchState>({
 		showFromSearch: false,
 		showToSearch: false,
@@ -21,8 +55,6 @@ export const useFlightSearch = () => {
 		fromInputText: "",
 		toInputText: "",
 	});
-
-	const [isPending, startTransition] = useTransition();
 
 	const form = useForm<FlightSearchFormData>({
 		resolver: zodResolver(flightSearchSchema),
@@ -44,7 +76,39 @@ export const useFlightSearch = () => {
 
 	const watchedValues = form.watch();
 
-	// Update input text when airports change
+	const searchMutation = useMutation({
+		mutationFn: searchFlights,
+		retry: (failureCount, error: any) => {
+			if (error?.canRetry === false) return false;
+			return failureCount < 3;
+		},
+		retryDelay: (attemptIndex, error: any) => {
+			return error?.retryDelay || Math.min(1000 * 2 ** attemptIndex, 30000);
+		},
+		onSuccess: (result, variables) => {
+			const searchParams = new URLSearchParams({
+				from: variables.fromAirport?.iata || "",
+				to: variables.toAirport?.iata || "",
+				departure: variables.departureDate,
+				...(variables.returnDate && { return: variables.returnDate }),
+				adults: variables.passengers.adults.toString(),
+				children: variables.passengers.children.toString(),
+				infants: variables.passengers.infants.toString(),
+				class: variables.travelClass,
+				tripType: variables.tripType,
+				directOnly: (variables.directOnly ?? false).toString(),
+			});
+
+			router.push(`/search?${searchParams.toString()}`);
+		},
+		onError: (error: any) => {
+			console.error("❌ Flight search error:", error);
+			toast.error(
+				error.message || "An unexpected error occurred. Please try again."
+			);
+		},
+	});
+
 	useEffect(() => {
 		if (watchedValues.fromAirport) {
 			setState(prev => ({
@@ -97,15 +161,7 @@ export const useFlightSearch = () => {
 	};
 
 	const handleSubmit = (data: FlightSearchFormData) => {
-		startTransition(async () => {
-			const result = await searchRecommendations(data);
-			if (result.error) {
-				toast.error(result.error);
-			} else {
-				console.log(result.data);
-				toast.success("Flights found!");
-			}
-		});
+		searchMutation.mutate(data);
 	};
 
 	const updatePassengerCount = (
@@ -129,15 +185,26 @@ export const useFlightSearch = () => {
 			{ shouldDirty: true, shouldTouch: true, shouldValidate: false }
 		);
 	};
+
 	return {
 		form,
 		state,
 		watchedValues,
-		isPending,
+		isPending: searchMutation.isPending,
+		error: searchMutation.error,
+		isSuccess: searchMutation.isSuccess,
+		reset: searchMutation.reset,
 		updateState,
 		closeAllDropdowns,
 		handleSwapAirports,
 		handleSubmit: form.handleSubmit(handleSubmit),
 		updatePassengerCount,
+		flights: searchMutation.data?.data?.flights as
+			| FlightRecommendation[]
+			| undefined,
+		searchResults: searchMutation.data as
+			| FlightSearchSuccessResponse
+			| undefined,
+		flightCount: searchMutation.data?.count || 0,
 	};
 };
