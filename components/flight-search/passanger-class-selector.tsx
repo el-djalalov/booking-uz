@@ -23,9 +23,6 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 	onPassengerChange,
 	onClassChange,
 }) => {
-	// ✅ Remove the duplicate updatePassengerCount function completely
-	// The parent hook already handles all this logic
-
 	return (
 		<div className="flex-1 relative passengers-container">
 			<Users className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 z-10 dark:text-neutral-400 text-slate-500 pointer-events-none" />
@@ -33,7 +30,7 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 				type="button"
 				variant="ghost"
 				onClick={onToggle}
-				className="w-full h-12 justify-start text-left font-normal hover:bg-slate-100 dark:hover:bg-black/30 rounded-lg"
+				className="w-full h-12 justify-start text-left cursor-pointer font-normal hover:bg-slate-100 dark:hover:bg-black/30 rounded-lg"
 				style={{ fontSize: "15px" }}
 			>
 				<div className="flex items-center gap-2 text-left pl-6 font-semibold">
@@ -65,7 +62,6 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 											type="button"
 											variant="outline"
 											size="sm"
-											// ✅ Call parent function directly with -1
 											onClick={() => onPassengerChange(key, -1)}
 											disabled={passengers[key] <= min}
 											className="h-6 w-6 p-0"
@@ -79,7 +75,6 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 											type="button"
 											variant="outline"
 											size="sm"
-											// ✅ Call parent function directly with +1
 											onClick={() => onPassengerChange(key, 1)}
 											disabled={passengers[key] >= MAX_PASSENGERS}
 											className="h-6 w-6 p-0"

@@ -8,7 +8,7 @@ import {
 	flightSearchSchema,
 	type FlightSearchFormData,
 } from "@/lib/schema/flight-search";
-import { searchFlights } from "@/app/actions/actions";
+import { searchRecommendations } from "@/app/actions/search-recommendations";
 import { toast } from "sonner";
 import { FlightSearchState } from "@/components/flight-search/types";
 
@@ -98,7 +98,7 @@ export const useFlightSearch = () => {
 
 	const handleSubmit = (data: FlightSearchFormData) => {
 		startTransition(async () => {
-			const result = await searchFlights(data);
+			const result = await searchRecommendations(data);
 			if (result.error) {
 				toast.error(result.error);
 			} else {
@@ -112,18 +112,23 @@ export const useFlightSearch = () => {
 		type: "adults" | "children" | "infants",
 		delta: number
 	) => {
-		const current = watchedValues.passengers[type];
+		const current = form.getValues("passengers");
 		const min = type === "adults" ? 1 : 0;
 		const max = 9;
-		const newValue = Math.max(min, Math.min(max, current + delta));
-		form.setValue(`passengers.${type}`, newValue);
 
-		if (type === "infants" && newValue > watchedValues.passengers.adults) {
+		let next = Math.max(min, Math.min(max, (current?.[type] ?? 0) + delta));
+
+		if (type === "infants" && next > current.adults) {
 			toast.error("Number of infants cannot exceed number of adults");
 			return;
 		}
-	};
 
+		form.setValue(
+			"passengers",
+			{ ...current, [type]: next },
+			{ shouldDirty: true, shouldTouch: true, shouldValidate: false }
+		);
+	};
 	return {
 		form,
 		state,

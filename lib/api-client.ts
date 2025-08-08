@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import { ErrorHandler } from "@/utils/error-handler";
 import { ApiError } from "@/types/api-errors";
-import { ApiErrorData, ApiResponse } from "./api";
+import { ApiErrorData, ApiResponse } from "@/types/api";
 
 class ApiClient {
 	private client: AxiosInstance;

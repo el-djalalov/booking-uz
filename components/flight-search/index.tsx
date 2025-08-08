@@ -1,4 +1,3 @@
-// components/flight-search/index.tsx
 "use client";
 
 import React from "react";
@@ -23,6 +22,7 @@ import { DirectFlightCheckbox } from "./direct-flight-checkbox";
 import { SearchButton } from "./search-btn";
 import { formatDateDisplay } from "./utils";
 import { DateRangePicker } from "./date.range-picker";
+import { toast } from "sonner";
 
 export const FlightSearch = () => {
 	const {
@@ -162,7 +162,7 @@ export const FlightSearch = () => {
 							<div className="w-px h-14 bg-neutral-300 dark:bg-neutral-500" />
 
 							{/* Date Picker */}
-							<div className="flex-1 relative date-picker-container bg-white dark:bg-transparent">
+							<div className="flex-1 relative date-picker-container bg-white dark:bg-transparent ">
 								<Popover
 									open={state.showDatePicker}
 									modal={false}
@@ -183,7 +183,7 @@ export const FlightSearch = () => {
 											<Button
 												variant="ghost"
 												className={cn(
-													"w-full h-12 pl-12 pr-10 justify-start text-left font-normal hover:bg-slate-100 dark:hover:bg-black/30 rounded-lg",
+													"w-full h-12 pl-12 pr-10 cursor-pointer justify-start text-left font-normal hover:bg-slate-100 dark:hover:bg-black/30 rounded-lg",
 													!watchedValues.departureDate &&
 														"text-muted-foreground"
 												)}
@@ -255,15 +255,36 @@ export const FlightSearch = () => {
 												passengers={passengersField.value}
 												travelClass={classField.value}
 												isOpen={state.showPassengers}
-												onToggle={() => {
+												onToggle={() =>
 													updateState({
 														showPassengers: !state.showPassengers,
 														showFromSearch: false,
 														showToSearch: false,
 														showDatePicker: false,
+													})
+												}
+												onPassengerChange={(type, delta) => {
+													const current = passengersField.value;
+													const min = type === "adults" ? 1 : 0;
+													const max = 9;
+
+													let next = Math.max(
+														min,
+														Math.min(max, current[type] + delta)
+													);
+
+													if (type === "infants" && next > current.adults) {
+														toast.error(
+															"Number of infants cannot exceed number of adults"
+														);
+														return;
+													}
+
+													passengersField.onChange({
+														...current,
+														[type]: next,
 													});
 												}}
-												onPassengerChange={updatePassengerCount}
 												onClassChange={classField.onChange}
 											/>
 										)}

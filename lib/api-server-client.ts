@@ -1,7 +1,7 @@
 import "server-only";
 import axios, { AxiosInstance } from "axios";
 import { getAuthToken } from "./server-auth";
-import { ApiResponse } from "./api";
+import { ApiResponse } from "@/types/api";
 
 class ApiServerClient {
 	private client: AxiosInstance;
@@ -35,7 +35,7 @@ class ApiServerClient {
 	): Promise<ApiResponse<T>> {
 		const token = await getAuthToken();
 
-				const config: any = {
+		const config: any = {
 			method,
 			url: endpoint,
 			headers: { ...this.client.defaults.headers.common },
