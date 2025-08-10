@@ -76,7 +76,7 @@ export const useFlightSearch = () => {
 
 	const watchedValues = form.watch();
 
-	const searchMutation = useMutation({
+	/* const searchMutation = useMutation({
 		mutationFn: searchFlights,
 		retry: (failureCount, error: any) => {
 			if (error?.canRetry === false) return false;
@@ -107,6 +107,7 @@ export const useFlightSearch = () => {
 			);
 		},
 	});
+ */
 
 	useEffect(() => {
 		if (watchedValues.fromAirport) {
@@ -204,21 +205,10 @@ export const useFlightSearch = () => {
 		form,
 		state,
 		watchedValues,
-		isPending: searchMutation.isPending,
-		error: searchMutation.error,
-		isSuccess: searchMutation.isSuccess,
-		reset: searchMutation.reset,
 		updateState,
 		closeAllDropdowns,
 		handleSwapAirports,
 		handleSubmit: form.handleSubmit(handleSubmit),
 		updatePassengerCount,
-		flights: searchMutation.data?.data?.flights as
-			| FlightRecommendation[]
-			| undefined,
-		searchResults: searchMutation.data as
-			| FlightSearchSuccessResponse
-			| undefined,
-		flightCount: searchMutation.data?.count || 0,
 	};
 };

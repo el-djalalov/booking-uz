@@ -11,38 +11,55 @@ import { SearchResults } from "./search-results";
 import { SearchPageProps } from "@/types/flight-search";
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
+	// ✅ AWAIT the searchParams Promise
+	const params = await searchParams;
+
 	const queryClient = new QueryClient();
+
+	// ✅ Helper function to safely extract string values
+	const getParam = (key: string): string => {
+		const value = params[key];
+		return Array.isArray(value) ? value[0] || "" : value || "";
+	};
 
 	// Convert search params to search data
 	const searchData: FlightSearchFormData = {
 		fromAirport: {
-			iata: searchParams.from,
+			iata: getParam("from"),
 			name: "",
 			city: "",
 			country: "",
 		},
 		toAirport: {
-			iata: searchParams.to,
+			iata: getParam("to"),
 			name: "",
 			city: "",
 			country: "",
 		},
-		departureDate: searchParams.departure,
-		returnDate: searchParams.return,
+		departureDate: getParam("departure"),
+		returnDate: getParam("return") || undefined,
 		passengers: {
-			adults: parseInt(searchParams.adults) || 1,
-			children: parseInt(searchParams.children) || 0,
-			infants: parseInt(searchParams.infants) || 0,
+			adults: parseInt(getParam("adults")) || 1,
+			children: parseInt(getParam("children")) || 0,
+			infants: parseInt(getParam("infants")) || 0,
 		},
-		travelClass: (searchParams.class || "e") as "e" | "b" | "f" | "w",
-		tripType: searchParams.tripType === "roundtrip" ? "roundtrip" : "oneway",
-		directOnly: searchParams.directOnly === "true",
+		travelClass: (getParam("class") || "e") as "e" | "b" | "f" | "w",
+		tripType: getParam("tripType") === "roundtrip" ? "roundtrip" : "oneway",
+		directOnly: getParam("directOnly") === "true",
 	};
 
-	try {
-		await queryClient.prefetchQuery(getFlightSearchQuery(searchData));
-	} catch (error) {
-		console.error("Failed to prefetch flight data:", error);
+	// Only prefetch if we have required data
+	const canPrefetch =
+		searchData.fromAirport?.iata &&
+		searchData.toAirport?.iata &&
+		searchData.departureDate;
+
+	if (canPrefetch) {
+		try {
+			await queryClient.prefetchQuery(getFlightSearchQuery(searchData));
+		} catch (error) {
+			console.error("Failed to prefetch flight data:", error);
+		}
 	}
 
 	return (

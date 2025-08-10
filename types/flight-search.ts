@@ -402,16 +402,5 @@ export interface FlightSearchParams {
 }
 
 export interface SearchPageProps {
-	searchParams: {
-		from: string;
-		to: string;
-		departure: string;
-		return?: string;
-		adults: string;
-		children: string;
-		infants: string;
-		class: string;
-		tripType: string;
-		directOnly: string;
-	};
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
