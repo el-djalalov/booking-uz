@@ -1,6 +1,5 @@
 import { Features } from "@/components/Features";
 import { Hero } from "@/components/Hero";
-import Image from "next/image";
 export default function Home() {
 	return (
 		<div className="min-h-screen bg-gradient-to-bl from-emerald-400/40 via-blue-400/20 to-amber-700/90 via-25%">

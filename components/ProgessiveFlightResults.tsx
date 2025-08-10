@@ -183,8 +183,7 @@ export function ProgressiveFlightResults({
 
 	return (
 		<div className="space-y-4">
-			{/* ✅ Enhanced Progress Header */}
-			{showProgress && (
+			{!showProgress && (
 				<div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
 					<div className="flex items-center justify-between mb-2">
 						<div className="flex items-center gap-2">
@@ -231,7 +230,6 @@ export function ProgressiveFlightResults({
 				))}
 			</div>
 
-			{/* ✅ Loading skeletons for upcoming flights */}
 			{isRendering && (
 				<div className="grid gap-4">
 					{Array.from({ length: Math.min(chunkSize, remainingCount) }).map(
@@ -242,7 +240,6 @@ export function ProgressiveFlightResults({
 				</div>
 			)}
 
-			{/* ✅ Progressive loading controls */}
 			{remainingCount > 0 && (
 				<div ref={loadMoreRef} className="text-center py-6">
 					{isRendering ? (
@@ -298,7 +295,6 @@ export function ProgressiveFlightResults({
 				</div>
 			)}
 
-			{/* ✅ Completion message */}
 			{remainingCount === 0 && visibleFlights.length > 0 && (
 				<div className="text-center py-6 bg-green-50 border border-green-200 rounded-lg">
 					<div className="text-green-800 font-medium">

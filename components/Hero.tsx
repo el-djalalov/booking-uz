@@ -11,15 +11,6 @@ export const Hero = () => {
 		<>
 			<Navbar />
 			<div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-hero pt-12">
-				{/* 3D Plane Background */}
-				{/* 	<div className="absolute inset-0 z-0">
-					<Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-						<ambientLight intensity={0.4} />
-						<directionalLight position={[10, 10, 5]} intensity={1} />
-						<Plane3D />
-					</Canvas>
-				</div> */}
-
 				{/* Content */}
 				<div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					{/* Main Headline */}

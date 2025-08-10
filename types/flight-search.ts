@@ -400,3 +400,18 @@ export interface FlightSearchParams {
 	gds_black_list?: number[];
 	lang: string;
 }
+
+export interface SearchPageProps {
+	searchParams: {
+		from: string;
+		to: string;
+		departure: string;
+		return?: string;
+		adults: string;
+		children: string;
+		infants: string;
+		class: string;
+		tripType: string;
+		directOnly: string;
+	};
+}

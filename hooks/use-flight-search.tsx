@@ -98,7 +98,6 @@ export const useFlightSearch = () => {
 				tripType: variables.tripType,
 				directOnly: (variables.directOnly ?? false).toString(),
 			});
-
 			router.push(`/search?${searchParams.toString()}`);
 		},
 		onError: (error: any) => {
@@ -161,7 +160,22 @@ export const useFlightSearch = () => {
 	};
 
 	const handleSubmit = (data: FlightSearchFormData) => {
-		searchMutation.mutate(data);
+		//searchMutation.mutate(data);
+		const searchParams = new URLSearchParams({
+			from: data.fromAirport?.iata || "",
+			to: data.toAirport?.iata || "",
+			departure: data.departureDate,
+			...(data.returnDate && { return: data.returnDate }),
+			adults: data.passengers.adults.toString(),
+			children: data.passengers.children.toString(),
+			infants: data.passengers.infants.toString(),
+			class: data.travelClass,
+			tripType: data.tripType,
+			directOnly: (data.directOnly ?? false).toString(),
+		});
+
+		// Navigate immediately - no waiting for API
+		router.push(`/search?${searchParams.toString()}`);
 	};
 
 	const updatePassengerCount = (
