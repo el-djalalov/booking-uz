@@ -30,7 +30,7 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 				type="button"
 				variant="ghost"
 				onClick={onToggle}
-				className="w-full h-12 justify-start text-left cursor-pointer font-normal hover:bg-slate-100 dark:hover:bg-black/30 rounded-lg"
+				className="w-full h-12 justify-start text-left cursor-pointer overflow-hidden font-normal hover:bg-slate-100 dark:hover:bg-black/30 rounded-lg"
 				style={{ fontSize: "15px" }}
 			>
 				<div className="flex items-center gap-2 text-left pl-6 font-semibold">
@@ -46,7 +46,7 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 						initial={{ opacity: 0, y: -10 }}
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: -10 }}
-						className="absolute z-50 right-0 mt-2 bg-white dark:bg-black/50 dark:backdrop-blur-md border-neutral/20 border rounded-lg shadow-2xl p-4 w-80 overflow-hidden"
+						className="absolute z-50 md:right-0 mt-2 bg-white dark:bg-black/50 dark:backdrop-blur-md border-neutral/20 border rounded-lg shadow-2xl p-4 w-80 overflow-hidden"
 					>
 						{/* Passengers Section */}
 						<div className="space-y-3 mb-4">
@@ -109,7 +109,7 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 								variant="secondary"
 								size="sm"
 								onClick={onToggle}
-								className="w-full cursor-pointer border-0"
+								className="w-full cursor-pointer border-1"
 							>
 								Done
 							</Button>

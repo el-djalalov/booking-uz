@@ -78,7 +78,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
 	}, []);
 
 	return (
-		<div className="w-auto bg-white dark:bg-black/50 dark:backdrop-blur-lg border rounded-xl border-neutral/20 shadow-xl overflow-hidden">
+		<div className="w-full bg-white dark:bg-black/50 dark:backdrop-blur-lg border rounded-xl border-neutral/20 shadow-xl overflow-hidden">
 			{isRoundTrip ? (
 				<Calendar
 					mode="range"

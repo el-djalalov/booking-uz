@@ -45,7 +45,7 @@ export const AirportInput: React.FC<AirportInputProps> = ({
 		<div className={`relative airport-search-container ${className}`}>
 			<div
 				className={`relative flex justify-center items-center ${
-					placeholder === "From" ? "" : "pl-4"
+					placeholder === "From" ? "" : "md:pl-4"
 				}`}
 			>
 				<Icon size={28} className="dark:text-neutral-400 text-slate-400 mb-1" />
@@ -55,7 +55,7 @@ export const AirportInput: React.FC<AirportInputProps> = ({
 					value={value}
 					onChange={handleInputChange}
 					onFocus={handleFocus}
-					className="truncate border-0 py-0 pl-2 pr-4 h-12 font-semibold focus-visible:ring-0 placeholder:text-slate-400 dark:placeholder:text-neutral-400 placeholder:text-[17px] dark:bg-transparent dark:text-white"
+					className="truncate border-0 py-0 pl-2 pr-4 h-12 font-semibold focus-visible:ring-0 placeholder:text-slate-300 dark:placeholder:text-neutral-400 placeholder:text-[17px] dark:bg-transparent dark:text-white"
 					style={{ fontSize: "15px" }}
 				/>
 				{value && (

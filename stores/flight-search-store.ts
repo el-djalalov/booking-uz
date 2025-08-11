@@ -1,3 +1,4 @@
+// stores/flight-search-store.ts
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { FlightSearchFormData } from "@/lib/schema/flight-search";
@@ -10,21 +11,21 @@ interface Airport {
 }
 
 interface FlightSearchStore {
-	// Form data
-	searchData: FlightSearchFormData;
-
-	// UI state that should persist
+	searchData: FlightSearchFormData; // ✅ Always complete type
 	recentSearches: FlightSearchFormData[];
 	favoriteAirports: Airport[];
 
-	// Actions
-	setSearchData: (data: Partial<FlightSearchFormData>) => void;
+	setSearchData: (data: FlightSearchFormData) => void; // ✅ Require complete data
+	updateSearchData: (data: Partial<FlightSearchFormData>) => void; // ✅ New method for partial updates
 	addRecentSearch: (search: FlightSearchFormData) => void;
 	addFavoriteAirport: (airport: Airport) => void;
+	removeFavoriteAirport: (iata: string) => void;
 	clearSearchData: () => void;
-	restoreFromUrl: (params: URLSearchParams) => void;
+	clearRecentSearches: () => void;
+	restoreFromUrl: (params: URLSearchParams) => Promise<void>;
 }
 
+// ✅ Ensure defaultSearchData matches FlightSearchFormData exactly
 const defaultSearchData: FlightSearchFormData = {
 	tripType: "roundtrip",
 	fromAirport: null,
@@ -47,7 +48,10 @@ export const useFlightSearchStore = create<FlightSearchStore>()(
 			recentSearches: [],
 			favoriteAirports: [],
 
-			setSearchData: data =>
+			setSearchData: (data: FlightSearchFormData) => set({ searchData: data }),
+
+			// ✅ New method for partial updates
+			updateSearchData: (data: Partial<FlightSearchFormData>) =>
 				set(state => ({
 					searchData: { ...state.searchData, ...data },
 				})),
@@ -62,7 +66,7 @@ export const useFlightSearchStore = create<FlightSearchStore>()(
 								s.toAirport?.iata !== search.toAirport?.iata ||
 								s.departureDate !== search.departureDate
 						),
-					].slice(0, 5), // Keep only last 5 searches
+					].slice(0, 5),
 				})),
 
 			addFavoriteAirport: airport =>
@@ -74,41 +78,52 @@ export const useFlightSearchStore = create<FlightSearchStore>()(
 						: [...state.favoriteAirports, airport].slice(0, 10),
 				})),
 
+			removeFavoriteAirport: iata =>
+				set(state => ({
+					favoriteAirports: state.favoriteAirports.filter(a => a.iata !== iata),
+				})),
+
 			clearSearchData: () => set({ searchData: defaultSearchData }),
 
-			// ✅ Restore form data from URL parameters
-			restoreFromUrl: params => {
-				const searchData: Partial<FlightSearchFormData> = {};
+			clearRecentSearches: () => set({ recentSearches: [] }),
+
+			restoreFromUrl: async params => {
+				const current = get().searchData;
+				const updates: Partial<FlightSearchFormData> = {};
 
 				const from = params.get("from");
 				const to = params.get("to");
 
 				if (from) {
-					// You might want to fetch full airport data from your API
-					searchData.fromAirport = {
+					updates.fromAirport = {
 						iata: from,
-						name: "",
-						city: "",
-						country: "",
+						name: params.get("fromName") || "",
+						city: params.get("fromCity") || "",
+						country: params.get("fromCountry") || "",
 					};
 				}
 
 				if (to) {
-					searchData.toAirport = { iata: to, name: "", city: "", country: "" };
+					updates.toAirport = {
+						iata: to,
+						name: params.get("toName") || "",
+						city: params.get("toCity") || "",
+						country: params.get("toCountry") || "",
+					};
 				}
 
 				const departure = params.get("departure");
-				if (departure) searchData.departureDate = departure;
+				if (departure) updates.departureDate = departure;
 
 				const returnDate = params.get("return");
-				if (returnDate) searchData.returnDate = returnDate;
+				if (returnDate) updates.returnDate = returnDate;
 
 				const adults = params.get("adults");
 				const children = params.get("children");
 				const infants = params.get("infants");
 
 				if (adults || children || infants) {
-					searchData.passengers = {
+					updates.passengers = {
 						adults: parseInt(adults || "1"),
 						children: parseInt(children || "0"),
 						infants: parseInt(infants || "0"),
@@ -116,26 +131,28 @@ export const useFlightSearchStore = create<FlightSearchStore>()(
 				}
 
 				const travelClass = params.get("class");
-				if (travelClass) searchData.travelClass = travelClass as any;
+				if (travelClass) updates.travelClass = travelClass as any;
 
 				const tripType = params.get("tripType");
-				if (tripType) searchData.tripType = tripType as any;
+				if (tripType) updates.tripType = tripType as any;
 
 				const directOnly = params.get("directOnly");
-				if (directOnly) searchData.directOnly = directOnly === "true";
+				if (directOnly) updates.directOnly = directOnly === "true";
 
-				set(state => ({
-					searchData: { ...state.searchData, ...searchData },
-				}));
+				// ✅ Create complete FlightSearchFormData
+				const completeData: FlightSearchFormData = {
+					...current,
+					...updates,
+				};
+
+				set({ searchData: completeData });
 			},
 		}),
 		{
 			name: "flight-search-storage",
 			storage: createJSONStorage(() => {
-				// Use sessionStorage for temporary persistence
-				// Use localStorage if you want data to persist across browser sessions
 				if (typeof window !== "undefined") {
-					return window.sessionStorage; // or window.localStorage
+					return window.sessionStorage;
 				}
 				return {
 					getItem: () => null,

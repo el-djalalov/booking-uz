@@ -1,51 +1,52 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
 	flightSearchSchema,
 	type FlightSearchFormData,
 } from "@/lib/schema/flight-search";
 import { toast } from "sonner";
 import { FlightSearchState } from "@/components/flight-search/types";
-import {
-	ApiSearchResponse,
-	FlightRecommendation,
-	FlightSearchSuccessResponse,
-} from "@/types/flight-search";
+import { useFlightSearchStore } from "@/stores/flight-search-store";
 
-async function searchFlights(
-	data: FlightSearchFormData
-): Promise<FlightSearchSuccessResponse> {
-	const response = await fetch("/api/flights-search", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
+const createCompleteFormData = (
+	partial?: Partial<FlightSearchFormData>
+): FlightSearchFormData => {
+	return {
+		tripType: partial?.tripType ?? "roundtrip",
+		fromAirport: partial?.fromAirport ?? null,
+		toAirport: partial?.toAirport ?? null,
+		departureDate: partial?.departureDate ?? "",
+		returnDate: partial?.returnDate,
+		passengers: {
+			adults: partial?.passengers?.adults ?? 1,
+			children: partial?.passengers?.children ?? 0,
+			infants: partial?.passengers?.infants ?? 0,
 		},
-		body: JSON.stringify(data),
-	});
-
-	const result: ApiSearchResponse = await response.json();
-
-	if (!result.success) {
-		const error = new Error(result.error) as any;
-		error.errorCode = result.errorCode;
-		error.canRetry = result.canRetry;
-		error.retryDelay = result.retryDelay;
-		error.action = result.action;
-		error.severity = result.severity;
-		error.pid = result.pid;
-		throw error;
-	}
-
-	return result;
-}
+		travelClass: partial?.travelClass ?? "e",
+		directOnly: partial?.directOnly ?? false,
+	};
+};
 
 export const useFlightSearch = () => {
 	const router = useRouter();
+	const searchParams = useSearchParams();
+	const {
+		searchData,
+		recentSearches,
+		favoriteAirports,
+		setSearchData,
+		addRecentSearch,
+		addFavoriteAirport,
+		restoreFromUrl,
+	} = useFlightSearchStore();
+
+	// ✅ Use ref to prevent circular updates
+	const isUpdatingFromStore = useRef(false);
+	const isUpdatingFromForm = useRef(false);
 
 	const [state, setState] = useState<FlightSearchState>({
 		showFromSearch: false,
@@ -58,57 +59,64 @@ export const useFlightSearch = () => {
 
 	const form = useForm<FlightSearchFormData>({
 		resolver: zodResolver(flightSearchSchema),
-		defaultValues: {
-			tripType: "roundtrip",
-			fromAirport: null,
-			toAirport: null,
-			departureDate: "",
-			returnDate: undefined,
-			passengers: {
-				adults: 1,
-				children: 0,
-				infants: 0,
-			},
-			travelClass: "e",
-			directOnly: false,
-		},
+		defaultValues: createCompleteFormData(searchData),
 	});
 
 	const watchedValues = form.watch();
 
-	/* const searchMutation = useMutation({
-		mutationFn: searchFlights,
-		retry: (failureCount, error: any) => {
-			if (error?.canRetry === false) return false;
-			return failureCount < 3;
-		},
-		retryDelay: (attemptIndex, error: any) => {
-			return error?.retryDelay || Math.min(1000 * 2 ** attemptIndex, 30000);
-		},
-		onSuccess: (result, variables) => {
-			const searchParams = new URLSearchParams({
-				from: variables.fromAirport?.iata || "",
-				to: variables.toAirport?.iata || "",
-				departure: variables.departureDate,
-				...(variables.returnDate && { return: variables.returnDate }),
-				adults: variables.passengers.adults.toString(),
-				children: variables.passengers.children.toString(),
-				infants: variables.passengers.infants.toString(),
-				class: variables.travelClass,
-				tripType: variables.tripType,
-				directOnly: (variables.directOnly ?? false).toString(),
-			});
-			router.push(`/search?${searchParams.toString()}`);
-		},
-		onError: (error: any) => {
-			console.error("❌ Flight search error:", error);
-			toast.error(
-				error.message || "An unexpected error occurred. Please try again."
-			);
-		},
-	});
- */
+	// ✅ Only restore from URL on mount and URL changes
+	useEffect(() => {
+		const hasUrlParams =
+			searchParams?.has("from") ||
+			searchParams?.has("to") ||
+			searchParams?.has("departure");
 
+		if (hasUrlParams && searchParams) {
+			isUpdatingFromStore.current = true;
+			restoreFromUrl(searchParams).finally(() => {
+				isUpdatingFromStore.current = false;
+			});
+		}
+	}, [searchParams, restoreFromUrl]);
+
+	// ✅ Update Zustand store when form changes (but not when updating from store)
+	useEffect(() => {
+		if (isUpdatingFromStore.current) return;
+
+		const subscription = form.watch((value, { name, type }) => {
+			// Only update if it's a user change, not a programmatic reset
+			if (type === "change" && value && !isUpdatingFromForm.current) {
+				const completeValue = createCompleteFormData(
+					value as Partial<FlightSearchFormData>
+				);
+				setSearchData(completeValue);
+			}
+		});
+		return () => subscription.unsubscribe();
+	}, [form, setSearchData]);
+
+	// ✅ Update form when Zustand store changes (but not when updating from form)
+	useEffect(() => {
+		if (isUpdatingFromForm.current) return;
+
+		const completeData = createCompleteFormData(searchData);
+
+		// ✅ Only reset if data actually changed
+		const currentFormData = form.getValues();
+		const hasChanged =
+			JSON.stringify(currentFormData) !== JSON.stringify(completeData);
+
+		if (hasChanged) {
+			isUpdatingFromStore.current = true;
+			form.reset(completeData);
+			// Small delay to ensure form update completes
+			setTimeout(() => {
+				isUpdatingFromStore.current = false;
+			}, 0);
+		}
+	}, [searchData, form]);
+
+	// ✅ Update input display text
 	useEffect(() => {
 		if (watchedValues.fromAirport) {
 			setState(prev => ({
@@ -152,8 +160,15 @@ export const useFlightSearch = () => {
 	const handleSwapAirports = () => {
 		const fromAirport = watchedValues.fromAirport;
 		const toAirport = watchedValues.toAirport;
+
+		// ✅ Prevent circular updates during swap
+		isUpdatingFromForm.current = true;
 		form.setValue("fromAirport", toAirport);
 		form.setValue("toAirport", fromAirport);
+
+		setTimeout(() => {
+			isUpdatingFromForm.current = false;
+		}, 0);
 
 		if (navigator.vibrate) {
 			navigator.vibrate(50);
@@ -161,21 +176,39 @@ export const useFlightSearch = () => {
 	};
 
 	const handleSubmit = (data: FlightSearchFormData) => {
-		//searchMutation.mutate(data);
+		// Add to recent searches
+		addRecentSearch(data);
+
+		// Add airports to favorites
+		if (data.fromAirport) {
+			addFavoriteAirport(data.fromAirport);
+		}
+		if (data.toAirport) {
+			addFavoriteAirport(data.toAirport);
+		}
+
+		// Generate URL with all parameters
 		const searchParams = new URLSearchParams({
 			from: data.fromAirport?.iata || "",
 			to: data.toAirport?.iata || "",
 			departure: data.departureDate,
+			...(data.fromAirport?.name && { fromName: data.fromAirport.name }),
+			...(data.fromAirport?.city && { fromCity: data.fromAirport.city }),
+			...(data.fromAirport?.country && {
+				fromCountry: data.fromAirport.country,
+			}),
+			...(data.toAirport?.name && { toName: data.toAirport.name }),
+			...(data.toAirport?.city && { toCity: data.toAirport.city }),
+			...(data.toAirport?.country && { toCountry: data.toAirport.country }),
 			...(data.returnDate && { return: data.returnDate }),
 			adults: data.passengers.adults.toString(),
 			children: data.passengers.children.toString(),
 			infants: data.passengers.infants.toString(),
 			class: data.travelClass,
 			tripType: data.tripType,
-			directOnly: (data.directOnly ?? false).toString(),
+			directOnly: data.directOnly.toString(),
 		});
 
-		// Navigate immediately - no waiting for API
 		router.push(`/search?${searchParams.toString()}`);
 	};
 
@@ -194,11 +227,17 @@ export const useFlightSearch = () => {
 			return;
 		}
 
+		// ✅ Prevent circular updates during passenger count change
+		isUpdatingFromForm.current = true;
 		form.setValue(
 			"passengers",
 			{ ...current, [type]: next },
 			{ shouldDirty: true, shouldTouch: true, shouldValidate: false }
 		);
+
+		setTimeout(() => {
+			isUpdatingFromForm.current = false;
+		}, 0);
 	};
 
 	return {
@@ -210,5 +249,7 @@ export const useFlightSearch = () => {
 		handleSwapAirports,
 		handleSubmit: form.handleSubmit(handleSubmit),
 		updatePassengerCount,
+		recentSearches,
+		favoriteAirports,
 	};
 };

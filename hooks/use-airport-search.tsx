@@ -71,6 +71,7 @@ export function AirportSearch({
 						<div className="space-y-1">
 							{searchResults.map((airport, index) => (
 								<Button
+									type="button"
 									key={index}
 									variant="ghost"
 									className="w-full justify-start text-left h-auto p-3 dark:hover:bg-neutral-900/60"

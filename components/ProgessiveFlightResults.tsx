@@ -183,7 +183,7 @@ export function ProgressiveFlightResults({
 
 	return (
 		<div className="space-y-4">
-			{!showProgress && (
+			{showProgress && (
 				<div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
 					<div className="flex items-center justify-between mb-2">
 						<div className="flex items-center gap-2">

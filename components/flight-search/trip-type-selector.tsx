@@ -16,7 +16,7 @@ export const TripTypeSelector: React.FC<TripTypeSelectorProps> = ({
 }) => {
 	return (
 		<div className="relative">
-			<div className="flex bg-slate-100 dark:bg-white/15 p-1 rounded-lg relative overflow-hidden h-10 ">
+			<div className="flex bg-neutral-100 dark:bg-white/15 p-1 rounded-lg relative overflow-hidden h-10 w-60 lg:w-96">
 				<div
 					className="absolute top-1 bottom-1 w-1/2 bg-white rounded-md shadow-sm transition-transform duration-300 ease-out"
 					style={{
@@ -31,14 +31,14 @@ export const TripTypeSelector: React.FC<TripTypeSelectorProps> = ({
 						onChange("roundtrip");
 						onReturnDateReset();
 					}}
-					className={`relative z-10 flex items-center pl-2 justify-items-start gap-2 h-8 flex-1 text-sm font-medium transition-colors duration-300 cursor-pointer ${
+					className={`relative z-10 flex-nowrap flex items-center pl-2 justify-items-start gap-2 h-8 flex-1 text-sm font-medium transition-colors duration-300 cursor-pointer ${
 						value === "roundtrip"
 							? "text-slate-900"
 							: "text-slate-600 hover:text-slate-800 dark:text-white"
 					}`}
 				>
 					<RefreshCcw className="h-4 w-4" />
-					Round trip
+					<div>Round trip</div>
 				</button>
 
 				<button

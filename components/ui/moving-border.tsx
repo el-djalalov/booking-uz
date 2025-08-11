@@ -32,7 +32,7 @@ export function MovingBorderButton({
 	return (
 		<Component
 			className={cn(
-				"relative h-11 w-56 overflow-hidden bg-transparent p-[1px] text-xl",
+				"relative h-10 lg:h-11 w-56 overflow-hidden bg-transparent p-[1px] text-xl hidden sm:flex",
 				containerClassName
 			)}
 			style={{
@@ -48,7 +48,7 @@ export function MovingBorderButton({
 					<div
 						className={cn(
 							"h-20 w-20 bg-[radial-gradient(#0ea5e9_40%,transparent_80%)] opacity-[0.9",
-							"bg-[radial-gradient(#34d399_40%,transparent_90%)]  opacity-[0.4]",
+							"bg-[radial-gradient(#34d399_40%,transparent_90%)] opacity-[0.4]",
 							borderClassName
 						)}
 					/>
@@ -83,24 +83,24 @@ export const MovingBorder = ({
 	ry?: string;
 	[key: string]: any;
 }) => {
-	const pathRef = useRef<any>(null);
+	const pathRef = useRef<SVGPathElement>(null);
 	const progress = useMotionValue<number>(0);
 
 	useAnimationFrame(time => {
 		const length = pathRef.current?.getTotalLength();
 		if (length) {
 			const pxPerMillisecond = length / duration;
-			progress.set(((time * pxPerMillisecond) / 1.5) % length);
+			progress.set((time * pxPerMillisecond) % length);
 		}
 	});
 
 	const x = useTransform(
 		progress,
-		val => pathRef.current?.getPointAtLength(val).x
+		val => pathRef?.current?.getPointAtLength(val)?.x || 0
 	);
 	const y = useTransform(
 		progress,
-		val => pathRef.current?.getPointAtLength(val).y
+		val => pathRef?.current?.getPointAtLength(val)?.y || 0
 	);
 
 	const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
@@ -113,14 +113,13 @@ export const MovingBorder = ({
 				className="absolute h-full w-full"
 				width="100%"
 				height="100%"
+				viewBox="0 0 100 100"
 				{...otherProps}
 			>
-				<rect
+				<path
 					fill="none"
-					width="100%"
-					height="100%"
-					rx={rx}
-					ry={ry}
+					stroke="none"
+					d="M 10,0 L 90,0 Q 100,0 100,10 L 100,90 Q 100,100 90,100 L 10,100 Q 0,100 0,90 L 0,10 Q 0,0 10,0 Z"
 					ref={pathRef}
 				/>
 			</svg>
