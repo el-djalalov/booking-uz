@@ -15,7 +15,7 @@ export interface PassengerCounts {
 export type TravelClass = "e" | "b" | "f" | "w";
 export type TripType = "oneway" | "roundtrip";
 
-// Complete FlightRecommendation based on API doc
+// Complete FlightRecommendation based on API doc and res data corrections
 export interface FlightRecommendation {
 	id: string;
 	is_tour_operator: boolean;
@@ -46,7 +46,7 @@ export interface FlightRecommendation {
 		additional_baggage: {
 			available: boolean;
 		};
-	};
+	} | null; // Can be null as per res data
 	is_health_declaration_checked: boolean;
 	is_payment_on_book: boolean;
 	provider: {
@@ -59,7 +59,7 @@ export interface FlightRecommendation {
 		};
 	};
 
-	office_id: string;
+	office_id: string | null; // Can be null as per res data
 
 	price: {
 		[currency: string]: {
@@ -101,14 +101,44 @@ export interface FlightRecommendation {
 	segments: FlightSegment[];
 	segments_direction: number[][];
 	upgrades: FlightUpgrade[];
-	pricer_info: Record<string, any>;
+	pricer_info: any[]; // Changed to any[] to match res data (empty array)
 	documents: PassengerDocuments;
 	ticketing_time_limit: number;
 	booking_with_partial_data_allowed: boolean;
 	special_tariff_type: string | null;
-	is_partner_office: boolean;
+	is_partner_office: boolean | null; // Can be null as per res data
 	is_discount_code_applied: boolean | null;
 }
+export interface Search  {
+			inclusion_carriers: any[];
+			exclusion_carriers: any[];
+			adt: number;
+			channel: string;
+			chd: number;
+			class: string;
+			inf: number;
+			partner: string;
+			segments: Array<{
+				from: {
+					name: string;
+					iata: string;
+					country: { name: string; iata: string };
+					region: string;
+				};
+				to: {
+					name: string;
+					iata: string;
+					country: { name: string; iata: string };
+					region: string;
+				};
+				date: string;
+			}>;
+			src: number;
+			token: string;
+			type: string;
+			yth: number;
+			ins: number;
+};
 
 export interface FlightSegment {
 	arr: FlightPoint;
@@ -143,31 +173,27 @@ export interface FlightSegment {
 		weight_unit: string | null;
 	};
 	accessories?: {
-		piece: number;
-		weight: number;
-		dimensions: {
-			width: number;
-			length: number;
-			height: number;
-		};
-		weight_unit: string;
+		piece: number | null;
+		weight: number | null;
+		dimensions: null;
+		weight_unit: null;
 	};
 	is_refund: boolean;
 	is_change: boolean;
-	refund: boolean; // outdated
-	change: boolean; // outdated
+	refund: boolean; // outdated but present in res data
+	change: boolean; // outdated but present in res data
 	refundBlock: {
 		beforeDeparture: {
 			available: boolean;
-			isFree: boolean;
-			comment: string;
+			isFree: boolean | null;
+			comment: string | null;
 		};
 	};
 	exchangeBlock: {
 		beforeDeparture: {
 			available: boolean;
-			isFree: boolean;
-			comment: string;
+			isFree: boolean | null;
+			comment: string | null;
 		};
 	};
 	class: {
@@ -179,6 +205,16 @@ export interface FlightSegment {
 	last: boolean;
 	fare_code: string;
 	carrier: {
+		id: number;
+		code: string;
+		title: string;
+	};
+	marketing_supplier: {
+		id: number;
+		code: string;
+		title: string;
+	};
+	validating_carrier: {
 		id: number;
 		code: string;
 		title: string;
@@ -206,6 +242,7 @@ export interface FlightSegment {
 	baggage_recheck: boolean;
 	comment?: string | null;
 	comment_hash?: string;
+	passenger_baggage: any[]; // Empty array in res data
 }
 
 export interface FlightPoint {
@@ -278,26 +315,32 @@ export interface FlightUpgrade {
 export interface PassengerDocuments {
 	adt: {
 		ru: string[];
+		kz: string[]; // Added to match res data
 		other: string[];
 	};
 	chd: {
 		ru: string[];
+		kz: string[]; // Added to match res data
 		other: string[];
 	};
 	inf: {
 		ru: string[];
+		kz: string[]; // Added to match res data
 		other: string[];
 	};
 	ins: {
 		ru: string[];
+		kz: string[]; // Added to match res data
 		other: string[];
 	};
 	src: {
 		ru: string[];
+		kz: string[]; // Added to match res data
 		other: string[];
 	};
 	yth: {
 		ru: string[];
+		kz: string[]; // Added to match res data
 		other: string[];
 	};
 }
@@ -306,36 +349,7 @@ export interface PassengerDocuments {
 export interface FlightSearchSuccessResponse {
 	success: true;
 	data: {
-		search: {
-			inclusion_carriers: any[];
-			exclusion_carriers: any[];
-			adt: number;
-			channel: string;
-			chd: number;
-			class: string;
-			inf: number;
-			partner: string;
-			segments: Array<{
-				from: {
-					name: string;
-					iata: string;
-					country: { name: string; iata: string };
-					region: string;
-				};
-				to: {
-					name: string;
-					iata: string;
-					country: { name: string; iata: string };
-					region: string;
-				};
-				date: string;
-			}>;
-			src: number;
-			token: string;
-			type: string;
-			yth: number;
-			ins: number;
-		};
+		search: Search;
 		flights: FlightRecommendation[];
 		segments_comments: Record<string, string>;
 		health_declaration_text?: string;

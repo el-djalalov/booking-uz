@@ -11,12 +11,10 @@ import { SearchResults } from "./search-results";
 import { SearchPageProps } from "@/types/flight-search";
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-	// ✅ AWAIT the searchParams Promise
 	const params = await searchParams;
 
 	const queryClient = new QueryClient();
 
-	// ✅ Helper function to safely extract string values
 	const getParam = (key: string): string => {
 		const value = params[key];
 		return Array.isArray(value) ? value[0] || "" : value || "";

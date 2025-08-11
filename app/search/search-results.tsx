@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { FlightSearchLoadingSkeleton } from "@/components/FlightSearchLoadingSkeleton";
 import { Button } from "@/components/ui/button";
 import { ProgressiveFlightResults } from "@/components/ProgessiveFlightResults";
-import { SearchSummary } from "./SearchSummary";
+import { SearchSummary } from "./search-summary";
 
 interface SearchResultsProps {
 	searchData: FlightSearchFormData;
@@ -66,7 +66,7 @@ export function SearchResults({ searchData }: SearchResultsProps) {
 			</div>
 
 			<ProgressiveFlightResults
-				flights={data.data.flights}
+				data={data}
 				chunkSize={6}
 				renderDelay={150}
 				autoLoad={true}
