@@ -52,7 +52,7 @@ export function SearchResults({ searchData }: SearchResultsProps) {
 		<div className="container mx-auto p-8">
 			<SearchSummary searchData={searchData} />
 
-			{/* Results Header - Fix the count display */}
+			{/* Results Header */}
 			<div className="flex justify-between items-center mb-6">
 				<h2 className="text-xl font-semibold">
 					{data?.data?.flights?.length || 0} flight
@@ -68,7 +68,7 @@ export function SearchResults({ searchData }: SearchResultsProps) {
 			<ProgressiveFlightResults
 				data={data}
 				chunkSize={6}
-				renderDelay={150}
+				renderDelay={100}
 				autoLoad={true}
 				showProgress={true}
 			/>
