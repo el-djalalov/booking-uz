@@ -181,7 +181,7 @@ export function ProgressiveFlightResults({
 	const progressPercentage = (visibleFlights.length / flights.length) * 100;
 
 	return (
-		<div className="space-y-3">
+		<div className="space-y-3 flex-1">
 			{!showProgress && (
 				<div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
 					<div className="flex items-center justify-between mb-2">

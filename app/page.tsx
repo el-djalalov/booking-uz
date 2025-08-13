@@ -1,8 +1,9 @@
 import { Features } from "@/components/Features";
 import { Hero } from "@/components/Hero";
+import { Navbar } from "@/components/Navbar";
 export default function Home() {
 	return (
-		<div className="min-h-screen bg-gradient-to-bl from-emerald-400/40 via-blue-400/20 to-amber-700/90 via-25%">
+		<div className="min-h-screen bg-gradient-to-bl from-blue-500/70 via-indigo-500/30  to-green-500/50 via-25%">
 			{/* Hero Section */}
 			<Hero />
 

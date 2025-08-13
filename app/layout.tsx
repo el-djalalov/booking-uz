@@ -6,6 +6,7 @@ import { QueryProvider } from "@/utils/providers/query-provider";
 import { TokenProvider } from "@/utils/providers/token-provider";
 import { getAuthToken } from "@/lib/server-auth";
 import { Inter } from "next/font/google";
+import { Navbar } from "@/components/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 const geistMono = Geist_Mono({
@@ -35,6 +36,7 @@ export default async function RootLayout({
 							enableSystem
 							disableTransitionOnChange
 						>
+							<Navbar />
 							{children}
 						</ThemeProvider>
 					</TokenProvider>

@@ -6,15 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-import {
-	Clock,
-	Luggage,
-	ChevronDown,
-	ChevronUp,
-	Plane,
-	PlaneTakeoff,
-	PlaneLanding,
-} from "lucide-react";
+import { Clock, Luggage, ChevronDown, ChevronUp, Plane } from "lucide-react";
 import {
 	Collapsible,
 	CollapsibleContent,
@@ -267,13 +259,17 @@ export const FlightCard = React.memo(
 
 		return (
 			<Card
-				className={`transition-all duration-300 ${
+				className={`transition-all duration-300 py-0 ${
 					isNew ? "animate-in slide-in-from-bottom-4 fade-in-0" : ""
-				}`}
+				} bg-card text-card-foreground`}
 			>
-				<Collapsible open={isOpen} onOpenChange={setIsOpen}>
+				<Collapsible
+					open={isOpen}
+					onOpenChange={setIsOpen}
+					className="transition-all duration-300"
+				>
 					<CardHeader className="px-4">
-						<div className="flex items-center justify-between gap-4 sm:gap-8 lg:gap-12 w-full min-h-[8rem]">
+						<div className="flex items-center justify-between gap-4 sm:gap-8 w-full min-h-[8rem]">
 							<div className="flex flex-col justify-between w-full h-full gap-2 p-2">
 								<div className="font-semibold text-sm sm:text-base uppercase">
 									{mainSegment.carrier.title}
@@ -323,13 +319,12 @@ export const FlightCard = React.memo(
 								)}
 							</div>
 
-							{/* Price and Actions - Improved responsive behavior */}
-							<div className="flex flex-col items-center justify-between min-w-0 py-2 gap-2">
-								<span className="text-lg sm:text-xl lg:text-[22px] font-bold text-orange-400 text-center whitespace-nowrap">
+							<div className="flex flex-col items-center justify-between gap-2 w-36 h-full">
+								<span className="text-[22px] pt-2 font-bold text-primary text-center whitespace-nowrap">
 									{formatPrice(flight.price.RUB.amount)}
 								</span>
 
-								<div className="flex flex-col sm:flex-row items-center gap-2">
+								<div className="flex flex-col items-center gap-2">
 									<Button className="w-full sm:w-auto" variant="outline">
 										Select
 									</Button>
@@ -347,35 +342,29 @@ export const FlightCard = React.memo(
 						</div>
 					</CardHeader>
 
-					<CollapsibleContent>
-						<CardContent className="px-4 pt-4 bgrounded-b-lg shadow-sm border-t-1 border-dashed border-muted-foreground/30">
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+					<CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open] animate-collapsible-down transition-all duration-300 ease-in-out">
+						<CardContent className="px-4 pt-2 bg-accent dark:bg-card rounded-b-lg shadow-sm border-t-1 border-dashed border-muted-foreground/30">
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-2">
 								{/* Detailed Segments Section */}
-								<div className="space-y-4">
+								<div className="space-y-1">
 									{flight.segments.map((segment, index) => (
 										<div
 											key={index}
-											className="border-l-4 border-l-orange-500 pl-4 py-2 border bg-neutral-800 rounded-r-lg px-2"
+											className="border-l-4 border-l-primary/50 dark:border-l-primary/50 border border-neutral-300 dark:border-neutral-600 dark:bg-accent rounded-r-lg px-4 py-2"
 										>
 											<div className="flex justify-between items-center mb-2">
 												<div className="flex items-center gap-2">
-													<Plane className="w-5 h-5 text-muted-foreground" />
 													<span className="font-semibold text-sm">
 														{segment.carrier.title} - Flight{" "}
 														{segment.flight_number}
 													</span>
-													{flight.segments_count > 1 && (
-														<Badge variant="secondary" className="text-xs">
-															Segment {index + 1}
-														</Badge>
-													)}
 												</div>
 
-												<div className="text-right">
+												<div className="text-right float-right">
 													<div className="text-xs text-muted-foreground">
 														{segment.aircraft.title}
 													</div>
-													<div className="flex items-center justify-between">
+													<div className="flex items-center justify-end">
 														<div className="flex items-center gap-2">
 															<Clock className="w-4 h-4 text-muted-foreground" />
 															<span className="text-xs text-muted-foreground">
@@ -391,33 +380,48 @@ export const FlightCard = React.memo(
 												</div>
 											</div>
 
-											<div className="grid grid-cols-2 gap-2">
+											<div className="flex flex-col">
 												<div>
 													<div className="flex items-center gap-2">
-														<PlaneTakeoff className="w-4 h-4 text-gray-400" />
-														<div>
-															<div className="text-sm font-medium">
-																{segment.dep.airport.title} (
-																{segment.dep.airport.code})
+														<Plane className="w-5 h-5 text-muted-foreground" />
+														<div className="flex w-full gap-8 items-center">
+															<div className="flex flex-col">
+																<div className="font-semibold">
+																	{segment.dep.time}
+																</div>
+																<div className="text-xs text-gray-500">
+																	{formatDate(segment.dep.date)}
+																</div>
 															</div>
-															<div className="text-xs text-gray-500">
-																{segment.dep.time},{" "}
-																{formatDate(segment.dep.date)}
+															<div className="text-sm font-medium">
+																{segment.dep.city.title}
+																<div className="text-gray-500">
+																	{segment.dep.airport.title}, (
+																	{segment.dep.airport.code})
+																</div>
 															</div>
 														</div>
 													</div>
 												</div>
+												<div className="w-px h-6 ml-1 bg-gray-400 dark:bg-muted-foreground hidden xl:block" />
 												<div>
 													<div className="flex items-center gap-2">
-														<PlaneLanding className="w-4 h-4 text-gray-400" />
-														<div>
-															<div className="text-sm font-medium">
-																{segment.arr.airport.title} (
-																{segment.arr.airport.code})
+														<Plane className="w-5 h-5 text-muted-foreground rotate-90" />
+														<div className="flex w-full gap-8 items-center">
+															<div className="flex flex-col">
+																<div className="font-semibold">
+																	{segment.arr.time}{" "}
+																</div>
+																<div className="text-xs text-gray-500">
+																	{formatDate(segment.arr.date)}
+																</div>
 															</div>
-															<div className="text-xs text-gray-500">
-																{segment.arr.time},{" "}
-																{formatDate(segment.arr.date)}
+															<div className="text-sm font-medium">
+																{segment.arr.city.title}
+																<div className="text-gray-500">
+																	{segment.arr.airport.title}, (
+																	{segment.arr.airport.code})
+																</div>
 															</div>
 														</div>
 													</div>
@@ -425,22 +429,24 @@ export const FlightCard = React.memo(
 											</div>
 
 											{/* Transfer Information */}
-											{index < flight.segments.length - 1 && (
-												<div className="mt-2 bg-neutral-700 border-l-4 border-red-500 p-2 rounded-r-lg">
-													<div className="flex items-center gap-2">
-														<Clock className="w-4 h-4 text-muted-foreground" />
-														<div className="text-xs text-muted-foreground">
-															Transfer at {segment.arr.airport.code}:{" "}
-															<span className="text-orange-400">
-																{calculateTransferTime(
-																	segment,
-																	flight.segments[index + 1]
-																)}
-															</span>
+											<div>
+												{index < flight.segments.length - 1 && (
+													<div className="mt-2 dark:bg-neutral-700 bg-red-100 border-l-4 border-red-500 p-2 rounded-r-lg">
+														<div className="flex items-center gap-2">
+															<Clock className="w-4 h-4 text-red-500 font-semibold" />
+															<div className="text-xs text-muted-foreground">
+																Transfer at {segment.arr.airport.code}:{" "}
+																<span className="text-red-500 font-semibold">
+																	{calculateTransferTime(
+																		segment,
+																		flight.segments[index + 1]
+																	)}
+																</span>
+															</div>
 														</div>
 													</div>
-												</div>
-											)}
+												)}
+											</div>
 										</div>
 									))}
 								</div>
@@ -482,7 +488,7 @@ export const FlightCard = React.memo(
 												variant="outline"
 												className="bg-blue-50 text-blue-600"
 											>
-												FLEX
+												Flex
 											</Badge>
 										)}
 									</div>

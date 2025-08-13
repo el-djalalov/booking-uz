@@ -25,7 +25,7 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 }) => {
 	return (
 		<div className="flex-1 relative passengers-container">
-			<Users className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 z-10 dark:text-neutral-400 text-slate-500 pointer-events-none" />
+			<Users className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 z-10 dark:text-muted-foreground text-muted-foreground pointer-events-none" />
 			<Button
 				type="button"
 				variant="ghost"
@@ -33,9 +33,9 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 				className="w-full h-12 justify-start text-left cursor-pointer overflow-hidden font-normal hover:bg-slate-100 dark:hover:bg-black/30 rounded-lg"
 				style={{ fontSize: "15px" }}
 			>
-				<div className="flex items-center gap-2 text-left pl-6 font-semibold">
+				<div className="flex items-center gap-2 w-full text-left pl-6 font-semibold">
 					<span>{getPassengerText(passengers)}</span>
-					<span className="text-slate-400">•</span>
+					<span className="text-muted-foreground">•</span>
 					<span>{getClassDisplayName(travelClass)}</span>
 				</div>
 			</Button>

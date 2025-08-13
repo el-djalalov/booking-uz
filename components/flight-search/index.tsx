@@ -54,13 +54,8 @@ export const FlightSearch = () => {
 		!watchedValues.departureDate;
 
 	return (
-		<motion.div
-			initial={{ opacity: 0, y: 20 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.6 }}
-			onClick={handleClickOutside}
-		>
-			<Card className="w-full max-w-screen mx-auto bg-white/95 dark:bg-white/10 shadow-lg rounded-xl border-0">
+		<div onClick={handleClickOutside}>
+			<Card className="w-full max-w-screen mx-auto bg-white/95 dark:bg-white/10 shadow-lg rounded-xl transition-all duration-300 animate-in slide-in-from-bottom-4 fade-in-0 border">
 				<CardContent className="px-4">
 					<form onSubmit={handleSubmit}>
 						{/* Header Row */}
@@ -150,7 +145,7 @@ export const FlightSearch = () => {
 													showDatePicker: false,
 												});
 											}}
-											className="w-full border px-2 rounded-lg xl:border-none"
+											className="border px-2 rounded-lg xl:border-none"
 										/>
 									</div>
 
@@ -164,9 +159,9 @@ export const FlightSearch = () => {
 									</div>
 								</div>
 								<div className="w-px h-12 bg-neutral-300 dark:bg-neutral-500 hidden xl:block" />
-								<div className="grid grid-cols-1 md:grid-cols-2 xl:flex gap-2 xl:w-xl">
+								<div className="grid grid-cols-1 md:grid-cols-2 xl:flex gap-2">
 									{/* Date Picker */}
-									<div className="relative date-picker-container bg-white dark:bg-transparent xl:w-80">
+									<div className="relative date-picker-container bg-white dark:bg-transparent xl:w-96">
 										<Popover
 											open={state.showDatePicker}
 											modal={false}
@@ -249,6 +244,7 @@ export const FlightSearch = () => {
 
 									<div className="w-px h-12 bg-neutral-300 dark:bg-neutral-500 hidden xl:block" />
 
+									{/* Passanger selector */}
 									<div className="order-3 md:order-none rounded-lg border xl:border-none xl:w-full">
 										<Controller
 											name="passengers"
@@ -327,6 +323,6 @@ export const FlightSearch = () => {
 					</form>
 				</CardContent>
 			</Card>
-		</motion.div>
+		</div>
 	);
 };

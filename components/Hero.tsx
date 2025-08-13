@@ -2,29 +2,27 @@
 
 import { Plane, Star, Clock, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Navbar } from "./Navbar";
-import { MovingBorder, MovingBorderButton } from "./ui/moving-border";
 import { FlightSearch } from "./flight-search";
 
 export const Hero = () => {
 	return (
 		<>
-			<Navbar />
 			<div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-hero pt-12">
 				{/* Content */}
 				<div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					{/* Main Headline */}
 					<div className="text-center my-12">
-						<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-slate-200 mt-8 leading-tight">
+						<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mt-8 leading-tight">
 							Find Your Perfect
-							<span className="bg-primary bg-clip-text"> Flight</span>
+							<span className="bg-gradient-to-r from-blue-500 via-cyan-500 via-50% to-emerald-600 bg-clip-text text-transparent">
+								{" "}
+								Flight
+							</span>
 						</h1>
 						<p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
 							The best travel experience for your journey.
 						</p>
 					</div>
-
-					{/* Flight Booking Component */}
 
 					<FlightSearch />
 
@@ -32,14 +30,14 @@ export const Hero = () => {
 					<div className="flex flex-col sm:flex-row gap-4 justify-center mt-36">
 						<Button
 							size="lg"
-							className="h-14 px-8 text-lg font-semibold bg-primary hover:opacity-90 transition-all duration-300 transform hover:scale-105"
+							className="h-14 px-8 text-lg font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-all duration-300 transform hover:scale-105 cursor-pointer"
 						>
 							Book Now - Save Up to 60%
 						</Button>
 						<Button
 							variant="outline"
 							size="lg"
-							className="h-14 px-8 text-lg font-semibold border-flight-primary text-flight-primary hover:bg-flight-primary hover:text-white transition-all duration-300"
+							className="h-14 px-8 text-lg font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-pointer"
 						>
 							Explore Destinations
 						</Button>
