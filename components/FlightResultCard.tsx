@@ -228,7 +228,7 @@ export const FlightCard = React.memo(
 							{flight.segments.slice(0, -1).map((segment, index) => (
 								<div
 									key={index}
-									className="absolute top-1/2 transform -translate-y-1/2 bg-white border-2 border-orange-400 rounded-full w-4 h-4 flex items-center justify-center"
+									className="absolute top-1/2 transform -translate-y-1/2 bg-white border-2 border-blue-400 rounded-full w-4 h-4 flex items-center justify-center"
 									style={{
 										left: `${((index + 1) / flight.segments.length) * 100}%`,
 									}}
@@ -311,7 +311,7 @@ export const FlightCard = React.memo(
 								{/* Additional info for transfers */}
 								{flight.segments_count > 1 && (
 									<div className="text-center">
-										<div className="text-xs text-orange-400">
+										<div className="text-xs text-blue-400">
 											Total: {formatDuration(flight.duration)} •{" "}
 											{flight.segments_count - 1} stop(s)
 										</div>
@@ -369,7 +369,7 @@ export const FlightCard = React.memo(
 															<Clock className="w-4 h-4 text-muted-foreground" />
 															<span className="text-xs text-muted-foreground">
 																Flight time:{" "}
-																<span className="text-orange-400">
+																<span className="text-white">
 																	{formatDuration(
 																		segment.duration?.flight?.common || 0
 																	)}

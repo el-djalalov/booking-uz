@@ -239,48 +239,7 @@ export function ProgressiveFlightResults({
 					)}
 				</div>
 			)}
-			{/* 
-			{remainingCount > 0 && (
-				<div ref={loadMoreRef} className="text-center py-6">
-					{isRendering ? (
-						<div className="flex items-center justify-center space-x-2">
-							<div className="animate-spin rounded-full h-4 w-4 border-b-2 border-orange-600"></div>
-							<span>Loading more flights...</span>
-						</div>
-					) : (
-						<div className="space-y-4">
-							<p className="text-gray-600">
-								Showing{" "}
-								<span className="font-semibold">{visibleFlights.length}</span>{" "}
-								of <span className="font-semibold">{flights.length}</span>{" "}
-								flights
-							</p>
 
-							<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-								<Button
-									onClick={renderNextChunk}
-									className="bg-blue-600 hover:bg-blue-700"
-									disabled={isRendering}
-								>
-									<ChevronDown className="w-4 h-4 mr-2" />
-									Load More ({Math.min(chunkSize, remainingCount)} flights)
-								</Button>
-
-								<Button
-									variant="outline"
-									onClick={() => {
-										setRenderedChunks(flightChunks.length);
-									}}
-									disabled={isRendering}
-								>
-									Load All Remaining ({remainingCount})
-								</Button>
-							</div>
-						</div>
-					)}
-				</div>
-			)}
- */}
 			{remainingCount === 0 && visibleFlights.length > 0 && (
 				<div className="text-center py-6 bg-green-50 border border-green-200 rounded-lg">
 					<div className="text-green-800 font-medium">

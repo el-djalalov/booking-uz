@@ -52,12 +52,6 @@ export async function searchRecommendations(
 			}
 		);
 
-		console.log(
-			`✅ API Response: { success: ${response.success}, dataLength: ${
-				response.data?.length || 0
-			}, message: ${response.message || "undefined"} }`
-		);
-
 		if (!response.success) {
 			return {
 				success: false,
