@@ -7,20 +7,12 @@ import React, {
 	useCallback,
 	useRef,
 } from "react";
-import { FlightSearchSuccessResponse } from "@/types/flight-search";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { ChevronDown, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import { FlightCard } from "./FlightResultCard";
 import { CompactFlightCardSkeleton } from "./CompactFlightCardSkeleton";
-
-interface ProgressiveFlightResultsProps {
-	data: FlightSearchSuccessResponse;
-	chunkSize?: number;
-	renderDelay?: number;
-	autoLoad?: boolean;
-	showProgress?: boolean;
-}
+import { ProgressiveFlightResultsProps } from "@/types/progressiveSearchResults";
 
 export function ProgressiveFlightResults({
 	data,
@@ -45,11 +37,6 @@ export function ProgressiveFlightResults({
 
 	// Memoized flight chunks with performance monitoring
 	const flightChunks = useMemo(() => {
-		console.log(
-			`📦 Creating ${Math.ceil(flights.length / chunkSize)} chunks for ${
-				flights.length
-			} flights`
-		);
 		const chunks = [];
 		for (let i = 0; i < flights.length; i += chunkSize) {
 			chunks.push(flights.slice(i, i + chunkSize));
@@ -87,9 +74,6 @@ export function ProgressiveFlightResults({
 								: (stats.avgChunkTime + chunkRenderTime) / 2,
 					}));
 
-					console.log(
-						`⚡ Chunk ${newCount} rendered in ${chunkRenderTime.toFixed(2)}ms`
-					);
 					return newCount;
 				});
 
@@ -152,7 +136,7 @@ export function ProgressiveFlightResults({
 
 	// Reset when flights change
 	useEffect(() => {
-		setRenderedChunks(1); // Show first chunk immediately
+		setRenderedChunks(1);
 		setIsRendering(false);
 		setRenderingStats({
 			startTime: performance.now(),
@@ -240,7 +224,7 @@ export function ProgressiveFlightResults({
 				</div>
 			)}
 
-			{remainingCount === 0 && visibleFlights.length > 0 && (
+			{/* {remainingCount === 0 && visibleFlights.length > 0 && (
 				<div className="text-center py-6 bg-green-50 border border-green-200 rounded-lg">
 					<div className="text-green-800 font-medium">
 						All {flights.length} flights loaded successfully!
@@ -249,7 +233,7 @@ export function ProgressiveFlightResults({
 						Completed in {renderingStats.chunksRendered} chunks
 					</div>
 				</div>
-			)}
+			)} */}
 		</div>
 	);
 }

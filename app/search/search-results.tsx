@@ -64,7 +64,7 @@ export function SearchResults({ searchData }: SearchResultsProps) {
 
 	if (!data?.data?.flights?.length) {
 		return (
-			<div className="container mx-auto text-center flex items-center lg:mt-40 flex-col justify-center gap-8">
+			<div className="text-center flex items-center flex-col justify-items-start pt-36 gap-8 min-h-screen">
 				<div className="flex flex-col items-center justify-center">
 					<Image
 						alt="No Data "
@@ -117,7 +117,7 @@ export function SearchResults({ searchData }: SearchResultsProps) {
 					<Drawer direction="top">
 						<DrawerTrigger asChild>
 							<Button variant="outline" className="cursor-pointer">
-								<RefreshCcw color="#ffffff" />
+								<RefreshCcw />
 								Change flight
 							</Button>
 						</DrawerTrigger>

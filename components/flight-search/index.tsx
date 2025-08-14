@@ -204,7 +204,7 @@ export const FlightSearch = () => {
 											</PopoverTrigger>
 
 											<PopoverContent
-												className="w-full border-none p-0 shadow-lg md:bg-transparent"
+												className="w-full border-none p-0 shadow-lg dark:bg-black/50"
 												align="start"
 												side="bottom"
 												sideOffset={4}
@@ -244,7 +244,7 @@ export const FlightSearch = () => {
 
 									<div className="w-px h-12 bg-neutral-300 dark:bg-neutral-500 hidden xl:block" />
 
-									{/* Passanger selector */}
+									{/* Passenger selector */}
 									<div className="order-3 md:order-none rounded-lg border xl:border-none xl:w-full">
 										<Controller
 											name="passengers"

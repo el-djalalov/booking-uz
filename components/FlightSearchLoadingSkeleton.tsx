@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function FlightSearchLoadingSkeleton() {
@@ -25,7 +24,7 @@ export function FlightSearchLoadingSkeleton() {
 					{[1, 2, 3, 4, 5].map((_, index) => (
 						<div
 							key={index}
-							className="bg-card border rounded-lg p-3 animate-pulse h-44"
+							className="bg-card border rounded-lg p-3 animate-pulse h-[172px]"
 						>
 							<div className="flex justify-between mb-4">
 								<div className="space-y-2">
@@ -58,7 +57,7 @@ export function FlightSearchLoadingSkeleton() {
 							</div>
 
 							<div className="mt-4 text-right">
-								<Skeleton className="h-8 w-24 ml-auto" /> {/* Select button */}
+								<Skeleton className="h-6 w-24 ml-auto" /> {/* Select button */}
 							</div>
 						</div>
 					))}

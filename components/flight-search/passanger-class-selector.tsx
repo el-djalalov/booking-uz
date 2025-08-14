@@ -24,7 +24,7 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 	onClassChange,
 }) => {
 	return (
-		<div className="flex-1 relative passengers-container">
+		<div className="flex-1 relative passengers-container z-10">
 			<Users className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 z-10 dark:text-muted-foreground text-muted-foreground pointer-events-none" />
 			<Button
 				type="button"
@@ -46,7 +46,7 @@ export const PassengerClassSelector: React.FC<PassengerClassSelectorProps> = ({
 						initial={{ opacity: 0, y: -10 }}
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: -10 }}
-						className="absolute z-50 md:right-0 mt-2 bg-white dark:bg-black/50 dark:backdrop-blur-md border-neutral/20 border rounded-lg shadow-2xl p-4 w-80 overflow-hidden"
+						className="absolute z-[1000] md:right-0 mt-2 bg-white dark:bg-black/50 dark:backdrop-blur-md border-neutral/20 border rounded-lg shadow-2xl p-4 w-80 overflow-hidden"
 					>
 						{/* Passengers Section */}
 						<div className="space-y-3 mb-4">

@@ -1,0 +1,3468 @@
+{
+	"success": true,
+	"data": {
+		"search": {
+			"inclusion_carriers": [],
+			"exclusion_carriers": [],
+			"adt": 2,
+			"channel": "API2EASY",
+			"chd": 0,
+			"class": "E",
+			"inf": 0,
+			"partner": "API2",
+			"segments": [
+				{
+					"from": {
+						"name": "Tashkent",
+						"iata": "TAS",
+						"country": {
+							"name": "Uzbekistan",
+							"iata": "UZ"
+						},
+						"region": "---"
+					},
+					"to": {
+						"name": "Madinah",
+						"iata": "MED",
+						"country": {
+							"name": "Saudi Arabia",
+							"iata": "SA"
+						},
+						"region": "---"
+					},
+					"date": "16.08.2025"
+				}
+			],
+			"src": 0,
+			"token": "API2EASYOWE2000000090TASMED20250816_EN_500",
+			"type": "ow",
+			"yth": 0,
+			"ins": 0
+		},
+		"flights": [
+			{
+				"id": "API2EASYOWE2000000090TASMED20250816_EN_500-TUA.FZ.0.505.F11038600S10446800.OENCTkRDX0ZaX1BST0Q=...RUB-49.FZ.1946.TAS.202508161730.DXB.202508162010.73D.OO6UZ2.220.0.TUA.0.0PC.1P7K..0.0..0.0.0_49.FZ.827.DXB.202508162210.MED.202508162355.73R.OO6UZ2.165.0.TUA.0.0PC.1P7K..0.0..0.0.0",
+				"is_tour_operator": false,
+				"tariff": "",
+				"tariff_class": "",
+				"fare_family_type": "LITE",
+				"fare_family_flag": false,
+				"fare_family_marketing_name": "",
+				"duration": 505,
+				"segments_count": 2,
+				"type": "regular",
+				"is_inner_flight": false,
+				"is_baggage": false,
+				"is_charter": false,
+				"is_refund": false,
+				"is_change": false,
+				"is_hide_tariff": false,
+				"is_subsidized": false,
+				"book_url": "",
+				"citizenships": null,
+				"is_vtrip": false,
+				"provider": {
+					"gds": 49,
+					"name": "TUA",
+					"supplier": {
+						"id": 924,
+						"code": "FZ",
+						"title": "Flydubai"
+					}
+				},
+				"office_id": "NDC_FZ_PROD",
+				"price": {
+					"RUB": {
+						"amount": 110384,
+						"passengers_amounts": {
+							"adult": 55192
+						},
+						"agent_mode_prices": {
+							"total_amount_for_active_agent_mode": 110384,
+							"total_amount_for_non_active_agent_mode": 110386,
+							"total_partner_affiliate_fee": 2,
+							"debit_from_balance": 110386,
+							"passengers_amounts_details": [
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 55192,
+									"service_amount_for_non_active_agent_mode": 55193
+								},
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 55192,
+									"service_amount_for_non_active_agent_mode": 55193
+								}
+							]
+						},
+						"comsa": 2,
+						"partner_affiliate_fee": 0,
+						"start_price": 104468,
+						"passengers_amounts_details": [
+							{
+								"type": "adt",
+								"amount": 55192,
+								"tax": 15194,
+								"tariff": 37040,
+								"fee": 2959,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							},
+							{
+								"type": "adt",
+								"amount": 55192,
+								"tax": 15194,
+								"tariff": 37040,
+								"fee": 2959,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							}
+						]
+					}
+				},
+				"price_details": [],
+				"extra_baggage": [],
+				"segments": [
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "20:10",
+							"datetime": "16.08.2025 20:10:00",
+							"ts": 1755364200,
+							"terminal": "Terminal 3",
+							"airport": {
+								"id": 79531,
+								"title": "Dubay",
+								"short_title": "",
+								"code": "DXB"
+							},
+							"city": {
+								"id": 12,
+								"code": "DXB",
+								"title": "Dubai"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 2,
+								"code": "AE",
+								"title": "United Arab Emirates"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "17:30",
+							"datetime": "16.08.2025 17:30:00",
+							"ts": 1755354600,
+							"terminal": "",
+							"airport": {
+								"id": 81720,
+								"title": "Tashkent International Airport",
+								"short_title": "",
+								"code": "TAS"
+							},
+							"city": {
+								"id": 85524,
+								"code": "TAS",
+								"title": "Tashkent"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 233,
+								"code": "UZ",
+								"title": "Uzbekistan"
+							}
+						},
+						"seats": 9,
+						"flight_number": "1946",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 220,
+								"hour": 3,
+								"minute": 40
+							},
+							"transfer": {
+								"common": 120,
+								"hour": 2,
+								"minute": 0
+							}
+						},
+						"route_duration": 505,
+						"is_baggage": false,
+						"baggage": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"comment": "✈LITE no Checked baggadge/ IMPORTANT! For information on restrictions on flights to/from Saudi Arabia during the Umrah/Hajj season and entry requirements, please visit the airline’s website https://www.flydubai.com/ru/help/operational-updates/umrah-hajj-flights ✈From November 7, 2022, passengers traveling to the UAE for tourism purposes are required to have a return ticket. ✈ If the flight is operated by a code-sharing partner (a joint operation flight), the rules of the carrier's airline apply to the carry-on baggage allowance, with which can be found on the carrier's official website.",
+						"comment_hash": "ac8185fb7426ff67a69bedc2ad4579cdfcff9a2d",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 7,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": false,
+						"is_change": false,
+						"refund": false,
+						"change": false,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": false,
+								"isFree": false,
+								"comment": "Отмена рейса невозможна. Взимается 100% стоимости купленного билета. Возврат только оплаченных налогов в форме ваучера Flydubai."
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": false,
+								"isFree": false,
+								"comment": "Перебронирование рейса невозможно. Взимается 100% стоимости купленного билета плюс полная стоимость нового билета."
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "O"
+						},
+						"first": true,
+						"last": false,
+						"fare_code": "OO6UZ2",
+						"carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"marketing_supplier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"validating_carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"aircraft": {
+							"code": "73D",
+							"title": ""
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["LITE"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 49,
+							"name": "TUA",
+							"supplier": {
+								"id": 924,
+								"code": "FZ",
+								"title": "Flydubai"
+							}
+						},
+						"type": "regular"
+					},
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "23:55",
+							"datetime": "16.08.2025 23:55:00",
+							"ts": 1755377700,
+							"terminal": "",
+							"airport": {
+								"id": 80632,
+								"title": "Madinah",
+								"short_title": "",
+								"code": "MED"
+							},
+							"city": {
+								"id": 4429431,
+								"code": "MED",
+								"title": "Madinah"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 193,
+								"code": "SA",
+								"title": "Saudi Arabia"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "22:10",
+							"datetime": "16.08.2025 22:10:00",
+							"ts": 1755371400,
+							"terminal": "Terminal 2",
+							"airport": {
+								"id": 79531,
+								"title": "Dubay",
+								"short_title": "",
+								"code": "DXB"
+							},
+							"city": {
+								"id": 12,
+								"code": "DXB",
+								"title": "Dubai"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 2,
+								"code": "AE",
+								"title": "United Arab Emirates"
+							}
+						},
+						"seats": 9,
+						"flight_number": "827",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 165,
+								"hour": 2,
+								"minute": 45
+							}
+						},
+						"route_duration": 505,
+						"is_baggage": false,
+						"baggage": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"comment": "✈LITE no Checked baggadge/ IMPORTANT! For information on restrictions on flights to/from Saudi Arabia during the Umrah/Hajj season and entry requirements, please visit the airline’s website https://www.flydubai.com/ru/help/operational-updates/umrah-hajj-flights ✈From November 7, 2022, passengers traveling to the UAE for tourism purposes are required to have a return ticket. ✈ If the flight is operated by a code-sharing partner (a joint operation flight), the rules of the carrier's airline apply to the carry-on baggage allowance, with which can be found on the carrier's official website.",
+						"comment_hash": "ac8185fb7426ff67a69bedc2ad4579cdfcff9a2d",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 7,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": false,
+						"is_change": false,
+						"refund": false,
+						"change": false,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": false,
+								"isFree": false,
+								"comment": "Отмена рейса невозможна. Взимается 100% стоимости купленного билета. Возврат только оплаченных налогов в форме ваучера Flydubai."
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": false,
+								"isFree": false,
+								"comment": "Перебронирование рейса невозможно. Взимается 100% стоимости купленного билета плюс полная стоимость нового билета."
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "O"
+						},
+						"first": false,
+						"last": true,
+						"fare_code": "OO6UZ2",
+						"carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"marketing_supplier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"validating_carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"aircraft": {
+							"code": "73R",
+							"title": "Boeing 737-700 "
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["LITE"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 49,
+							"name": "TUA",
+							"supplier": {
+								"id": 924,
+								"code": "FZ",
+								"title": "Flydubai"
+							}
+						},
+						"type": "regular"
+					}
+				],
+				"segments_direction": [[0, 1]],
+				"upgrades": [
+					{
+						"id": "API2EASYOWE2000000090TASMED20250816_EN_500-TUA.FZ.0.505.F11393700S10782800.OENCTkRDX0ZaX1BST0Q=...RUB-49.FZ.1946.TAS.202508161730.DXB.202508162010.73D.OOB7UZ2.220.0.TUA.0.1P20K.1P7K..1.1..0.0.0_49.FZ.827.DXB.202508162210.MED.202508162355.73R.OOB7UZ2.165.0.TUA.0.1P20K.1P7K..1.1..0.0.0",
+						"key": null,
+						"is_baggage": true,
+						"is_refund": true,
+						"is_change": true,
+						"increase_price": {
+							"RUB": 3551
+						}
+					},
+					{
+						"id": "API2EASYOWE2000000090TASMED20250816_EN_500-TUA.FZ.0.505.F12458700S11790800.OENCTkRDX0ZaX1BST0Q=...RUB-49.FZ.1946.TAS.202508161730.DXB.202508162010.73D.OOL8UZ2.220.0.TUA.0.1P30K.1P7K..1.1..0.1.1_49.FZ.827.DXB.202508162210.MED.202508162355.73R.OOL8UZ2.165.0.TUA.0.1P30K.1P7K..1.1..0.1.1",
+						"key": null,
+						"is_baggage": true,
+						"is_refund": true,
+						"is_change": true,
+						"increase_price": {
+							"RUB": 14201
+						}
+					}
+				],
+				"pricer_info": [],
+				"documents": {
+					"adt": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"chd": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"inf": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"ins": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"src": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"yth": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					}
+				},
+				"ticketing_time_limit": 1755190544,
+				"booking_with_partial_data_allowed": false,
+				"special_tariff_type": null,
+				"age_thresholds": {
+					"infant": {
+						"min": 0,
+						"max": 2
+					},
+					"child": {
+						"min": 2,
+						"max": 12
+					},
+					"adult": {
+						"min": 12,
+						"max": 200
+					}
+				},
+				"is_health_declaration_checked": false,
+				"is_discount_code_applied": false,
+				"is_partner_office": null,
+				"additional_services": {
+					"additional_baggage": {
+						"available": false
+					}
+				},
+				"is_payment_on_book": false
+			},
+
+			{
+				"id": "API2EASYOWE2000000090TASMED20250816_EN_500-TUA.FZ.0.505.F11393700S10782800.OENCTkRDX0ZaX1BST0Q=...RUB-49.FZ.1946.TAS.202508161730.DXB.202508162010.73D.OOB7UZ2.220.0.TUA.0.1P20K.1P7K..1.1..0.0.0_49.FZ.827.DXB.202508162210.MED.202508162355.73R.OOB7UZ2.165.0.TUA.0.1P20K.1P7K..1.1..0.0.0",
+				"is_tour_operator": false,
+				"tariff": "",
+				"tariff_class": "",
+				"fare_family_type": "VALUE",
+				"fare_family_flag": false,
+				"fare_family_marketing_name": "",
+				"duration": 505,
+				"segments_count": 2,
+				"type": "regular",
+				"is_inner_flight": false,
+				"is_baggage": true,
+				"is_charter": false,
+				"is_refund": true,
+				"is_change": true,
+				"is_hide_tariff": false,
+				"is_subsidized": false,
+				"book_url": "",
+				"citizenships": null,
+				"is_vtrip": false,
+				"provider": {
+					"gds": 49,
+					"name": "TUA",
+					"supplier": {
+						"id": 924,
+						"code": "FZ",
+						"title": "Flydubai"
+					}
+				},
+				"office_id": "NDC_FZ_PROD",
+				"price": {
+					"RUB": {
+						"amount": 113935,
+						"passengers_amounts": {
+							"adult": 56968
+						},
+						"agent_mode_prices": {
+							"total_amount_for_active_agent_mode": 113935,
+							"total_amount_for_non_active_agent_mode": 113937,
+							"total_partner_affiliate_fee": 2,
+							"debit_from_balance": 113937,
+							"passengers_amounts_details": [
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 56967,
+									"service_amount_for_non_active_agent_mode": 56968
+								},
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 56968,
+									"service_amount_for_non_active_agent_mode": 56969
+								}
+							]
+						},
+						"comsa": 2,
+						"partner_affiliate_fee": 0,
+						"start_price": 107828,
+						"passengers_amounts_details": [
+							{
+								"type": "adt",
+								"amount": 56967,
+								"tax": 15194,
+								"tariff": 38720,
+								"fee": 3054,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							},
+							{
+								"type": "adt",
+								"amount": 56968,
+								"tax": 15194,
+								"tariff": 38720,
+								"fee": 3055,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							}
+						]
+					}
+				},
+				"price_details": [],
+				"extra_baggage": [],
+				"segments": [
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "20:10",
+							"datetime": "16.08.2025 20:10:00",
+							"ts": 1755364200,
+							"terminal": "Terminal 3",
+							"airport": {
+								"id": 79531,
+								"title": "Dubay",
+								"short_title": "",
+								"code": "DXB"
+							},
+							"city": {
+								"id": 12,
+								"code": "DXB",
+								"title": "Dubai"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 2,
+								"code": "AE",
+								"title": "United Arab Emirates"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "17:30",
+							"datetime": "16.08.2025 17:30:00",
+							"ts": 1755354600,
+							"terminal": "",
+							"airport": {
+								"id": 81720,
+								"title": "Tashkent International Airport",
+								"short_title": "",
+								"code": "TAS"
+							},
+							"city": {
+								"id": 85524,
+								"code": "TAS",
+								"title": "Tashkent"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 233,
+								"code": "UZ",
+								"title": "Uzbekistan"
+							}
+						},
+						"seats": 9,
+						"flight_number": "1946",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 220,
+								"hour": 3,
+								"minute": 40
+							},
+							"transfer": {
+								"common": 120,
+								"hour": 2,
+								"minute": 0
+							}
+						},
+						"route_duration": 505,
+						"is_baggage": true,
+						"baggage": {
+							"piece": 1,
+							"weight": 20,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"comment": "✈VALUE Fare NON - REFUNDABLE / NON - CHANGEABLE LESS THAN 24 HOURS BEFORE DEPARTURE ✈IMPORTANT! For information on restrictions on flights to/from Saudi Arabia during the Umrah/Hajj season and entry requirements, please visit the airline’s website https://www.flydubai.com/ru/help/operational-updates/umrah-hajj-flights  ✈ From November 7, 2022, passengers traveling to the UAE for tourism purposes are required to have a return ticket.✈ If the flight is operated by a code-sharing partner (a joint operation flight), the rules of the carrier's airline apply to the carry-on baggage allowance, with which can be found on the carrier's official website.",
+						"comment_hash": "b9b0807d87d05c11b901729a2bd82245c95b013a",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 7,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": true,
+						"is_change": true,
+						"refund": true,
+						"change": true,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": false,
+								"comment": "Отмена бронирования более чем за 24 ч до вылета может быть сделана при оплате комиссии*. Отмена бронирования менее чем за 24 ч до вылета невозможна. Комиссия за отмену может варьироваться в зависимости от маршрута."
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": false,
+								"comment": "Перебронирование более чем за 24 ч до вылета может быть сделано при оплате комиссии. Перебронирование менее чем за 24 ч до вылета невозможно. Комиссия за перебронирование может варьироваться в зависимости от маршрута."
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "O"
+						},
+						"first": true,
+						"last": false,
+						"fare_code": "OOB7UZ2",
+						"carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"marketing_supplier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"validating_carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"aircraft": {
+							"code": "73D",
+							"title": ""
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["VALUE"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 49,
+							"name": "TUA",
+							"supplier": {
+								"id": 924,
+								"code": "FZ",
+								"title": "Flydubai"
+							}
+						},
+						"type": "regular"
+					},
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "23:55",
+							"datetime": "16.08.2025 23:55:00",
+							"ts": 1755377700,
+							"terminal": "",
+							"airport": {
+								"id": 80632,
+								"title": "Madinah",
+								"short_title": "",
+								"code": "MED"
+							},
+							"city": {
+								"id": 4429431,
+								"code": "MED",
+								"title": "Madinah"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 193,
+								"code": "SA",
+								"title": "Saudi Arabia"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "22:10",
+							"datetime": "16.08.2025 22:10:00",
+							"ts": 1755371400,
+							"terminal": "Terminal 2",
+							"airport": {
+								"id": 79531,
+								"title": "Dubay",
+								"short_title": "",
+								"code": "DXB"
+							},
+							"city": {
+								"id": 12,
+								"code": "DXB",
+								"title": "Dubai"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 2,
+								"code": "AE",
+								"title": "United Arab Emirates"
+							}
+						},
+						"seats": 9,
+						"flight_number": "827",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 165,
+								"hour": 2,
+								"minute": 45
+							}
+						},
+						"route_duration": 505,
+						"is_baggage": true,
+						"baggage": {
+							"piece": 1,
+							"weight": 20,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"comment": "✈VALUE Fare NON - REFUNDABLE / NON - CHANGEABLE LESS THAN 24 HOURS BEFORE DEPARTURE ✈IMPORTANT! For information on restrictions on flights to/from Saudi Arabia during the Umrah/Hajj season and entry requirements, please visit the airline’s website https://www.flydubai.com/ru/help/operational-updates/umrah-hajj-flights  ✈ From November 7, 2022, passengers traveling to the UAE for tourism purposes are required to have a return ticket.✈ If the flight is operated by a code-sharing partner (a joint operation flight), the rules of the carrier's airline apply to the carry-on baggage allowance, with which can be found on the carrier's official website.",
+						"comment_hash": "b9b0807d87d05c11b901729a2bd82245c95b013a",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 7,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": true,
+						"is_change": true,
+						"refund": true,
+						"change": true,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": false,
+								"comment": "Отмена бронирования более чем за 24 ч до вылета может быть сделана при оплате комиссии*. Отмена бронирования менее чем за 24 ч до вылета невозможна. Комиссия за отмену может варьироваться в зависимости от маршрута."
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": false,
+								"comment": "Перебронирование более чем за 24 ч до вылета может быть сделано при оплате комиссии. Перебронирование менее чем за 24 ч до вылета невозможно. Комиссия за перебронирование может варьироваться в зависимости от маршрута."
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "O"
+						},
+						"first": false,
+						"last": true,
+						"fare_code": "OOB7UZ2",
+						"carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"marketing_supplier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"validating_carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"aircraft": {
+							"code": "73R",
+							"title": "Boeing 737-700 "
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["VALUE"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 49,
+							"name": "TUA",
+							"supplier": {
+								"id": 924,
+								"code": "FZ",
+								"title": "Flydubai"
+							}
+						},
+						"type": "regular"
+					}
+				],
+				"segments_direction": [[0, 1]],
+				"upgrades": [],
+				"pricer_info": [],
+				"documents": {
+					"adt": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"chd": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"inf": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"ins": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"src": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"yth": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					}
+				},
+				"ticketing_time_limit": 1755190544,
+				"booking_with_partial_data_allowed": false,
+				"special_tariff_type": null,
+				"age_thresholds": {
+					"infant": {
+						"min": 0,
+						"max": 2
+					},
+					"child": {
+						"min": 2,
+						"max": 12
+					},
+					"adult": {
+						"min": 12,
+						"max": 200
+					}
+				},
+				"is_health_declaration_checked": false,
+				"is_discount_code_applied": false,
+				"is_partner_office": null,
+				"additional_services": {
+					"additional_baggage": {
+						"available": false
+					}
+				},
+				"is_payment_on_book": false
+			},
+
+			{
+				"id": "API2EASYOWE2000000090TASMED20250816_EN_500-TUA.VF.2.1305.F11901700S11263648.OENCbXlhdGt6...RUB-38.VFTK.584.TAS.202508160720.ESB.202508161010.0.NA.290.0.TUA.0.0PC.1P6K.1P2K.0.0..0.0.0_38.VFTK.569.ESB.202508162345.MED.202508170305.0.NA.200.0.TUA.0.0PC.1P6K.1P2K.0.0..0.0.0",
+				"is_tour_operator": false,
+				"tariff": "",
+				"tariff_class": "",
+				"fare_family_type": "",
+				"fare_family_flag": false,
+				"fare_family_marketing_name": "",
+				"duration": 1305,
+				"segments_count": 2,
+				"type": "lowcost",
+				"is_inner_flight": false,
+				"is_baggage": false,
+				"is_charter": false,
+				"is_refund": false,
+				"is_change": false,
+				"is_hide_tariff": false,
+				"is_subsidized": false,
+				"book_url": "",
+				"citizenships": null,
+				"is_vtrip": true,
+				"provider": {
+					"gds": 38,
+					"name": "TUA",
+					"supplier": {
+						"id": 902,
+						"code": "VF",
+						"title": "AJet"
+					}
+				},
+				"office_id": "myatkz",
+				"price": {
+					"RUB": {
+						"amount": 119015,
+						"passengers_amounts": {
+							"adult": 59507
+						},
+						"agent_mode_prices": {
+							"total_amount_for_active_agent_mode": 119015,
+							"total_amount_for_non_active_agent_mode": 119017,
+							"total_partner_affiliate_fee": 2,
+							"debit_from_balance": 119017,
+							"passengers_amounts_details": [
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 59508,
+									"service_amount_for_non_active_agent_mode": 59509
+								},
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 59507,
+									"service_amount_for_non_active_agent_mode": 59508
+								}
+							]
+						},
+						"comsa": 2,
+						"partner_affiliate_fee": 0,
+						"start_price": 112636.48,
+						"passengers_amounts_details": [
+							{
+								"type": "adt",
+								"amount": 59508,
+								"tax": 0,
+								"tariff": 56318.479999999996,
+								"fee": 3190.52,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							},
+							{
+								"type": "adt",
+								"amount": 59507,
+								"tax": 0,
+								"tariff": 56318,
+								"fee": 3190,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							}
+						]
+					}
+				},
+				"price_details": [],
+				"extra_baggage": {
+					"list": [
+						{
+							"count": 1,
+							"price": {
+								"RUB": {
+									"amount": 7352.25
+								}
+							}
+						}
+					],
+					"limit": {
+						"hold_weight": 20,
+						"hand_weight": 6,
+						"hand_height": 40,
+						"hand_width": 23,
+						"hand_length": 55
+					}
+				},
+				"segments": [
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "10:10",
+							"datetime": "16.08.2025 10:10:00",
+							"ts": 1755328200,
+							"terminal": "",
+							"airport": {
+								"id": 78800,
+								"title": "Esenboga",
+								"short_title": "",
+								"code": "ESB"
+							},
+							"city": {
+								"id": 69034,
+								"code": "ANK",
+								"title": "Ankara"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 223,
+								"code": "TR",
+								"title": "Turkey"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "07:20",
+							"datetime": "16.08.2025 07:20:00",
+							"ts": 1755318000,
+							"terminal": "",
+							"airport": {
+								"id": 81720,
+								"title": "Tashkent International Airport",
+								"short_title": "",
+								"code": "TAS"
+							},
+							"city": {
+								"id": 85524,
+								"code": "TAS",
+								"title": "Tashkent"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 233,
+								"code": "UZ",
+								"title": "Uzbekistan"
+							}
+						},
+						"seats": 2,
+						"flight_number": "584",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 290,
+								"hour": 4,
+								"minute": 50
+							},
+							"transfer": {
+								"common": 815,
+								"hour": 13,
+								"minute": 35
+							}
+						},
+						"route_duration": 1305,
+						"is_baggage": false,
+						"baggage": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"comment": "",
+						"comment_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 6,
+							"dimensions": {
+								"width": 23,
+								"length": 40,
+								"height": 55
+							},
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": 1,
+							"weight": 2,
+							"dimensions": {
+								"width": 15,
+								"length": 30,
+								"height": 40
+							},
+							"weight_unit": "KG"
+						},
+						"is_refund": false,
+						"is_change": false,
+						"refund": false,
+						"change": false,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": false,
+								"isFree": null,
+								"comment": null
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": false,
+								"isFree": null,
+								"comment": null
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "E"
+						},
+						"first": true,
+						"last": false,
+						"fare_code": "NA",
+						"carrier": {
+							"id": 813,
+							"code": "TK",
+							"title": "Turkish Airlines"
+						},
+						"marketing_supplier": {
+							"id": 902,
+							"code": "VF",
+							"title": "AJet"
+						},
+						"validating_carrier": {
+							"id": 902,
+							"code": "VF",
+							"title": "AJet"
+						},
+						"aircraft": {
+							"code": "0",
+							"title": ""
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": true,
+						"brands": [],
+						"baggage_recheck": false,
+						"passenger_baggage": [
+							{
+								"passenger_type": "ADT",
+								"baggage": {
+									"piece": null,
+									"weight": null,
+									"dimensions": null,
+									"weight_unit": null
+								},
+								"cbaggage": {
+									"piece": 1,
+									"weight": 6,
+									"dimensions": {
+										"width": 23,
+										"length": 40,
+										"height": 55
+									},
+									"weight_unit": "KG"
+								},
+								"accessories": {
+									"piece": 1,
+									"weight": 2,
+									"dimensions": {
+										"width": 15,
+										"length": 30,
+										"height": 40
+									},
+									"weight_unit": "KG"
+								}
+							},
+							{
+								"passenger_type": "ADT",
+								"baggage": {
+									"piece": null,
+									"weight": null,
+									"dimensions": null,
+									"weight_unit": null
+								},
+								"cbaggage": {
+									"piece": 1,
+									"weight": 6,
+									"dimensions": {
+										"width": 23,
+										"length": 40,
+										"height": 55
+									},
+									"weight_unit": "KG"
+								},
+								"accessories": {
+									"piece": 1,
+									"weight": 2,
+									"dimensions": {
+										"width": 15,
+										"length": 30,
+										"height": 40
+									},
+									"weight_unit": "KG"
+								}
+							}
+						],
+						"provider": {
+							"gds": 38,
+							"name": "TUA",
+							"supplier": {
+								"id": 902,
+								"code": "VF",
+								"title": "AJet"
+							}
+						},
+						"type": "lowcost"
+					},
+					{
+						"arr": {
+							"date": "17.08.2025",
+							"time": "03:05",
+							"datetime": "17.08.2025 03:05:00",
+							"ts": 1755389100,
+							"terminal": "",
+							"airport": {
+								"id": 80632,
+								"title": "Madinah",
+								"short_title": "",
+								"code": "MED"
+							},
+							"city": {
+								"id": 4429431,
+								"code": "MED",
+								"title": "Madinah"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 193,
+								"code": "SA",
+								"title": "Saudi Arabia"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "23:45",
+							"datetime": "16.08.2025 23:45:00",
+							"ts": 1755377100,
+							"terminal": "",
+							"airport": {
+								"id": 78800,
+								"title": "Esenboga",
+								"short_title": "",
+								"code": "ESB"
+							},
+							"city": {
+								"id": 69034,
+								"code": "ANK",
+								"title": "Ankara"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 223,
+								"code": "TR",
+								"title": "Turkey"
+							}
+						},
+						"seats": 2,
+						"flight_number": "569",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 200,
+								"hour": 3,
+								"minute": 20
+							}
+						},
+						"route_duration": 1305,
+						"is_baggage": false,
+						"baggage": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"comment": "",
+						"comment_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 6,
+							"dimensions": {
+								"width": 23,
+								"length": 40,
+								"height": 55
+							},
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": 1,
+							"weight": 2,
+							"dimensions": {
+								"width": 15,
+								"length": 30,
+								"height": 40
+							},
+							"weight_unit": "KG"
+						},
+						"is_refund": false,
+						"is_change": false,
+						"refund": false,
+						"change": false,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": false,
+								"isFree": null,
+								"comment": null
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": false,
+								"isFree": null,
+								"comment": null
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "E"
+						},
+						"first": false,
+						"last": true,
+						"fare_code": "NA",
+						"carrier": {
+							"id": 813,
+							"code": "TK",
+							"title": "Turkish Airlines"
+						},
+						"marketing_supplier": {
+							"id": 902,
+							"code": "VF",
+							"title": "AJet"
+						},
+						"validating_carrier": {
+							"id": 902,
+							"code": "VF",
+							"title": "AJet"
+						},
+						"aircraft": {
+							"code": "0",
+							"title": ""
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": true,
+						"brands": [],
+						"baggage_recheck": true,
+						"passenger_baggage": [
+							{
+								"passenger_type": "ADT",
+								"baggage": {
+									"piece": null,
+									"weight": null,
+									"dimensions": null,
+									"weight_unit": null
+								},
+								"cbaggage": {
+									"piece": 1,
+									"weight": 6,
+									"dimensions": {
+										"width": 23,
+										"length": 40,
+										"height": 55
+									},
+									"weight_unit": "KG"
+								},
+								"accessories": {
+									"piece": 1,
+									"weight": 2,
+									"dimensions": {
+										"width": 15,
+										"length": 30,
+										"height": 40
+									},
+									"weight_unit": "KG"
+								}
+							},
+							{
+								"passenger_type": "ADT",
+								"baggage": {
+									"piece": null,
+									"weight": null,
+									"dimensions": null,
+									"weight_unit": null
+								},
+								"cbaggage": {
+									"piece": 1,
+									"weight": 6,
+									"dimensions": {
+										"width": 23,
+										"length": 40,
+										"height": 55
+									},
+									"weight_unit": "KG"
+								},
+								"accessories": {
+									"piece": 1,
+									"weight": 2,
+									"dimensions": {
+										"width": 15,
+										"length": 30,
+										"height": 40
+									},
+									"weight_unit": "KG"
+								}
+							}
+						],
+						"provider": {
+							"gds": 38,
+							"name": "TUA",
+							"supplier": {
+								"id": 902,
+								"code": "VF",
+								"title": "AJet"
+							}
+						},
+						"type": "lowcost"
+					}
+				],
+				"segments_direction": [[0, 1]],
+				"upgrades": [
+					{
+						"id": "API2EASYOWE2000000090TASMED20250816_EN_500-TUA.VF.2.1305.F13455400S12734098.OENCbXlhdGt6...RUB-38.VFTK.584.TAS.202508160720.ESB.202508161010.0.NA.290.0.TUA.0.1P20K.1P6K.1P2K.0.0..0.0.0_38.VFTK.569.ESB.202508162345.MED.202508170305.0.NA.200.0.TUA.0.1P20K.1P6K.1P2K.0.0..0.0.0",
+						"key": null,
+						"is_baggage": true,
+						"is_refund": false,
+						"is_change": false,
+						"increase_price": {
+							"RUB": 15537
+						}
+					}
+				],
+				"pricer_info": [],
+				"documents": {
+					"adt": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"chd": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"inf": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"ins": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"src": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"yth": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					}
+				},
+				"ticketing_time_limit": 1755189710,
+				"booking_with_partial_data_allowed": false,
+				"special_tariff_type": null,
+				"age_thresholds": {
+					"infant": {
+						"min": 0,
+						"max": 2
+					},
+					"child": {
+						"min": 2,
+						"max": 12
+					},
+					"adult": {
+						"min": 12,
+						"max": 200
+					}
+				},
+				"is_health_declaration_checked": true,
+				"is_discount_code_applied": false,
+				"is_partner_office": null,
+				"additional_services": {
+					"additional_baggage": {
+						"available": false
+					}
+				},
+				"is_payment_on_book": false
+			},
+
+			{
+				"id": "API2EASYOWE2000000090TASMED20250816_EN_500-TUA.FZ.0.505.F12458700S11790800.OENCTkRDX0ZaX1BST0Q=...RUB-49.FZ.1946.TAS.202508161730.DXB.202508162010.73D.OOL8UZ2.220.0.TUA.0.1P30K.1P7K..1.1..0.1.1_49.FZ.827.DXB.202508162210.MED.202508162355.73R.OOL8UZ2.165.0.TUA.0.1P30K.1P7K..1.1..0.1.1",
+				"is_tour_operator": false,
+				"tariff": "",
+				"tariff_class": "",
+				"fare_family_type": "FLEX",
+				"fare_family_flag": false,
+				"fare_family_marketing_name": "",
+				"duration": 505,
+				"segments_count": 2,
+				"type": "regular",
+				"is_inner_flight": false,
+				"is_baggage": true,
+				"is_charter": false,
+				"is_refund": true,
+				"is_change": true,
+				"is_hide_tariff": false,
+				"is_subsidized": false,
+				"book_url": "",
+				"citizenships": null,
+				"is_vtrip": false,
+				"provider": {
+					"gds": 49,
+					"name": "TUA",
+					"supplier": {
+						"id": 924,
+						"code": "FZ",
+						"title": "Flydubai"
+					}
+				},
+				"office_id": "NDC_FZ_PROD",
+				"price": {
+					"RUB": {
+						"amount": 124585,
+						"passengers_amounts": {
+							"adult": 62293
+						},
+						"agent_mode_prices": {
+							"total_amount_for_active_agent_mode": 124585,
+							"total_amount_for_non_active_agent_mode": 124587,
+							"total_partner_affiliate_fee": 2,
+							"debit_from_balance": 124587,
+							"passengers_amounts_details": [
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 62292,
+									"service_amount_for_non_active_agent_mode": 62293
+								},
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 62293,
+									"service_amount_for_non_active_agent_mode": 62294
+								}
+							]
+						},
+						"comsa": 2,
+						"partner_affiliate_fee": 0,
+						"start_price": 117908,
+						"passengers_amounts_details": [
+							{
+								"type": "adt",
+								"amount": 62292,
+								"tax": 15194,
+								"tariff": 43760,
+								"fee": 3339,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							},
+							{
+								"type": "adt",
+								"amount": 62293,
+								"tax": 15194,
+								"tariff": 43760,
+								"fee": 3340,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							}
+						]
+					}
+				},
+				"price_details": [],
+				"extra_baggage": [],
+				"segments": [
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "20:10",
+							"datetime": "16.08.2025 20:10:00",
+							"ts": 1755364200,
+							"terminal": "Terminal 3",
+							"airport": {
+								"id": 79531,
+								"title": "Dubay",
+								"short_title": "",
+								"code": "DXB"
+							},
+							"city": {
+								"id": 12,
+								"code": "DXB",
+								"title": "Dubai"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 2,
+								"code": "AE",
+								"title": "United Arab Emirates"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "17:30",
+							"datetime": "16.08.2025 17:30:00",
+							"ts": 1755354600,
+							"terminal": "",
+							"airport": {
+								"id": 81720,
+								"title": "Tashkent International Airport",
+								"short_title": "",
+								"code": "TAS"
+							},
+							"city": {
+								"id": 85524,
+								"code": "TAS",
+								"title": "Tashkent"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 233,
+								"code": "UZ",
+								"title": "Uzbekistan"
+							}
+						},
+						"seats": 9,
+						"flight_number": "1946",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 220,
+								"hour": 3,
+								"minute": 40
+							},
+							"transfer": {
+								"common": 120,
+								"hour": 2,
+								"minute": 0
+							}
+						},
+						"route_duration": 505,
+						"is_baggage": true,
+						"baggage": {
+							"piece": 1,
+							"weight": 30,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"comment": "✈FLEX Fare✈IMPORTANT! For information on restrictions on flights to/from Saudi Arabia during the Umrah/Hajj season and entry requirements, please visit the airline’s website✈ If the flight is operated by a code-sharing partner (a joint operation flight), the rules of the carrier's airline apply to the carry-on baggage allowance, with which can be found on the carrier's official website.",
+						"comment_hash": "8efa784f99da21cef153c0cf731b495402b6e75f",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 7,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": true,
+						"is_change": true,
+						"refund": true,
+						"change": true,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": "Отмена бронирования более чем за 24 ч до вылета - бесплатно. Отмена бронирования менее чем за 24 ч до вылета и вплоть до 30 дней после вылета рейса могут быть сделаны при оплате комиссии в размере 400 дирхамов. Комиссия за отмену может применяться в зависимости от маршрута."
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": null
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "O"
+						},
+						"first": true,
+						"last": false,
+						"fare_code": "OOL8UZ2",
+						"carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"marketing_supplier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"validating_carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"aircraft": {
+							"code": "73D",
+							"title": ""
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["FLEX"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 49,
+							"name": "TUA",
+							"supplier": {
+								"id": 924,
+								"code": "FZ",
+								"title": "Flydubai"
+							}
+						},
+						"type": "regular"
+					},
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "23:55",
+							"datetime": "16.08.2025 23:55:00",
+							"ts": 1755377700,
+							"terminal": "",
+							"airport": {
+								"id": 80632,
+								"title": "Madinah",
+								"short_title": "",
+								"code": "MED"
+							},
+							"city": {
+								"id": 4429431,
+								"code": "MED",
+								"title": "Madinah"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 193,
+								"code": "SA",
+								"title": "Saudi Arabia"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "22:10",
+							"datetime": "16.08.2025 22:10:00",
+							"ts": 1755371400,
+							"terminal": "Terminal 2",
+							"airport": {
+								"id": 79531,
+								"title": "Dubay",
+								"short_title": "",
+								"code": "DXB"
+							},
+							"city": {
+								"id": 12,
+								"code": "DXB",
+								"title": "Dubai"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 2,
+								"code": "AE",
+								"title": "United Arab Emirates"
+							}
+						},
+						"seats": 9,
+						"flight_number": "827",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 165,
+								"hour": 2,
+								"minute": 45
+							}
+						},
+						"route_duration": 505,
+						"is_baggage": true,
+						"baggage": {
+							"piece": 1,
+							"weight": 30,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"comment": "✈FLEX Fare✈IMPORTANT! For information on restrictions on flights to/from Saudi Arabia during the Umrah/Hajj season and entry requirements, please visit the airline’s website✈ If the flight is operated by a code-sharing partner (a joint operation flight), the rules of the carrier's airline apply to the carry-on baggage allowance, with which can be found on the carrier's official website.",
+						"comment_hash": "8efa784f99da21cef153c0cf731b495402b6e75f",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 7,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": true,
+						"is_change": true,
+						"refund": true,
+						"change": true,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": "Отмена бронирования более чем за 24 ч до вылета - бесплатно. Отмена бронирования менее чем за 24 ч до вылета и вплоть до 30 дней после вылета рейса могут быть сделаны при оплате комиссии в размере 400 дирхамов. Комиссия за отмену может применяться в зависимости от маршрута."
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": null
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "O"
+						},
+						"first": false,
+						"last": true,
+						"fare_code": "OOL8UZ2",
+						"carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"marketing_supplier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"validating_carrier": {
+							"id": 924,
+							"code": "FZ",
+							"title": "Flydubai"
+						},
+						"aircraft": {
+							"code": "73R",
+							"title": "Boeing 737-700 "
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["FLEX"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 49,
+							"name": "TUA",
+							"supplier": {
+								"id": 924,
+								"code": "FZ",
+								"title": "Flydubai"
+							}
+						},
+						"type": "regular"
+					}
+				],
+				"segments_direction": [[0, 1]],
+				"upgrades": [],
+				"pricer_info": [],
+				"documents": {
+					"adt": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"chd": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"inf": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"ins": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"src": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"yth": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					}
+				},
+				"ticketing_time_limit": 1755190544,
+				"booking_with_partial_data_allowed": false,
+				"special_tariff_type": null,
+				"age_thresholds": {
+					"infant": {
+						"min": 0,
+						"max": 2
+					},
+					"child": {
+						"min": 2,
+						"max": 12
+					},
+					"adult": {
+						"min": 12,
+						"max": 200
+					}
+				},
+				"is_health_declaration_checked": false,
+				"is_discount_code_applied": false,
+				"is_partner_office": null,
+				"additional_services": {
+					"additional_baggage": {
+						"available": false
+					}
+				},
+				"is_payment_on_book": false
+			},
+
+			{
+				"id": "API2EASYOWE2000000090TASMED20250816_EN_500-TUA.TK.0.1010.F17441000S16506012.OENCUDM0MTI0MzM=...RUB-17.TKHY.8572.TAS.202508160110.IST.202508160430.320.SF2XOX.320.0.TUA.0.2PC.1P8K..1.1..0.1.1_17.TK.108.IST.202508161235.MED.202508161600.32B.SF2XOX.205.0.TUA.0.2PC.1P8K..1.1..0.1.1",
+				"is_tour_operator": false,
+				"tariff": "",
+				"tariff_class": "",
+				"fare_family_type": "FLEXIBLE",
+				"fare_family_flag": true,
+				"fare_family_marketing_name": "",
+				"duration": 1010,
+				"segments_count": 2,
+				"type": "regular",
+				"is_inner_flight": false,
+				"is_baggage": true,
+				"is_charter": false,
+				"is_refund": true,
+				"is_change": true,
+				"is_hide_tariff": false,
+				"is_subsidized": false,
+				"book_url": "",
+				"citizenships": null,
+				"is_vtrip": false,
+				"provider": {
+					"gds": 17,
+					"name": "TUA",
+					"supplier": {
+						"id": 813,
+						"code": "TK",
+						"title": "Turkish Airlines"
+					}
+				},
+				"office_id": "P3412433",
+				"price": {
+					"RUB": {
+						"amount": 174408,
+						"passengers_amounts": {
+							"adult": 87204
+						},
+						"agent_mode_prices": {
+							"total_amount_for_active_agent_mode": 174408,
+							"total_amount_for_non_active_agent_mode": 174410,
+							"total_partner_affiliate_fee": 2,
+							"debit_from_balance": 174410,
+							"passengers_amounts_details": [
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 87204.00000000001,
+									"service_amount_for_non_active_agent_mode": 87205.00000000001
+								},
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 87204,
+									"service_amount_for_non_active_agent_mode": 87205
+								}
+							]
+						},
+						"comsa": 2,
+						"partner_affiliate_fee": 0,
+						"start_price": 165060.12,
+						"passengers_amounts_details": [
+							{
+								"type": "adt",
+								"amount": 87204.00000000001,
+								"tax": 19273.04,
+								"tariff": 63257.08,
+								"fee": 4674.88,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							},
+							{
+								"type": "adt",
+								"amount": 87204,
+								"tax": 19273,
+								"tariff": 63257,
+								"fee": 4675,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							}
+						]
+					}
+				},
+				"price_details": [],
+				"extra_baggage": [],
+				"segments": [
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "04:30",
+							"datetime": "16.08.2025 04:30:00",
+							"ts": 1755307800,
+							"terminal": "",
+							"airport": {
+								"id": 80063,
+								"title": "Istanbul Airport",
+								"short_title": "",
+								"code": "IST"
+							},
+							"city": {
+								"id": 69242,
+								"code": "IST",
+								"title": "Istanbul"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 223,
+								"code": "TR",
+								"title": "Turkey"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "01:10",
+							"datetime": "16.08.2025 01:10:00",
+							"ts": 1755295800,
+							"terminal": "2",
+							"airport": {
+								"id": 81720,
+								"title": "Tashkent International Airport",
+								"short_title": "",
+								"code": "TAS"
+							},
+							"city": {
+								"id": 85524,
+								"code": "TAS",
+								"title": "Tashkent"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 233,
+								"code": "UZ",
+								"title": "Uzbekistan"
+							}
+						},
+						"seats": 2,
+						"flight_number": "8572",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 320,
+								"hour": 5,
+								"minute": 20
+							},
+							"transfer": {
+								"common": 485,
+								"hour": 8,
+								"minute": 5
+							}
+						},
+						"route_duration": 1010,
+						"is_baggage": true,
+						"baggage": {
+							"piece": 2,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"comment": "✈ Due to increased security measures in Moscow, when issuing air tickets, passengers flying from Vnukovo Airport must arrive at the airport 3 hours before departure time.",
+						"comment_hash": "959c41c618e4a64e8388320491c95df9540b64d1",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 8,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": true,
+						"is_change": true,
+						"refund": true,
+						"change": true,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": null
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": null
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "S"
+						},
+						"first": true,
+						"last": false,
+						"fare_code": "SF2XOX",
+						"carrier": {
+							"id": 877,
+							"code": "HY",
+							"title": "Uzbekistan Airways"
+						},
+						"marketing_supplier": {
+							"id": 813,
+							"code": "TK",
+							"title": "Turkish Airlines"
+						},
+						"validating_carrier": {
+							"id": 813,
+							"code": "TK",
+							"title": "Turkish Airlines"
+						},
+						"aircraft": {
+							"code": "320",
+							"title": "Airbus A320-100/200"
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["FLEXIBLE"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 17,
+							"name": "TUA",
+							"supplier": {
+								"id": 813,
+								"code": "TK",
+								"title": "Turkish Airlines"
+							}
+						},
+						"type": "regular"
+					},
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "16:00",
+							"datetime": "16.08.2025 16:00:00",
+							"ts": 1755349200,
+							"terminal": "",
+							"airport": {
+								"id": 80632,
+								"title": "Madinah",
+								"short_title": "",
+								"code": "MED"
+							},
+							"city": {
+								"id": 4429431,
+								"code": "MED",
+								"title": "Madinah"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 193,
+								"code": "SA",
+								"title": "Saudi Arabia"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "12:35",
+							"datetime": "16.08.2025 12:35:00",
+							"ts": 1755336900,
+							"terminal": "",
+							"airport": {
+								"id": 80063,
+								"title": "Istanbul Airport",
+								"short_title": "",
+								"code": "IST"
+							},
+							"city": {
+								"id": 69242,
+								"code": "IST",
+								"title": "Istanbul"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 223,
+								"code": "TR",
+								"title": "Turkey"
+							}
+						},
+						"seats": 2,
+						"flight_number": "108",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 205,
+								"hour": 3,
+								"minute": 25
+							}
+						},
+						"route_duration": 1010,
+						"is_baggage": true,
+						"baggage": {
+							"piece": 2,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"comment": "✈ Due to increased security measures in Moscow, when issuing air tickets, passengers flying from Vnukovo Airport must arrive at the airport 3 hours before departure time.",
+						"comment_hash": "959c41c618e4a64e8388320491c95df9540b64d1",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 8,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": true,
+						"is_change": true,
+						"refund": true,
+						"change": true,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": null
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": null
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "S"
+						},
+						"first": false,
+						"last": true,
+						"fare_code": "SF2XOX",
+						"carrier": {
+							"id": 813,
+							"code": "TK",
+							"title": "Turkish Airlines"
+						},
+						"marketing_supplier": {
+							"id": 813,
+							"code": "TK",
+							"title": "Turkish Airlines"
+						},
+						"validating_carrier": {
+							"id": 813,
+							"code": "TK",
+							"title": "Turkish Airlines"
+						},
+						"aircraft": {
+							"code": "32B",
+							"title": "Airbus A321 sharkle narrow"
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["FLEXIBLE"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 17,
+							"name": "TUA",
+							"supplier": {
+								"id": 813,
+								"code": "TK",
+								"title": "Turkish Airlines"
+							}
+						},
+						"type": "regular"
+					}
+				],
+				"segments_direction": [[0, 1]],
+				"upgrades": [],
+				"pricer_info": [],
+				"documents": {
+					"adt": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"chd": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"inf": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"ins": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"src": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"yth": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					}
+				},
+				"ticketing_time_limit": 1755191802,
+				"booking_with_partial_data_allowed": true,
+				"special_tariff_type": null,
+				"age_thresholds": {
+					"infant": {
+						"min": 0,
+						"max": 2
+					},
+					"child": {
+						"min": 2,
+						"max": 12
+					},
+					"adult": {
+						"min": 12,
+						"max": 200
+					}
+				},
+				"is_health_declaration_checked": false,
+				"is_discount_code_applied": false,
+				"is_partner_office": null,
+				"additional_services": {
+					"additional_baggage": {
+						"available": false
+					}
+				},
+				"is_payment_on_book": false
+			},
+
+			{
+				"id": "API2EASYOWE2000000090TASMED20250816_EN_500-TUA.QR.0.1555.F18659700S17659400.OENCUDM1MzQxMjU=...RUB-17.QR.378.TAS.202508160320.DOH.202508160510.320.KJR3R1SI.230.0.TUA.0.1P30K.1P7K..1.1..0.0.0_17.QR.1174.DOH.202508170115.MED.202508170315.320.KJR3R1SI.120.0.TUA.0.1P30K.1P7K..1.1..0.0.0",
+				"is_tour_operator": false,
+				"tariff": "",
+				"tariff_class": "",
+				"fare_family_type": "ECONOMY CONVENIENCE",
+				"fare_family_flag": true,
+				"fare_family_marketing_name": "",
+				"duration": 1555,
+				"segments_count": 2,
+				"type": "regular",
+				"is_inner_flight": false,
+				"is_baggage": true,
+				"is_charter": false,
+				"is_refund": true,
+				"is_change": true,
+				"is_hide_tariff": false,
+				"is_subsidized": false,
+				"book_url": "",
+				"citizenships": null,
+				"is_vtrip": false,
+				"provider": {
+					"gds": 17,
+					"name": "TUA",
+					"supplier": {
+						"id": 781,
+						"code": "QR",
+						"title": "Qatar Airways"
+					}
+				},
+				"office_id": "P3534125",
+				"price": {
+					"RUB": {
+						"amount": 186595,
+						"passengers_amounts": {
+							"adult": 93298
+						},
+						"agent_mode_prices": {
+							"total_amount_for_active_agent_mode": 186595,
+							"total_amount_for_non_active_agent_mode": 186597,
+							"total_partner_affiliate_fee": 2,
+							"debit_from_balance": 186597,
+							"passengers_amounts_details": [
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 93297,
+									"service_amount_for_non_active_agent_mode": 93298
+								},
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 93298,
+									"service_amount_for_non_active_agent_mode": 93299
+								}
+							]
+						},
+						"comsa": 2,
+						"partner_affiliate_fee": 0,
+						"start_price": 176594,
+						"passengers_amounts_details": [
+							{
+								"type": "adt",
+								"amount": 93297,
+								"tax": 17522,
+								"tariff": 70775,
+								"fee": 5001,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							},
+							{
+								"type": "adt",
+								"amount": 93298,
+								"tax": 17522,
+								"tariff": 70775,
+								"fee": 5002,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							}
+						]
+					}
+				},
+				"price_details": [],
+				"extra_baggage": [],
+				"segments": [
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "05:10",
+							"datetime": "16.08.2025 05:10:00",
+							"ts": 1755310200,
+							"terminal": "",
+							"airport": {
+								"id": 79497,
+								"title": "Doha",
+								"short_title": "",
+								"code": "DOH"
+							},
+							"city": {
+								"id": 59697,
+								"code": "DOH",
+								"title": "Doha"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 187,
+								"code": "QA",
+								"title": "Qatar"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "03:20",
+							"datetime": "16.08.2025 03:20:00",
+							"ts": 1755303600,
+							"terminal": "2",
+							"airport": {
+								"id": 81720,
+								"title": "Tashkent International Airport",
+								"short_title": "",
+								"code": "TAS"
+							},
+							"city": {
+								"id": 85524,
+								"code": "TAS",
+								"title": "Tashkent"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 233,
+								"code": "UZ",
+								"title": "Uzbekistan"
+							}
+						},
+						"seats": 5,
+						"flight_number": "378",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 230,
+								"hour": 3,
+								"minute": 50
+							},
+							"transfer": {
+								"common": 1205,
+								"hour": 20,
+								"minute": 5
+							}
+						},
+						"route_duration": 1555,
+						"is_baggage": true,
+						"baggage": {
+							"piece": 1,
+							"weight": 30,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"comment": "✈ IMPORTANT: if you have purchased an air ticket to New Zealand with a stopover in Australia, please read the rules for transit through Australia under the link TRANSIT VISAS Australia.  https://russia.embassy.gov.au/mscwrussian/TransitRus.html",
+						"comment_hash": "19202fe142c0c27f3dcb958fc4dcc47e7a0857e1",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 7,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": true,
+						"is_change": true,
+						"refund": true,
+						"change": true,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": false,
+								"comment": null
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": false,
+								"comment": null
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "K"
+						},
+						"first": true,
+						"last": false,
+						"fare_code": "KJR3R1SI",
+						"carrier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"marketing_supplier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"validating_carrier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"aircraft": {
+							"code": "320",
+							"title": "Airbus A320-100/200"
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["ECONOMY CONVENIENCE"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 17,
+							"name": "TUA",
+							"supplier": {
+								"id": 781,
+								"code": "QR",
+								"title": "Qatar Airways"
+							}
+						},
+						"type": "regular"
+					},
+					{
+						"arr": {
+							"date": "17.08.2025",
+							"time": "03:15",
+							"datetime": "17.08.2025 03:15:00",
+							"ts": 1755389700,
+							"terminal": "",
+							"airport": {
+								"id": 80632,
+								"title": "Madinah",
+								"short_title": "",
+								"code": "MED"
+							},
+							"city": {
+								"id": 4429431,
+								"code": "MED",
+								"title": "Madinah"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 193,
+								"code": "SA",
+								"title": "Saudi Arabia"
+							}
+						},
+						"dep": {
+							"date": "17.08.2025",
+							"time": "01:15",
+							"datetime": "17.08.2025 01:15:00",
+							"ts": 1755382500,
+							"terminal": "",
+							"airport": {
+								"id": 79497,
+								"title": "Doha",
+								"short_title": "",
+								"code": "DOH"
+							},
+							"city": {
+								"id": 59697,
+								"code": "DOH",
+								"title": "Doha"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 187,
+								"code": "QA",
+								"title": "Qatar"
+							}
+						},
+						"seats": 5,
+						"flight_number": "1174",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 120,
+								"hour": 2,
+								"minute": 0
+							}
+						},
+						"route_duration": 1555,
+						"is_baggage": true,
+						"baggage": {
+							"piece": 1,
+							"weight": 30,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"comment": "✈ IMPORTANT: if you have purchased an air ticket to New Zealand with a stopover in Australia, please read the rules for transit through Australia under the link TRANSIT VISAS Australia.  https://russia.embassy.gov.au/mscwrussian/TransitRus.html",
+						"comment_hash": "19202fe142c0c27f3dcb958fc4dcc47e7a0857e1",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 7,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": true,
+						"is_change": true,
+						"refund": true,
+						"change": true,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": false,
+								"comment": null
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": false,
+								"comment": null
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "K"
+						},
+						"first": false,
+						"last": true,
+						"fare_code": "KJR3R1SI",
+						"carrier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"marketing_supplier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"validating_carrier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"aircraft": {
+							"code": "320",
+							"title": "Airbus A320-100/200"
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["ECONOMY CONVENIENCE"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 17,
+							"name": "TUA",
+							"supplier": {
+								"id": 781,
+								"code": "QR",
+								"title": "Qatar Airways"
+							}
+						},
+						"type": "regular"
+					}
+				],
+				"segments_direction": [[0, 1]],
+				"upgrades": [],
+				"pricer_info": [],
+				"documents": {
+					"adt": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"chd": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"inf": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"ins": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"src": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"yth": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					}
+				},
+				"ticketing_time_limit": 1755195402,
+				"booking_with_partial_data_allowed": true,
+				"special_tariff_type": null,
+				"age_thresholds": {
+					"infant": {
+						"min": 0,
+						"max": 2
+					},
+					"child": {
+						"min": 2,
+						"max": 12
+					},
+					"adult": {
+						"min": 12,
+						"max": 200
+					}
+				},
+				"is_health_declaration_checked": false,
+				"is_discount_code_applied": false,
+				"is_partner_office": null,
+				"additional_services": {
+					"additional_baggage": {
+						"available": false
+					}
+				},
+				"is_payment_on_book": false
+			},
+
+			{
+				"id": "API2EASYOWE2000000090TASMED20250816_EN_500-TUA.QR.0.1555.F21470400S20319400.OENCUDM1MzQxMjU=...RUB-17.QR.378.TAS.202508160320.DOH.202508160510.320.HJR3R1FI.230.0.TUA.0.1P35K.1P7K..1.1..0.1.1_17.QR.1174.DOH.202508170115.MED.202508170315.320.HJR3R1FI.120.0.TUA.0.1P35K.1P7K..1.1..0.1.1",
+				"is_tour_operator": false,
+				"tariff": "",
+				"tariff_class": "",
+				"fare_family_type": "ECONOMY COMFORT",
+				"fare_family_flag": true,
+				"fare_family_marketing_name": "",
+				"duration": 1555,
+				"segments_count": 2,
+				"type": "regular",
+				"is_inner_flight": false,
+				"is_baggage": true,
+				"is_charter": false,
+				"is_refund": true,
+				"is_change": true,
+				"is_hide_tariff": false,
+				"is_subsidized": false,
+				"book_url": "",
+				"citizenships": null,
+				"is_vtrip": false,
+				"provider": {
+					"gds": 17,
+					"name": "TUA",
+					"supplier": {
+						"id": 781,
+						"code": "QR",
+						"title": "Qatar Airways"
+					}
+				},
+				"office_id": "P3534125",
+				"price": {
+					"RUB": {
+						"amount": 214702,
+						"passengers_amounts": {
+							"adult": 107351
+						},
+						"agent_mode_prices": {
+							"total_amount_for_active_agent_mode": 214702,
+							"total_amount_for_non_active_agent_mode": 214704,
+							"total_partner_affiliate_fee": 2,
+							"debit_from_balance": 214704,
+							"passengers_amounts_details": [
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 107351,
+									"service_amount_for_non_active_agent_mode": 107352
+								},
+								{
+									"type": "adt",
+									"service_amount_for_active_agent_mode": 107351,
+									"service_amount_for_non_active_agent_mode": 107352
+								}
+							]
+						},
+						"comsa": 2,
+						"partner_affiliate_fee": 0,
+						"start_price": 203194,
+						"passengers_amounts_details": [
+							{
+								"type": "adt",
+								"amount": 107351,
+								"tax": 17522,
+								"tariff": 84075,
+								"fee": 5755,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							},
+							{
+								"type": "adt",
+								"amount": 107351,
+								"tax": 17522,
+								"tariff": 84075,
+								"fee": 5755,
+								"partner_affiliate_fee": 0,
+								"comsa": 1
+							}
+						]
+					}
+				},
+				"price_details": [],
+				"extra_baggage": [],
+				"segments": [
+					{
+						"arr": {
+							"date": "16.08.2025",
+							"time": "05:10",
+							"datetime": "16.08.2025 05:10:00",
+							"ts": 1755310200,
+							"terminal": "",
+							"airport": {
+								"id": 79497,
+								"title": "Doha",
+								"short_title": "",
+								"code": "DOH"
+							},
+							"city": {
+								"id": 59697,
+								"code": "DOH",
+								"title": "Doha"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 187,
+								"code": "QA",
+								"title": "Qatar"
+							}
+						},
+						"dep": {
+							"date": "16.08.2025",
+							"time": "03:20",
+							"datetime": "16.08.2025 03:20:00",
+							"ts": 1755303600,
+							"terminal": "2",
+							"airport": {
+								"id": 81720,
+								"title": "Tashkent International Airport",
+								"short_title": "",
+								"code": "TAS"
+							},
+							"city": {
+								"id": 85524,
+								"code": "TAS",
+								"title": "Tashkent"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 233,
+								"code": "UZ",
+								"title": "Uzbekistan"
+							}
+						},
+						"seats": 6,
+						"flight_number": "378",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 230,
+								"hour": 3,
+								"minute": 50
+							},
+							"transfer": {
+								"common": 1205,
+								"hour": 20,
+								"minute": 5
+							}
+						},
+						"route_duration": 1555,
+						"is_baggage": true,
+						"baggage": {
+							"piece": 1,
+							"weight": 35,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"comment": "✈ IMPORTANT: if you have purchased an air ticket to New Zealand with a stopover in Australia, please read the rules for transit through Australia under the link TRANSIT VISAS Australia.  https://russia.embassy.gov.au/mscwrussian/TransitRus.html",
+						"comment_hash": "19202fe142c0c27f3dcb958fc4dcc47e7a0857e1",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 7,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": true,
+						"is_change": true,
+						"refund": true,
+						"change": true,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": null
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": null
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "H"
+						},
+						"first": true,
+						"last": false,
+						"fare_code": "HJR3R1FI",
+						"carrier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"marketing_supplier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"validating_carrier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"aircraft": {
+							"code": "320",
+							"title": "Airbus A320-100/200"
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["ECONOMY COMFORT"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 17,
+							"name": "TUA",
+							"supplier": {
+								"id": 781,
+								"code": "QR",
+								"title": "Qatar Airways"
+							}
+						},
+						"type": "regular"
+					},
+					{
+						"arr": {
+							"date": "17.08.2025",
+							"time": "03:15",
+							"datetime": "17.08.2025 03:15:00",
+							"ts": 1755389700,
+							"terminal": "",
+							"airport": {
+								"id": 80632,
+								"title": "Madinah",
+								"short_title": "",
+								"code": "MED"
+							},
+							"city": {
+								"id": 4429431,
+								"code": "MED",
+								"title": "Madinah"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 193,
+								"code": "SA",
+								"title": "Saudi Arabia"
+							}
+						},
+						"dep": {
+							"date": "17.08.2025",
+							"time": "01:15",
+							"datetime": "17.08.2025 01:15:00",
+							"ts": 1755382500,
+							"terminal": "",
+							"airport": {
+								"id": 79497,
+								"title": "Doha",
+								"short_title": "",
+								"code": "DOH"
+							},
+							"city": {
+								"id": 59697,
+								"code": "DOH",
+								"title": "Doha"
+							},
+							"region": {
+								"id": null,
+								"code": null,
+								"title": null
+							},
+							"country": {
+								"id": 187,
+								"code": "QA",
+								"title": "Qatar"
+							}
+						},
+						"seats": 6,
+						"flight_number": "1174",
+						"direction": 0,
+						"duration": {
+							"flight": {
+								"common": 120,
+								"hour": 2,
+								"minute": 0
+							}
+						},
+						"route_duration": 1555,
+						"is_baggage": true,
+						"baggage": {
+							"piece": 1,
+							"weight": 35,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"comment": "✈ IMPORTANT: if you have purchased an air ticket to New Zealand with a stopover in Australia, please read the rules for transit through Australia under the link TRANSIT VISAS Australia.  https://russia.embassy.gov.au/mscwrussian/TransitRus.html",
+						"comment_hash": "19202fe142c0c27f3dcb958fc4dcc47e7a0857e1",
+						"cbaggage": {
+							"piece": 1,
+							"weight": 7,
+							"dimensions": null,
+							"weight_unit": "KG"
+						},
+						"accessories": {
+							"piece": null,
+							"weight": null,
+							"dimensions": null,
+							"weight_unit": null
+						},
+						"is_refund": true,
+						"is_change": true,
+						"refund": true,
+						"change": true,
+						"refundBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": null
+							}
+						},
+						"exchangeBlock": {
+							"beforeDeparture": {
+								"available": true,
+								"isFree": true,
+								"comment": null
+							}
+						},
+						"class": {
+							"type_id": 1,
+							"name": "E",
+							"service": "H"
+						},
+						"first": false,
+						"last": true,
+						"fare_code": "HJR3R1FI",
+						"carrier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"marketing_supplier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"validating_carrier": {
+							"id": 781,
+							"code": "QR",
+							"title": "Qatar Airways"
+						},
+						"aircraft": {
+							"code": "320",
+							"title": "Airbus A320-100/200"
+						},
+						"stops": [],
+						"miles": "",
+						"change_miles": "",
+						"is_mini_rules_exists": true,
+						"is_online_checkin_required": null,
+						"brands": ["ECONOMY COMFORT"],
+						"baggage_recheck": false,
+						"passenger_baggage": [],
+						"provider": {
+							"gds": 17,
+							"name": "TUA",
+							"supplier": {
+								"id": 781,
+								"code": "QR",
+								"title": "Qatar Airways"
+							}
+						},
+						"type": "regular"
+					}
+				],
+				"segments_direction": [[0, 1]],
+				"upgrades": [],
+				"pricer_info": [],
+				"documents": {
+					"adt": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"chd": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"inf": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"ins": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"src": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					},
+					"yth": {
+						"ru": ["P"],
+						"kz": ["ZA"],
+						"other": ["A"]
+					}
+				},
+				"ticketing_time_limit": 1755195402,
+				"booking_with_partial_data_allowed": true,
+				"special_tariff_type": null,
+				"age_thresholds": {
+					"infant": {
+						"min": 0,
+						"max": 2
+					},
+					"child": {
+						"min": 2,
+						"max": 12
+					},
+					"adult": {
+						"min": 12,
+						"max": 200
+					}
+				},
+				"is_health_declaration_checked": false,
+				"is_discount_code_applied": false,
+				"is_partner_office": null,
+				"additional_services": {
+					"additional_baggage": {
+						"available": false
+					}
+				},
+				"is_payment_on_book": false
+			}
+		],
+		"segments_comments": {
+			"ac8185fb7426ff67a69bedc2ad4579cdfcff9a2d": "✈LITE no Checked baggadge/ IMPORTANT! For information on restrictions on flights to/from Saudi Arabia during the Umrah/Hajj season and entry requirements, please visit the airline’s website https://www.flydubai.com/ru/help/operational-updates/umrah-hajj-flights ✈From November 7, 2022, passengers traveling to the UAE for tourism purposes are required to have a return ticket. ✈ If the flight is operated by a code-sharing partner (a joint operation flight), the rules of the carrier's airline apply to the carry-on baggage allowance, with which can be found on the carrier's official website.",
+			"b9b0807d87d05c11b901729a2bd82245c95b013a": "✈VALUE Fare NON - REFUNDABLE / NON - CHANGEABLE LESS THAN 24 HOURS BEFORE DEPARTURE ✈IMPORTANT! For information on restrictions on flights to/from Saudi Arabia during the Umrah/Hajj season and entry requirements, please visit the airline’s website https://www.flydubai.com/ru/help/operational-updates/umrah-hajj-flights  ✈ From November 7, 2022, passengers traveling to the UAE for tourism purposes are required to have a return ticket.✈ If the flight is operated by a code-sharing partner (a joint operation flight), the rules of the carrier's airline apply to the carry-on baggage allowance, with which can be found on the carrier's official website.",
+			"da39a3ee5e6b4b0d3255bfef95601890afd80709": "",
+			"8efa784f99da21cef153c0cf731b495402b6e75f": "✈FLEX Fare✈IMPORTANT! For information on restrictions on flights to/from Saudi Arabia during the Umrah/Hajj season and entry requirements, please visit the airline’s website✈ If the flight is operated by a code-sharing partner (a joint operation flight), the rules of the carrier's airline apply to the carry-on baggage allowance, with which can be found on the carrier's official website.",
+			"959c41c618e4a64e8388320491c95df9540b64d1": "✈ Due to increased security measures in Moscow, when issuing air tickets, passengers flying from Vnukovo Airport must arrive at the airport 3 hours before departure time.",
+			"19202fe142c0c27f3dcb958fc4dcc47e7a0857e1": "✈ IMPORTANT: if you have purchased an air ticket to New Zealand with a stopover in Australia, please read the rules for transit through Australia under the link TRANSIT VISAS Australia.  https://russia.embassy.gov.au/mscwrussian/TransitRus.html"
+		},
+		"health_declaration_text": "\n                COVID-19 health declaration\n                I declare that:\n                1) I have not had any COVID-19 symptoms, such as a fever with a temperature over 37.5° C (99.5°F), cough, \n                cold, headache, diarrhea, sore throat, runny nose, any respiratory problems, or a decrease or loss of \n                smell or taste, within the last 14 days.\n                2) I have not had contact with a COVID-19 confirmed case or suspected case or a person issued with a \n                Quarantine Order/Stay-Home Notice within the last 14 days.\n                3) I have not tested positive for COVID-19 within 15 days of my planned travel date and I am not \n                quarantined for reasons related to COVID-19.\n                4) I have not had close contact with a person affected by COVID-19 fewer than 2 days before their symptoms \n                began and up to 14 days after their symptoms disappeared.\n                5) I also undertake to inform the air carrier and Local Health Authority of any possible occurrence of the \n                above-mentioned symptoms arising within 8 days of disembarking from the aircraft.\n                I declare that all passengers in my booking meet these requirements on the date of registration. \n                I understand that in case of violation of any points of this statement, I will be denied a trip. \n                I undertake to inform the supplier if any of the listed items cease to correspond to reality, and I will \n                not arrive at the airport in case of non-compliance with the specified requirements.\n                I am also aware of the need to familiarize myself with all the rules, documents necessary for crossing \n                borders and restrictions related to COVID-19.\n                I understand that without these documents, I may not be allowed on board, and also take a fee for filling \n                them out if I did not do it online.\n                The data must be provided no later than 24 hours before departure\n                Without this information, we will not be able to register passengers, and they may have to pay a check-in \n                fee at the airport.\n                If forms / questionnaires / declarations, etc. are required for the flight, the passenger must have them \n                with him at the time of landing at the airport, in case the a/k wants to get acquainted with them.\n                If you do not agree with the above conditions, the supplier recommends rescheduling the trip, as \n                representatives of the carrier will not allow you on board.\n                ",
+		"predefined_airlines": [],
+		"excluded_airlines": []
+	},
+	"count": 0,
+	"searchParams": {
+		"from": {
+			"iata": "TAS",
+			"name": "",
+			"city": "",
+			"country": ""
+		},
+		"to": {
+			"iata": "MED",
+			"name": "",
+			"city": "",
+			"country": ""
+		},
+		"departure": "2025-08-16",
+		"passengers": {
+			"adults": 2,
+			"children": 0,
+			"infants": 0
+		},
+		"class": "e",
+		"tripType": "oneway"
+	}
+}
