@@ -22,7 +22,7 @@ export const SearchButton: React.FC<SearchButtonProps> = ({
 				type="submit"
 				disabled={disabled}
 				onClick={onSubmit}
-				className="h-10 bg-primary hover:bg-primary/80 text-white font-semibold rounded-lg"
+				className="h-10 bg-primary hover:bg-primary/80 text-white font-semibold rounded-lg cursor-pointer"
 			>
 				{isLoading ? (
 					<>
@@ -31,7 +31,7 @@ export const SearchButton: React.FC<SearchButtonProps> = ({
 					</>
 				) : (
 					<>
-						<SearchIcon className="h-5 w-5  rotate-y-180  font-semibold" />
+						<SearchIcon className="h-5 w-5  rotate-y-180  font-semibold " />
 						Search flights
 					</>
 				)}

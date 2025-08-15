@@ -33,7 +33,6 @@ export function ProgressiveFlightResults({
 	const loadMoreRef = useRef<HTMLDivElement>(null);
 	const renderTimeoutRef = useRef<NodeJS.Timeout>(null);
 	const flights = data.data.flights;
-	const search = data.data.search;
 
 	// Memoized flight chunks with performance monitoring
 	const flightChunks = useMemo(() => {
@@ -205,7 +204,7 @@ export function ProgressiveFlightResults({
 					<FlightCard
 						key={flight.id || `flight-${index}`}
 						flight={flight}
-						search={search}
+						apiData={data}
 						isNew={
 							index >= (renderedChunks - 1) * chunkSize &&
 							index < renderedChunks * chunkSize

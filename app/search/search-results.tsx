@@ -123,7 +123,6 @@ export function SearchResults({ searchData }: SearchResultsProps) {
 						</DrawerTrigger>
 						<DrawerContent className="max-w-7xl mx-auto">
 							<DrawerHeader>
-								{/* <VisuallyHidden></VisuallyHidden> */}
 								<DrawerTitle></DrawerTitle>
 								<DrawerDescription></DrawerDescription>
 							</DrawerHeader>

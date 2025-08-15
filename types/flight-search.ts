@@ -109,36 +109,36 @@ export interface FlightRecommendation {
 	is_partner_office: boolean | null; // Can be null as per res data
 	is_discount_code_applied: boolean | null;
 }
-export interface Search  {
-			inclusion_carriers: any[];
-			exclusion_carriers: any[];
-			adt: number;
-			channel: string;
-			chd: number;
-			class: string;
-			inf: number;
-			partner: string;
-			segments: Array<{
-				from: {
-					name: string;
-					iata: string;
-					country: { name: string; iata: string };
-					region: string;
-				};
-				to: {
-					name: string;
-					iata: string;
-					country: { name: string; iata: string };
-					region: string;
-				};
-				date: string;
-			}>;
-			src: number;
-			token: string;
-			type: string;
-			yth: number;
-			ins: number;
-};
+export interface Search {
+	inclusion_carriers: any[];
+	exclusion_carriers: any[];
+	adt: number;
+	channel: string;
+	chd: number;
+	class: string;
+	inf: number;
+	partner: string;
+	segments: Array<{
+		from: {
+			name: string;
+			iata: string;
+			country: { name: string; iata: string };
+			region: string;
+		};
+		to: {
+			name: string;
+			iata: string;
+			country: { name: string; iata: string };
+			region: string;
+		};
+		date: string;
+	}>;
+	src: number;
+	token: string;
+	type: string;
+	yth: number;
+	ins: number;
+}
 
 export interface FlightSegment {
 	arr: FlightPoint;

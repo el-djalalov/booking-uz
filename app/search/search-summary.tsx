@@ -24,14 +24,14 @@ function SearchSummary({ searchData }: SearchSummaryProps) {
 								<div className="text-sm text-gray-400">From</div>
 							</div>
 
-							<div className="flex items-center gap-2">
+							{/* 	<div className="flex items-center gap-2">
 								<Plane className="w-4 h-4 text-gray-400" />
 								<span className="text-sm text-gray-400">
 									{searchData.tripType === "roundtrip"
 										? "Round trip"
 										: "One way"}
 								</span>
-							</div>
+							</div> */}
 
 							<div className="text-center">
 								<div className="font-semibold">

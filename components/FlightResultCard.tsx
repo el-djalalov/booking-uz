@@ -3,6 +3,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import {
 	FlightRecommendation,
+	FlightSearchSuccessResponse,
 	FlightSegment,
 	Search,
 } from "@/types/flight-search";
@@ -18,6 +19,8 @@ import {
 	Repeat,
 	Undo2,
 	Handbag,
+	Printer,
+	Info,
 } from "lucide-react";
 import {
 	Collapsible,
@@ -25,29 +28,32 @@ import {
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { useSearchParams } from "next/navigation";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+
 import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/tooltip";
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "./ui/dialog";
+import { ScrollArea } from "./ui/scroll-area";
 
 export const FlightCard = React.memo(
 	({
-		flight,
-		search,
 		isNew = false,
+		apiData,
+		flight,
 	}: {
-		search: Search;
+		//		search: Search;
 		flight: FlightRecommendation;
 		isNew?: boolean;
+		apiData: FlightSearchSuccessResponse;
 	}) => {
 		const [isOpen, setIsOpen] = useState(false);
-		const [selectedFare, setSelectedFare] = useState("LITE");
+		const [isModalOpen, setIsModalOpen] = useState(false);
 		const searchParams = useSearchParams();
-
 		const fareFamilyName = flight.fare_family_type?.toUpperCase() || "STANDARD";
-
+		const search = apiData.data.search;
 		const fareFamilyDetails = {
 			name: fareFamilyName,
 			price: flight.price.RUB.amount,
@@ -272,6 +278,70 @@ export const FlightCard = React.memo(
 			}
 		}, [flight.segments]);
 
+		const handlePrint = () => {
+			const printContents = document.getElementById("print_area")?.innerHTML;
+			if (printContents) {
+				const originalContents = document.body.innerHTML;
+				document.body.innerHTML = printContents;
+				window.print();
+				document.body.innerHTML = originalContents;
+				window.location.reload();
+			}
+		};
+
+		const AdditionalInfoModal = () => (
+			<Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+				<DialogTrigger asChild>
+					<Button
+						variant="outline"
+						size="sm"
+						className="p-2 cursor-pointer"
+						onClick={() => setIsModalOpen(true)}
+					>
+						<Info className="h-4 w-4" />
+						Health Declaration and flight comments
+					</Button>
+				</DialogTrigger>
+				<DialogContent className="min-w-6xl	max-h-[90vh]">
+					<DialogHeader>
+						<DialogTitle className="flex justify-items-start items-center gap-4">
+							Additional Flight Information
+							<Button variant="outline" size="icon" onClick={handlePrint}>
+								<Printer className="h-4 w-4" />
+							</Button>
+						</DialogTitle>
+					</DialogHeader>
+
+					<ScrollArea className="h-[70vh] pr-4">
+						<div id="print-area">
+							{/* Segments Comments Section */}
+							{Object.entries(apiData.data.segments_comments || {}).map(
+								([hash, comment]) => (
+									<div key={hash} className="mb-4">
+										<h3 className="font-semibold text-lg mb-2">
+											Segment Comment
+										</h3>
+										<p className="text-muted-foreground">{comment}</p>
+									</div>
+								)
+							)}
+
+							{/* Health Declaration Section */}
+							{apiData.data.health_declaration_text && (
+								<div className="mt-6">
+									<h3 className="font-semibold text-lg mb-2">
+										COVID-19 Health Declaration
+									</h3>
+									<pre className="text-sm text-muted-foreground">
+										{apiData.data.health_declaration_text}
+									</pre>
+								</div>
+							)}
+						</div>
+					</ScrollArea>
+				</DialogContent>
+			</Dialog>
+		);
 		return (
 			<Card
 				className={`transition-all duration-300 py-0 shadow-lg ${
@@ -368,64 +438,65 @@ export const FlightCard = React.memo(
 							<div className="flex gap-2">
 								{/* Detailed Segments Section */}
 								<div className="space-y-2 w-[60%]">
-									{flight.segments.map((segment, index) => (
-										<div
-											key={index}
-											className="border-l-4 border-l-primary/50 dark:border-l-primary/50 border border-neutral-300 dark:border-blue-500/20 dark:bg-blue-950/20 rounded-r-lg px-4 py-2 shadow-md"
-										>
-											<div className="flex justify-between items-center mb-2">
-												<div className="flex items-center gap-2">
-													<span className="font-semibold text-sm">
-														{segment.carrier.title} - Flight{" "}
-														{segment.flight_number}
-													</span>
-												</div>
-												<div className="text-right float-right">
-													<div className="text-xs text-muted-foreground">
-														{segment.aircraft.title}
-													</div>
-													<div className="flex items-center justify-end">
-														<div className="flex items-center gap-2">
-															<Clock className="w-4 h-4 text-muted-foreground" />
-															<span className="text-xs text-muted-foreground">
-																Flight time:{" "}
-																<span className="dark:text-white font-semibold">
-																	{formatDuration(
-																		segment.duration?.flight?.common || 0
-																	)}
-																</span>
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-
-											<div className="flex flex-col">
-												{/* Departure and Arrival Info */}
-												<div>
+									{flight.segments.map((segment, index) => {
+										return (
+											<div
+												key={index}
+												className="border-l-4 border-l-primary/50 dark:border-l-primary/50 border border-neutral-300 dark:border-blue-500/20 dark:bg-blue-950/20 rounded-r-lg px-4 py-2 shadow-md "
+											>
+												<div className="flex justify-between items-center mb-2">
 													<div className="flex items-center gap-2">
-														<Plane className="w-5 h-5 text-muted-foreground" />
-														<div className="flex w-full gap-8 items-center">
-															<div className="flex flex-col">
-																<div className="font-semibold">
-																	{segment.dep.time}
-																</div>
-																<div className="text-xs text-gray-500">
-																	{formatDate(segment.dep.date)}
-																</div>
-															</div>
-															<div className="text-sm font-medium">
-																{segment.dep.city.title}
-																<div className="text-gray-500">
-																	{segment.dep.airport.title}, (
-																	{segment.dep.airport.code})
-																</div>
+														<span className="font-semibold text-sm">
+															{segment.carrier.title} - Flight{" "}
+															{segment.flight_number}
+														</span>
+													</div>
+													<div className="text-right float-right">
+														<div className="text-xs text-muted-foreground">
+															{segment.aircraft.title}
+														</div>
+														<div className="flex items-center justify-end">
+															<div className="flex items-center gap-2">
+																<Clock className="w-4 h-4 text-muted-foreground" />
+																<span className="text-xs text-muted-foreground">
+																	Flight time:{" "}
+																	<span className="dark:text-white font-semibold">
+																		{formatDuration(
+																			segment.duration?.flight?.common || 0
+																		)}
+																	</span>
+																</span>
 															</div>
 														</div>
 													</div>
 												</div>
-												<div className="w-px h-6 ml-1 bg-gray-400 dark:bg-muted-foreground hidden xl:block" />
-												<div>
+
+												<div className="flex flex-col">
+													{/* Departure and Arrival Info */}
+													<div>
+														<div className="flex items-center gap-2">
+															<Plane className="w-5 h-5 text-muted-foreground" />
+															<div className="flex w-full gap-8 items-center">
+																<div className="flex flex-col">
+																	<div className="font-semibold">
+																		{segment.dep.time}
+																	</div>
+																	<div className="text-xs text-gray-500">
+																		{formatDate(segment.dep.date)}
+																	</div>
+																</div>
+																<div className="text-sm font-medium">
+																	{segment.dep.city.title}
+																	<div className="text-gray-500">
+																		{segment.dep.airport.title}, (
+																		{segment.dep.airport.code})
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div className="w-px h-6 ml-1 bg-gray-400 dark:bg-muted-foreground hidden xl:block" />
+
 													<div className="flex items-center gap-2">
 														<Plane className="w-5 h-5 text-muted-foreground rotate-90" />
 														<div className="flex w-full gap-8 items-center">
@@ -447,27 +518,27 @@ export const FlightCard = React.memo(
 														</div>
 													</div>
 												</div>
-											</div>
 
-											{/* Transfer Information */}
-											{index < flight.segments.length - 1 && (
-												<div className="mt-2 dark:bg-blue-900/20 bg-red-100 border-l-4 border-red-500 p-2 rounded-r-lg">
-													<div className="flex items-center gap-2">
-														<Clock className="w-4 h-4 text-red-500 font-semibold" />
-														<div className="text-xs dark:text-muted-foreground">
-															Transfer at {segment.arr.airport.code}:{" "}
-															<span className="dark:text-white font-semibold">
-																{calculateTransferTime(
-																	segment,
-																	flight.segments[index + 1]
-																)}
-															</span>
+												{/* Transfer Information */}
+												{index < flight.segments.length - 1 && (
+													<div className="mt-2 dark:bg-blue-900/20 bg-red-100 border-l-4 border-red-500 p-2 rounded-r-lg">
+														<div className="flex items-center gap-2">
+															<Clock className="w-4 h-4 text-red-500 font-semibold" />
+															<div className="text-xs dark:text-muted-foreground">
+																Transfer at {segment.arr.airport.code}:{" "}
+																<span className="dark:text-white font-semibold">
+																	{calculateTransferTime(
+																		segment,
+																		flight.segments[index + 1]
+																	)}
+																</span>
+															</div>
 														</div>
 													</div>
-												</div>
-											)}
-										</div>
-									))}
+												)}
+											</div>
+										);
+									})}
 								</div>
 
 								{/* Pricing, Rules and Additional Details Section */}
@@ -487,7 +558,7 @@ export const FlightCard = React.memo(
 											<div className="flex flex-col gap-2">
 												<div className="flex items-center gap-2">
 													<Luggage
-														className={`w-6 h-6 ${
+														className={`w-5 h-5 ${
 															fareFamilyDetails.checkedBaggage.includes("kg") ||
 															fareFamilyDetails.checkedBaggage.includes("piece")
 																? "text-green-500"
@@ -503,7 +574,7 @@ export const FlightCard = React.memo(
 												</div>
 
 												<div className="flex items-center gap-2">
-													<Handbag className="w-6 h-6 text-green-500" />
+													<Handbag className="w-5 h-5 text-green-500" />
 													<span className="text-sm">
 														{fareFamilyDetails.handBaggage.piece} piece,{" "}
 														{fareFamilyDetails.handBaggage.weight}{" "}
@@ -513,7 +584,7 @@ export const FlightCard = React.memo(
 
 												<div className="flex items-center gap-2">
 													<Repeat
-														className={`w-6 h-6 ${
+														className={`w-5 h-5 ${
 															fareFamilyDetails.change === "Non-changeable"
 																? "text-red-500"
 																: "text-green-500"
@@ -526,7 +597,7 @@ export const FlightCard = React.memo(
 
 												<div className="flex items-center gap-2">
 													<Undo2
-														className={`w-6 h-6 ${
+														className={`w-5 h-5 ${
 															fareFamilyDetails.refund === "Non-refundable"
 																? "text-red-500"
 																: "text-green-500"
@@ -557,17 +628,13 @@ export const FlightCard = React.memo(
 												</div>
 											))}
 										</div>
+									</div>
 
-										{/* 	<div className="flex gap-2">
-											{flight.upgrades?.length > 0 && (
-												<Badge
-													variant="outline"
-													className="bg-blue-50 text-blue-600"
-												>
-													Can be upgraded
-												</Badge>
-											)}
-										</div> */}
+									<div className="border-l-4 border-l-primary/50 dark:border-l-primary/50 border border-neutral-300 dark:border-blue-500/20 dark:bg-blue-950/10 rounded-r-lg px-4 py-2 shadow-lg">
+										<div className="space-y-2">
+											<h2 className="">Additional Information</h2>
+											<AdditionalInfoModal />
+										</div>
 									</div>
 								</div>
 							</div>
