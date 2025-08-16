@@ -24,17 +24,6 @@ export const FlightCard = React.memo(
 		const [isOpen, setIsOpen] = useState(false);
 		const search = apiData.data.search;
 
-		const formatDate = (dateStr: string) => {
-			const [day, month, year] = dateStr.split(".");
-			const date = new Date(`${year}-${month}-${day}`);
-			const options: Intl.DateTimeFormatOptions = {
-				day: "numeric",
-				month: "short",
-				weekday: "short",
-			};
-			return date.toLocaleDateString("en-US", options);
-		};
-
 		return (
 			<Card
 				className={`transition-all duration-300 py-0 shadow-lg ${
