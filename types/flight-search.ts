@@ -347,7 +347,7 @@ export interface PassengerDocuments {
 
 // API Response Types
 export interface FlightSearchSuccessResponse {
-	success: true;
+	success: boolean;
 	data: {
 		search: Search;
 		flights: FlightRecommendation[];

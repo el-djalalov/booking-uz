@@ -1,5 +1,3 @@
-// Create this as a separate component or add it to your SearchResults file
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Plane, Users } from "lucide-react";
 import { FlightSearchFormData } from "@/lib/schema/flight-search";

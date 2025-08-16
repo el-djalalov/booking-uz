@@ -24,5 +24,7 @@ export const getFlightSearchQuery = (searchData: FlightSearchFormData) => ({
 	queryKey: ["flight-search", searchData],
 	queryFn: () => searchFlights(searchData),
 	staleTime: 1000 * 60 * 2, // 2 minutes for flight data
-	cacheTime: 1000 * 60 * 10, // 10 minutes in cache
+	gcTime: 1000 * 60 * 10, // 10 minutes in cache
+	retry: 2, // retry twice on failure
+	retryDelay: 1000, // 1 second between retries
 });

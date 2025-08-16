@@ -1,6 +1,6 @@
 "use server";
 
-import { apiServerClient } from "@/lib/api-server-client";
+import { apiServerClient } from "@/lib/api-client-back";
 import {
 	FlightSearchParams,
 	FlightRecommendation,

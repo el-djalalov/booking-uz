@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { apiClient } from "@/lib/api-client";
+import { apiClient } from "@/lib/api-client-front";
 
 interface TokenProviderProps {
 	token: string;

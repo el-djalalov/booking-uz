@@ -55,6 +55,7 @@ export function SearchResults({ searchData }: SearchResultsProps) {
 							❌ Search Error
 						</h2>
 						<p className="text-red-600 mb-4">{error.message}</p>
+
 						<Button>Try Again</Button>
 					</div>
 				</div>

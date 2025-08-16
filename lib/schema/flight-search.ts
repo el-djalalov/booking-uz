@@ -1,4 +1,3 @@
-// lib/schemas/flight-search.ts
 import { z } from "zod";
 
 const airportSchema = z.object({

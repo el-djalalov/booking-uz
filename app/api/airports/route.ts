@@ -1,4 +1,3 @@
-// app/api/airports/route.ts
 import { NextResponse } from "next/server";
 import { searchAirports } from "@/lib/airport-service";
 
