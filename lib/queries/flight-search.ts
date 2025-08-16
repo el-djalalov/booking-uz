@@ -1,6 +1,9 @@
 import { FlightSearchFormData } from "@/lib/schema/flight-search";
+import { FlightSearchSuccessResponse } from "@/types/flight-search";
 
-export const searchFlights = async (data: FlightSearchFormData) => {
+export const searchFlights = async (
+	data: FlightSearchFormData
+): Promise<FlightSearchSuccessResponse> => {
 	const response = await fetch("/api/flights-search", {
 		method: "POST",
 		headers: {

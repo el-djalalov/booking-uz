@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { Suspense } from "react";
 import { FlightSearchFormData } from "@/lib/schema/flight-search";
-import { FlightSearchLoadingSkeleton } from "@/components/FlightSearchLoadingSkeleton";
+import { FlightSearchLoadingSkeleton } from "@/components/flight-results/FlightResultLoadingSkeleton";
 import { getFlightSearchQuery } from "@/lib/queries/flight-search";
 import { SearchResults } from "./search-results";
 import { SearchPageProps } from "@/types/flight-search";

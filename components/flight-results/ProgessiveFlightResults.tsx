@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Zap } from "lucide-react";
 import { FlightCard } from "./FlightResultCard";
-import { CompactFlightCardSkeleton } from "./CompactFlightCardSkeleton";
 import { ProgressiveFlightResultsProps } from "@/types/progressiveSearchResults";
 
 export function ProgressiveFlightResults({
@@ -160,28 +159,27 @@ export function ProgressiveFlightResults({
 		return flightChunks.slice(0, renderedChunks).flat();
 	}, [flightChunks, renderedChunks]);
 
-	const remainingCount = flights.length - visibleFlights.length;
 	const progressPercentage = (visibleFlights.length / flights.length) * 100;
 
 	return (
 		<div className="space-y-3 flex-1">
 			{!showProgress && (
-				<div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+				<div className="bg-blue-50 border dark:bg-muted rounded-lg p-4">
 					<div className="flex items-center justify-between mb-2">
 						<div className="flex items-center gap-2">
-							<Zap className="w-4 h-4 text-blue-600" />
-							<span className="text-sm font-medium text-blue-800">
+							<Zap className="w-4 h-4 text-blue-600 dark:text-accent-foreground" />
+							<span className="text-sm font-medium text-blue-800 dark:text-accent-foreground">
 								Progressive Loading Active
 							</span>
 						</div>
-						<span className="text-sm text-blue-600">
+						<span className="text-sm text-blue-600 dark:text-accent-foreground">
 							{visibleFlights.length} / {flights.length} flights
 						</span>
 					</div>
 					<Progress value={progressPercentage} className="h-2 mb-2" />
 
 					{/* Performance Stats */}
-					<div className="grid grid-cols-3 gap-4 text-xs text-blue-700">
+					<div className="grid grid-cols-3 gap-4 text-xs text-blue-700 dark:text-accent-foreground">
 						<div>
 							<span className="font-medium">Progress:</span>{" "}
 							{progressPercentage.toFixed(1)}%
@@ -212,27 +210,6 @@ export function ProgressiveFlightResults({
 					/>
 				))}
 			</div>
-
-			{isRendering && (
-				<div className="space-y-3">
-					{Array.from({ length: Math.min(chunkSize, remainingCount) }).map(
-						(_, index) => (
-							<CompactFlightCardSkeleton key={`skeleton-${index}`} />
-						)
-					)}
-				</div>
-			)}
-
-			{/* {remainingCount === 0 && visibleFlights.length > 0 && (
-				<div className="text-center py-6 bg-green-50 border border-green-200 rounded-lg">
-					<div className="text-green-800 font-medium">
-						All {flights.length} flights loaded successfully!
-					</div>
-					<div className="text-green-600 text-sm mt-1">
-						Completed in {renderingStats.chunksRendered} chunks
-					</div>
-				</div>
-			)} */}
 		</div>
 	);
 }

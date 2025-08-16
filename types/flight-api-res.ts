@@ -1,15 +1,3 @@
-// types/flight-api-response.ts
-export interface FlightApiResponse {
-	success: boolean;
-	data: {
-		search: SearchInfo;
-		flights: FlightRecommendation[];
-		segments_comments: Record<string, string>;
-	};
-	count: number;
-	searchParams: SearchParams;
-}
-
 export interface FlightRecommendation {
 	id: string;
 	is_tour_operator: boolean;

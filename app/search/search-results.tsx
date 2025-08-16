@@ -5,10 +5,10 @@ import { getFlightSearchQuery } from "@/lib/queries/flight-search";
 import { FlightSearchFormData } from "@/lib/schema/flight-search";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-import { FlightSearchLoadingSkeleton } from "@/components/FlightSearchLoadingSkeleton";
+import { FlightSearchLoadingSkeleton } from "@/components/flight-results/FlightResultLoadingSkeleton";
 import { Button } from "@/components/ui/button";
-import { ProgressiveFlightResults } from "@/components/ProgessiveFlightResults";
-import Filters from "@/components/Filters";
+import { ProgressiveFlightResults } from "@/components/flight-results/ProgessiveFlightResults";
+import Filters from "@/components/flight-results/Filters";
 import { FlightSearch } from "@/components/flight-search";
 import {
 	Drawer,
@@ -27,15 +27,15 @@ import {
 	Users,
 } from "lucide-react";
 import Image from "next/image";
+import { FlightSearchSuccessResponse } from "@/types/flight-search";
 
 interface SearchResultsProps {
 	searchData: FlightSearchFormData;
 }
 
 export function SearchResults({ searchData }: SearchResultsProps) {
-	const { data, isLoading, isError, error, refetch } = useQuery(
-		getFlightSearchQuery(searchData)
-	);
+	const { data, isLoading, isError, error, refetch } =
+		useQuery<FlightSearchSuccessResponse>(getFlightSearchQuery(searchData));
 
 	const searchParams = useSearchParams();
 
@@ -54,8 +54,8 @@ export function SearchResults({ searchData }: SearchResultsProps) {
 						<h2 className="text-lg font-semibold text-red-800 mb-2">
 							❌ Search Error
 						</h2>
-						<p className="text-red-600 mb-4">{error?.message}</p>
-						<Button onClick={() => refetch()}>Try Again</Button>
+						<p className="text-red-600 mb-4">{error.message}</p>
+						<Button>Try Again</Button>
 					</div>
 				</div>
 			</div>

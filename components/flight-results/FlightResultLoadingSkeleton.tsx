@@ -24,22 +24,22 @@ export function FlightSearchLoadingSkeleton() {
 					{[1, 2, 3, 4, 5].map((_, index) => (
 						<div
 							key={index}
-							className="bg-card border rounded-lg p-3 animate-pulse h-[172px]"
+							className="bg-card border rounded-lg p-3 animate-pulse h-[150px]"
 						>
 							<div className="flex justify-between mb-4">
 								<div className="space-y-2">
-									<Skeleton className="h-5 w-32" />
+									<Skeleton className="h-4 w-32" />
 									<Skeleton className="h-4 w-24" />
 								</div>
 								<div className="text-right flex flex-col gap-1">
-									<Skeleton className="h-6 w-24" />
+									<Skeleton className="h-4 w-24" />
 									<Skeleton className="h-4 w-16" />
 								</div>
 							</div>
 
 							<div className="flex justify-between items-center">
 								<div className="space-y-2">
-									<Skeleton className="h-6 w-16" /> {/* Departure time */}
+									<Skeleton className="h-4 w-16" /> {/* Departure time */}
 									<Skeleton className="h-4 w-12" /> {/* Airport code */}
 								</div>
 								<div className="flex-1 mx-4">
@@ -56,8 +56,8 @@ export function FlightSearchLoadingSkeleton() {
 								</div>
 							</div>
 
-							<div className="mt-4 text-right">
-								<Skeleton className="h-6 w-24 ml-auto" /> {/* Select button */}
+							<div className="mt-2 text-right">
+								<Skeleton className="h-4 w-24 ml-auto" /> {/* Select button */}
 							</div>
 						</div>
 					))}

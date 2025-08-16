@@ -5,7 +5,6 @@ import {
 	FlightRecommendation,
 	FlightSearchSuccessResponse,
 	FlightSegment,
-	Search,
 } from "@/types/flight-search";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -35,8 +34,8 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "./ui/dialog";
-import { ScrollArea } from "./ui/scroll-area";
+} from "../ui/dialog";
+import { ScrollArea } from "../ui/scroll-area";
 
 export const FlightCard = React.memo(
 	({
@@ -227,7 +226,7 @@ export const FlightCard = React.memo(
 		const renderFlightRoute = useCallback(() => {
 			if (flight.segments_count === 1) {
 				return (
-					<div className="flex-1 flex items-center justify-between px-2 sm:px-4 pt-6">
+					<div className="flex-1 flex items-center justify-between px-2 sm:px-4 pt-6 ">
 						{/* Direct flight */}
 						<Plane className="text-muted-foreground h-5 w-5 transform -translate-y-4 translate-x-2" />
 						<div className="flex-1 flex flex-col items-center px-2">
@@ -243,9 +242,9 @@ export const FlightCard = React.memo(
 					</div>
 				);
 			} else {
-				// Flights with transfers
+				/* Flights with transfers */
 				return (
-					<div className="flex-1 flex items-center px-2 min-w-0 pt-6 relative">
+					<div className="flex-1 flex items-center px-5 min-w-0 pt-6 relative">
 						<Plane className="text-muted-foreground h-5 w-5" />
 						<div className="flex-1 relative h-6">
 							<div className="absolute top-1/2 left-0 right-0 border-t border-muted-foreground border-dashed"></div>
@@ -318,10 +317,14 @@ export const FlightCard = React.memo(
 							{Object.entries(apiData.data.segments_comments || {}).map(
 								([hash, comment]) => (
 									<div key={hash} className="mb-4">
-										<h3 className="font-semibold text-lg mb-2">
+										<h3 key={hash} className="font-semibold text-lg mb-2">
 											Segment Comment
 										</h3>
-										<p className="text-muted-foreground">{comment}</p>
+										<p className="text-muted-foreground">
+											{comment
+												? comment
+												: "No comment available from this segment"}
+										</p>
 									</div>
 								)
 							)}
@@ -554,7 +557,7 @@ export const FlightCard = React.memo(
 											</Badge>
 										</div>
 
-										<div className="flex justify-between items-center">
+										<div className="flex justify-items-start gap-4 items-center">
 											<div className="flex flex-col gap-2">
 												<div className="flex items-center gap-2">
 													<Luggage
@@ -565,7 +568,7 @@ export const FlightCard = React.memo(
 																: "text-red-500"
 														}`}
 													/>
-													<span className="text-sm">
+													<span className="text-sm dark:text-muted-foreground">
 														{fareFamilyDetails.checkedBaggage}{" "}
 														{fareFamilyDetails.checkedBaggage.includes("KG")
 															? ""
@@ -575,13 +578,15 @@ export const FlightCard = React.memo(
 
 												<div className="flex items-center gap-2">
 													<Handbag className="w-5 h-5 text-green-500" />
-													<span className="text-sm">
+													<span className="text-sm dark:text-muted-foreground">
 														{fareFamilyDetails.handBaggage.piece} piece,{" "}
 														{fareFamilyDetails.handBaggage.weight}{" "}
 														{fareFamilyDetails.handBaggage.weightUnit}
 													</span>
 												</div>
+											</div>
 
+											<div className="flex flex-col gap-2">
 												<div className="flex items-center gap-2">
 													<Repeat
 														className={`w-5 h-5 ${
@@ -590,7 +595,7 @@ export const FlightCard = React.memo(
 																: "text-green-500"
 														}`}
 													/>
-													<span className="text-sm">
+													<span className="text-sm dark:text-muted-foreground">
 														{fareFamilyDetails.change}
 													</span>
 												</div>
@@ -603,7 +608,7 @@ export const FlightCard = React.memo(
 																: "text-green-500"
 														}`}
 													/>
-													<span className="text-sm">
+													<span className="text-sm dark:text-muted-foreground">
 														{fareFamilyDetails.refund}
 													</span>
 												</div>
@@ -630,7 +635,7 @@ export const FlightCard = React.memo(
 										</div>
 									</div>
 
-									<div className="border-l-4 border-l-primary/50 dark:border-l-primary/50 border border-neutral-300 dark:border-blue-500/20 dark:bg-blue-950/10 rounded-r-lg px-4 py-2 shadow-lg">
+									<div className="border-l-4 border-l-primary/50 dark:border-l-primary/50 border border-neutral-300 dark:border-blue-500/20 dark:bg-blue-950/10 rounded-r-lg px-4 py-2 shadow-lg h-full">
 										<div className="space-y-2">
 											<h2 className="">Additional Information</h2>
 											<AdditionalInfoModal />
